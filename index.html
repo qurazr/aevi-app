@@ -10,7 +10,7 @@
 <body>
 
     <!-- Заставка -->
-    <div id="splash-screen" class="screen active">
+    <div id="splash-screen" class="show">
         <div class="logo-container">
             <h1 class="logo-text">AEVI</h1>
             <p class="logo-sub">Learn English. Anywhere.</p>
@@ -21,7 +21,7 @@
     <div id="home-screen" class="screen">
         <header class="app-header">
             <div class="points-box">🏆 Баллы: <span id="points-display">0</span></div>
-            <button id="premium-btn" class="premium-toggle">🔓 Получить подписку</button>
+            <button id="premium-btn" class="premium-toggle"> Получить подписку</button>
         </header>
 
         <div class="level-selector">
@@ -29,12 +29,10 @@
             <div class="levels-row" id="levels-container"></div>
         </div>
 
-        <div class="lessons-grid" id="lessons-container">
-            <!-- Уроки генерируются JS -->
-        </div>
+        <div class="lessons-grid" id="lessons-container"></div>
 
-        <div class="sub-banner" id="sub-banner">
-             Уровни B1–B2 и уроки 2–4 доступны по подписке
+        <div class="sub-banner" id="sub-banner" style="display:none;">
+            Уровень B2 доступен по подписке
         </div>
     </div>
 
@@ -52,12 +50,9 @@
     <div id="quiz-screen" class="screen">
         <div class="quiz-header">
             <button class="back-btn" onclick="goHome()">← Выйти</button>
-            <div class="quiz-progress">
-                <span id="quiz-step">1</span> / 20
-            </div>
+            <div class="quiz-progress"><span id="quiz-step">1</span> / 20</div>
         </div>
         <div class="progress-bar"><div id="quiz-fill" style="width: 5%"></div></div>
-        
         <h2 id="quiz-question">Вопрос...</h2>
         <div id="quiz-options" class="options-grid"></div>
     </div>
@@ -65,7 +60,7 @@
     <!-- Экран результата -->
     <div id="result-screen" class="screen">
         <div class="result-card">
-            <h2>🎉 Урок завершён!</h2>
+            <h2> Урок завершён!</h2>
             <p>Правильных ответов: <span id="result-correct">0</span> / 20</p>
             <p class="points-earned">+ <span id="result-points">0</span> баллов</p>
             <button class="action-btn" onclick="goHome()">На главную</button>
