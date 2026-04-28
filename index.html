@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AEVI - English Learning</title>
+    <title>AEVI English</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Заставка (Splash Screen) -->
+    <!-- Заставка -->
     <div id="splash-screen" class="screen active">
         <div class="logo-container">
             <h1 class="logo-text">AEVI</h1>
+            <p class="logo-sub">Learn English. Anywhere.</p>
         </div>
     </div>
 
-    <div id="app">
-        <!-- Главный экран -->
-        <div id="home-screen" class="screen">
-            <h1>Learn English 🇬🇧</h1>
-            <p>Выберите ваш уровень:</p>
-            <div class="levels-container">
-                <button class="level-btn" onclick="startLevel('A0')">Beginner (A0)</button>
-                <button class="level-btn" onclick="startLevel('A1')">Elementary (A1)</button>
-                <button class="level-btn" onclick="startLevel('A2')">Pre-Intermediate (A2)</button>
-            </div>
-            
-            <div class="premium-banner" id="premium-banner" style="display: none;">
-                🔒 Premium доступ открыт!
-            </div>
-            <button id="buy-subscription" class="sub-btn">Купить подписку (Demo)</button>
+    <!-- Главный экран -->
+    <div id="home-screen" class="screen">
+        <header class="app-header">
+            <div class="points-box">🏆 Баллы: <span id="points-display">0</span></div>
+            <button id="premium-btn" class="premium-toggle">🔓 Получить подписку</button>
+        </header>
+
+        <div class="level-selector">
+            <h3>Выберите уровень:</h3>
+            <div class="levels-row" id="levels-container"></div>
         </div>
 
-        <!-- Экран урока -->
-        <div id="lesson-screen" class="screen">
-            <div class="progress-bar">
-                <div id="progress-fill" style="width: 0%"></div>
-            </div>
-            <h2 id="question-text">Вопрос...</h2>
-            <div id="answers-container" class="answers-grid">
-                <!-- Кнопки ответов появятся здесь -->
-            </div>
+        <div class="lessons-grid" id="lessons-container">
+            <!-- Уроки генерируются JS -->
         </div>
 
-        <!-- Экран результата -->
-        <div id="result-screen" class="screen">
-            <h2>Урок завершен! </h2>
-            <p>Ваш результат: <span id="score">0</span> из <span id="total">0</span></p>
-            <button class="level-btn" onclick="goHome()">На главную</button>
+        <div class="sub-banner" id="sub-banner">
+             Уровни B1–B2 и уроки 2–4 доступны по подписке
+        </div>
+    </div>
+
+    <!-- Экран теории -->
+    <div id="theory-screen" class="screen">
+        <div class="theory-header">
+            <button class="back-btn" onclick="goHome()">← Назад</button>
+            <h2 id="theory-title">Теория</h2>
+        </div>
+        <div class="theory-content" id="theory-content"></div>
+        <button id="theory-next-btn" class="action-btn">Далее →</button>
+    </div>
+
+    <!-- Экран теста -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-header">
+            <button class="back-btn" onclick="goHome()">← Выйти</button>
+            <div class="quiz-progress">
+                <span id="quiz-step">1</span> / 20
+            </div>
+        </div>
+        <div class="progress-bar"><div id="quiz-fill" style="width: 5%"></div></div>
+        
+        <h2 id="quiz-question">Вопрос...</h2>
+        <div id="quiz-options" class="options-grid"></div>
+    </div>
+
+    <!-- Экран результата -->
+    <div id="result-screen" class="screen">
+        <div class="result-card">
+            <h2>🎉 Урок завершён!</h2>
+            <p>Правильных ответов: <span id="result-correct">0</span> / 20</p>
+            <p class="points-earned">+ <span id="result-points">0</span> баллов</p>
+            <button class="action-btn" onclick="goHome()">На главную</button>
         </div>
     </div>
 
