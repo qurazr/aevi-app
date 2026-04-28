@@ -893,12 +893,13 @@ function finishQuiz() {
 }
 
 // === ЗАПУСК ===
-window.addEventListener('load', () => {
-    loadState();
-    updateUI();
-    
-    setTimeout(() => {
-        document.getElementById('splash-screen').style.display = 'none';
-        showScreen('home-screen');
-    }, 5000);
-});
+loadState();
+updateUI();
+
+// Убираем заставку через 5 секунд
+setTimeout(() => {
+    const splash = document.getElementById('splash-screen');
+    splash.classList.remove('active'); // Убираем класс active
+    splash.style.display = 'none'; // Принудительно скрываем
+    showScreen('home-screen'); // Показываем главный экран
+}, 5000);
