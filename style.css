@@ -1,0 +1,119 @@
+:root {
+    --bg-color: var(--tg-theme-bg-color, #fff);
+    --text-color: var(--tg-theme-text-color, #000);
+    --button-color: var(--tg-theme-button-color, #3390ec);
+    --button-text-color: var(--tg-theme-button-text-color, #fff);
+    --secondary-bg: var(--tg-theme-secondary-bg-color, #f1f1f1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#app {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.level-btn, .sub-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.level-btn:active {
+    transform: scale(0.98);
+}
+
+.sub-btn {
+    background-color: #ffcc00; /* Золотой для подписки */
+    color: #000;
+}
+
+.answers-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.answer-btn {
+    padding: 15px;
+    border: 2px solid var(--button-color);
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.answer-btn.correct {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+}
+
+.answer-btn.wrong {
+    background-color: #f44336;
+    border-color: #f44336;
+    color: white;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--secondary-bg);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: var(--button-color);
+    transition: width 0.3s ease;
+}
+
+.premium-banner {
+    margin: 20px 0;
+    padding: 10px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 8px;
+}
