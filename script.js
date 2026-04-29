@@ -348,46 +348,8 @@ function renderPractice(container) {
   }
 }
 
-// ------------------- ЗАПУСК С ЗАСТАВКОЙ НА 5 СЕКУНД -------------------
-let secondsLeft = 5;
-let timerInterval;
-
-function startSplashTimer() {
-  const timerElement = document.getElementById('splashTimer');
-  if (!timerElement) return;
-
-  timerInterval = setInterval(() => {
-    secondsLeft--;
-    if (timerElement) {
-      timerElement.textContent = secondsLeft;
-    }
-
-    if (secondsLeft <= 0) {
-      clearInterval(timerInterval);
-      const splash = document.getElementById('splash');
-      const mainApp = document.getElementById('mainApp');
-
-      if (splash) {
-        splash.style.opacity = '0';
-        setTimeout(() => {
-          splash.style.display = 'none';
-          if (mainApp) {
-            mainApp.style.display = 'block';
-          }
-          loadProgress();
-          render();
-        }, 1000);
-      } else {
-        if (mainApp) {
-          mainApp.style.display = 'block';
-        }
-        loadProgress();
-        render();
-      }
-    }
-  }, 1000);
-}
-
-window.addEventListener('DOMContentLoaded', function() {
-  startSplashTimer();
+// ------------------- ЗАПУСК -------------------
+document.addEventListener('DOMContentLoaded', function() {
+  loadProgress();
+  render();
 });
