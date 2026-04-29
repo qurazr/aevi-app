@@ -426,8 +426,8 @@ function renderPractice(container) {
 }
 
 // ------------------- ЗАПУСК С ЗАСТАВКОЙ НА 5 СЕКУНД -------------------
-let timerInterval;
 let secondsLeft = 5;
+let timerInterval;
 
 function startSplashTimer() {
   const timerElement = document.getElementById('splashTimer');
@@ -441,7 +441,6 @@ function startSplashTimer() {
     
     if (secondsLeft <= 0) {
       clearInterval(timerInterval);
-      // Плавно скрываем заставку
       const splash = document.getElementById('splash');
       const mainApp = document.getElementById('mainApp');
       
@@ -461,7 +460,6 @@ function startSplashTimer() {
   }, 1000);
 }
 
-// Ждём загрузки страницы и запускаем таймер
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
   startSplashTimer();
 });
