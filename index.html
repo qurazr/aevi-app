@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Aevi | Neon Language Learning — A0 до C2</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <title>Aevi Neon | Реальные уроки — 5 языков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -21,33 +20,27 @@
             overflow-x: hidden;
         }
 
-        /* неоновый glow эффект */
-        .neon-glow {
-            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff55a;
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 28px;
         }
 
-        /* стеклянный хедер с неоном */
+        /* Header */
         .header {
-            background: rgba(10, 12, 18, 0.7);
+            background: rgba(10, 12, 18, 0.75);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.35);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
         }
 
         .nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 0;
+            padding: 18px 0;
             flex-wrap: wrap;
             gap: 20px;
         }
@@ -55,106 +48,64 @@
         .logo {
             font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #aaffff, #6a4eff);
+            background: linear-gradient(135deg, #aaffff, #bc6eff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 8px #0ff88a;
+            text-shadow: 0 0 8px #0ff4aa;
         }
 
-        .logo span {
-            font-weight: 400;
-            color: #6c6eff;
-            background: none;
-        }
-
-        .nav-links {
+        /* языковой селектор — крутой */
+        .lang-selector {
             display: flex;
-            gap: 36px;
-            align-items: center;
+            gap: 12px;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 6px 18px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 255, 255, 0.4);
         }
 
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 500;
-            color: #ccf6ff;
+        .lang-option {
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-weight: 600;
             transition: 0.2s;
-            letter-spacing: 0.3px;
+            color: #bbf0ff;
         }
 
-        .nav-links a:hover {
-            color: #0ff;
-            text-shadow: 0 0 6px cyan;
+        .lang-option.active {
+            background: cyan;
+            color: #0a0c12;
+            box-shadow: 0 0 12px cyan;
         }
 
-        .premium-btn-neon {
+        .premium-btn {
             background: linear-gradient(105deg, #f0a34b, #ff4d6d);
             padding: 8px 24px;
             border-radius: 40px;
             color: white !important;
             font-weight: 700;
             box-shadow: 0 0 12px #ff4d6daa;
-            border: none;
+            cursor: pointer;
             transition: 0.2s;
         }
 
-        .premium-btn-neon:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 22px #ff6a4b;
-        }
-
-        /* hero секция с неоном */
         .hero {
-            padding: 70px 0 50px;
+            padding: 50px 0 30px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: 3.8rem;
             background: linear-gradient(125deg, #b3f0ff, #bc7aff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #b5d1e6;
-            max-width: 650px;
-            margin: 0 auto 30px;
-        }
-
-        .lang-rotator {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-            margin: 35px 0 20px;
-        }
-
-        .lang-chip {
-            background: rgba(0, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 255, 255, 0.5);
-            padding: 8px 20px;
-            border-radius: 80px;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            color: #bbf0ff;
-            transition: 0.2s;
-        }
-
-        .lang-chip i {
-            margin-right: 8px;
-            color: #0ff;
-        }
-
-        /* фильтр-бар неон */
         .filter-bar {
             display: flex;
             justify-content: space-between;
@@ -163,7 +114,6 @@
             margin: 30px 0 40px;
             gap: 20px;
             background: rgba(15, 20, 30, 0.6);
-            backdrop-filter: blur(4px);
             padding: 12px 24px;
             border-radius: 80px;
             border: 1px solid rgba(0, 255, 200, 0.3);
@@ -177,14 +127,12 @@
 
         .tab {
             background: transparent;
-            padding: 8px 26px;
+            padding: 8px 22px;
             border-radius: 60px;
             font-weight: 600;
             cursor: pointer;
-            font-family: inherit;
             border: 1px solid rgba(0, 255, 255, 0.3);
             color: #caf0ff;
-            transition: 0.2s;
         }
 
         .tab.active {
@@ -192,87 +140,65 @@
             color: #0a0c12;
             border-color: cyan;
             box-shadow: 0 0 14px cyan;
-            font-weight: bold;
-        }
-
-        .tab:hover {
-            border-color: cyan;
-            text-shadow: 0 0 4px cyan;
         }
 
         .lesson-counter {
-            font-family: monospace;
             background: #10141e;
             padding: 6px 18px;
             border-radius: 40px;
             border-left: 3px solid cyan;
         }
 
-        /* карточки — глянцевые, неоновая рамка при ховере */
         .lesson-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
             gap: 28px;
             margin-bottom: 60px;
         }
 
         .lesson-card {
-            background: rgba(18, 24, 34, 0.8);
+            background: rgba(18, 24, 34, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 32px;
             padding: 24px;
-            transition: 0.25s ease;
+            transition: 0.25s;
             border: 1px solid rgba(0, 255, 255, 0.2);
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .lesson-card:hover {
             transform: translateY(-6px);
             border-color: #0ff;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), 0 12px 24px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .lesson-level {
             font-size: 0.7rem;
-            font-weight: 700;
             background: #0ff22a20;
-            backdrop-filter: blur(4px);
             padding: 4px 12px;
             border-radius: 30px;
             border: 0.5px solid #0ff;
-            color: #9efff0;
         }
 
         .premium-lock {
             color: #ffae6e;
-            text-shadow: 0 0 3px orange;
-            font-weight: 500;
         }
 
         .lesson-title {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 700;
             margin: 12px 0 8px;
-            letter-spacing: -0.3px;
             background: linear-gradient(125deg, #fff, #9bc0ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-        }
-
-        .lesson-desc {
-            font-size: 0.85rem;
-            color: #aac8e0;
-            margin-bottom: 20px;
-            line-height: 1.4;
         }
 
         .start-btn {
@@ -284,27 +210,16 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.85rem;
             cursor: pointer;
-            color: #d0f0ff;
             transition: 0.2s;
-            font-family: inherit;
         }
 
         .start-btn:hover:not(:disabled) {
             background: #0ff22c;
             color: #0a0c12;
-            border-color: white;
             box-shadow: 0 0 15px cyan;
         }
 
-        .start-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            filter: grayscale(0.2);
-        }
-
-        /* модальное окно с неоном */
         .modal {
             display: none;
             position: fixed;
@@ -312,7 +227,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             justify-content: center;
@@ -327,41 +242,13 @@
             width: 90%;
             border-radius: 48px;
             padding: 32px;
-            position: relative;
-            animation: neonFade 0.2s ease;
-        }
-
-        @keyframes neonFade {
-            from {
-                opacity: 0;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
 
         .modal-close {
-            position: absolute;
-            right: 28px;
-            top: 24px;
+            float: right;
             font-size: 2rem;
             cursor: pointer;
             color: cyan;
-        }
-
-        .modal h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .premium-overlay {
-            background: rgba(255, 80, 40, 0.2);
-            border-radius: 32px;
-            padding: 24px;
-            text-align: center;
-            border: 1px solid #ff884d;
         }
 
         .upgrade-button {
@@ -370,22 +257,8 @@
             padding: 12px 28px;
             border-radius: 60px;
             font-weight: bold;
-            margin-top: 20px;
             cursor: pointer;
             color: white;
-            box-shadow: 0 0 15px #ff5e3a;
-        }
-
-        .lesson-action {
-            background: cyan;
-            color: #0a0c12;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 60px;
-            font-weight: 800;
-            margin-top: 20px;
-            cursor: pointer;
-            width: 100%;
         }
 
         footer {
@@ -393,7 +266,6 @@
             padding: 40px 0;
             text-align: center;
             color: #87b9dd;
-            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -403,10 +275,14 @@
     <div class="container">
         <div class="nav">
             <div class="logo">Aevi<span>·LINGUA</span></div>
-            <div class="nav-links">
-                <a href="#"><i class="fas fa-compass"></i> Explore</a>
-                <a href="#" id="upgradeNeonBtn" class="premium-btn-neon"><i class="fas fa-gem"></i> Premium Unlock</a>
+            <div class="lang-selector" id="langSelector">
+                <div data-lang="en" class="lang-option active">🇬🇧 EN</div>
+                <div data-lang="es" class="lang-option">🇪🇸 ES</div>
+                <div data-lang="fr" class="lang-option">🇫🇷 FR</div>
+                <div data-lang="de" class="lang-option">🇩🇪 DE</div>
+                <div data-lang="it" class="lang-option">🇮🇹 IT</div>
             </div>
+            <div class="premium-btn" id="upgradeNeonBtn"><i class="fas fa-gem"></i> Premium</div>
         </div>
     </div>
 </header>
@@ -414,36 +290,25 @@
 <main>
     <div class="container">
         <div class="hero">
-            <div class="lang-rotator">
-                <div class="lang-chip"><i class="fas fa-language"></i> English</div>
-                <div class="lang-chip"><i class="fas fa-flag-checkered"></i> Español</div>
-                <div class="lang-chip"><i class="fas fa-flag-checkered"></i> Français</div>
-                <div class="lang-chip"><i class="fas fa-flag-checkered"></i> Deutsch</div>
-                <div class="lang-chip"><i class="fas fa-flag-checkered"></i> Italiano</div>
-            </div>
-            <h1>learn without limits <span class="neon-glow">⚡Aevi</span></h1>
-            <p>A0 · A1 · B1 — полностью бесплатно (100+ уроков), B2 до C2 — по премиуму. Курсы на 5 языках: EN, ES, FR, DE, IT.</p>
+            <h1><i class="fas fa-bolt"></i> Real lessons · Real fluency</h1>
+            <p>100+ реальных уроков A0 на 5 языках. A0–B1 полностью бесплатно. B2–C2 в Premium.</p>
         </div>
-
-        <div class="lessons-section">
-            <div class="filter-bar">
-                <div class="tabs" id="levelTabs">
-                    <button data-level="all" class="tab active">ALL LEVELS</button>
-                    <button data-level="A0" class="tab">A0 (100 lessons)</button>
-                    <button data-level="A1" class="tab">A1</button>
-                    <button data-level="B1" class="tab">B1</button>
-                    <button data-level="premium" class="tab">⚡PREMIUM (B2-C2)</button>
-                </div>
-                <div class="lesson-counter"><i class="fas fa-bolt"></i> <span id="lessonCounter">0 lessons</span></div>
+        <div class="filter-bar">
+            <div class="tabs" id="levelTabs">
+                <button data-level="all" class="tab active">Все уровни</button>
+                <button data-level="A0" class="tab">A0 (100 уроков)</button>
+                <button data-level="A1" class="tab">A1</button>
+                <button data-level="B1" class="tab">B1</button>
+                <button data-level="premium" class="tab">⭐ Premium B2-C2</button>
             </div>
-            <div class="lesson-grid" id="lessonGrid"></div>
+            <div class="lesson-counter"><i class="fas fa-graduation-cap"></i> <span id="lessonCounter">0</span></div>
         </div>
+        <div class="lesson-grid" id="lessonGrid"></div>
     </div>
 </main>
 <footer>
     <div class="container">
-        <p><i class="fas fa-crown" style="color:#ffae70;"></i> Aevi Neon Edition — 5 языков, 160+ уроков, AI практика. A0-B1 free forever</p>
-        <p style="margin-top: 12px;">© 2025 Aevi — speak the future</p>
+        <p><i class="fas fa-globe"></i> Aevi — реальные уроки английского, испанского, французского, немецкого, итальянского</p>
     </div>
 </footer>
 
@@ -452,236 +317,245 @@
         <span class="modal-close">&times;</span>
         <h3 id="modalTitle"></h3>
         <div id="modalBody"></div>
-        <button id="modalActionBtn" class="lesson-action"></button>
+        <button id="modalActionBtn" class="upgrade-button" style="width:100%; margin-top:20px;"></button>
     </div>
 </div>
 
 <script>
-    // МУЛЬТИЯЗЫЧНЫЕ УРОКИ (испанский, французский, немецкий, итальянский, английский)
-    const LANGUAGES = [
-        { code: 'en', name: '🇬🇧 English', desc: 'Master global English from zero' },
-        { code: 'es', name: '🇪🇸 Español', desc: 'Aprende español con estilo' },
-        { code: 'fr', name: '🇫🇷 Français', desc: 'Parlez français comme un pro' },
-        { code: 'de', name: '🇩🇪 Deutsch', desc: 'Lerne Deutsch mit Aevi' },
-        { code: 'it', name: '🇮🇹 Italiano', desc: 'Impara l\'italiano facile' }
+    // ======================= РЕАЛЬНЫЕ УРОКИ ПО ЯЗЫКАМ =======================
+    // Для каждого языка: 20 уникальных уроков A0 (суммарно 100 уроков A0), 6 уроков A1, 8 уроков B1, премиум B2-C2.
+    const languageData = {
+        en: { name: "English", flag: "🇬🇧" },
+        es: { name: "Español", flag: "🇪🇸" },
+        fr: { name: "Français", flag: "🇫🇷" },
+        de: { name: "Deutsch", flag: "🇩🇪" },
+        it: { name: "Italiano", flag: "🇮🇹" }
+    };
+
+    // Реальные темы A0 — по 20 уникальных на язык (лексика + базовые фразы)
+    const a0RealTopics = {
+        en: ["The Alphabet & Sounds", "Greetings & Introductions", "Numbers 1-100", "Colors & Shapes", "My Family", "Everyday Objects", "Food & Drink", "Clothes & Fashion", "Weather & Seasons", "Days & Months", "Telling Time", "House & Rooms", "Animals & Pets", "Simple Verbs (to be/to have)", "Describing People", "At the Supermarket", "My Hobbies", "Transportation", "Directions & Places", "Basic Questions"],
+        es: ["El Alfabeto", "Saludos Básicos", "Números 1-100", "Colores y Formas", "Mi Familia", "Objetos Cotidianos", "Comida y Bebida", "Ropa y Moda", "Clima y Estaciones", "Días y Meses", "La Hora", "La Casa", "Animales", "Verbos Ser/Estar", "Describir Personas", "En el Supermercado", "Mis Pasatiempos", "Transporte", "Direcciones", "Preguntas Básicas"],
+        fr: ["L'Alphabet", "Salutations", "Les Nombres 1-100", "Couleurs", "Ma Famille", "Objets du quotidien", "Nourriture", "Vêtements", "Météo", "Jours et Mois", "L'heure", "La Maison", "Animaux", "Verbes Être/Avoir", "Décrire les gens", "Au Supermarché", "Loisirs", "Transports", "Indiquer le chemin", "Questions simples"],
+        de: ["Das Alphabet", "Begrüßungen", "Zahlen 1-100", "Farben", "Meine Familie", "Alltagsgegenstände", "Essen & Trinken", "Kleidung", "Wetter & Jahreszeiten", "Tage & Monate", "Uhrzeit", "Wohnung & Haus", "Tiere", "Verben sein/haben", "Personen beschreiben", "Im Supermarkt", "Hobbys", "Verkehrsmittel", "Wegbeschreibung", "Einfache Fragen"],
+        it: ["L'Alfabeto", "Saluti", "Numeri 1-100", "Colori", "La Mia Famiglia", "Oggetti Quotidiani", "Cibo e Bevande", "Abbigliamento", "Meteo e Stagioni", "Giorni e Mesi", "Che ore sono?", "La Casa", "Animali", "Verbi Essere/Avere", "Descrivere Persone", "Al Supermercato", "I Miei Hobby", "Trasporti", "Indicazioni Stradali", "Domande Base"]
+    };
+
+    // A1 реальные темы (единые для всех языков , но перевод смысловой)
+    const a1Common = [
+        "Past Tense Basics (I went / I ate)", "Future Plans (Going to)", "Daily Routine", "At the Restaurant", "Booking a Hotel", "Talking about Work", "Shopping & Prices", "Making Appointments"
+    ];
+    // B1 реальные темы
+    const b1Common = [
+        "Narrating Stories", "Expressing Opinions", "Conditional Sentences", "Job Interviews", "Travel Experiences", "Health & Fitness", "Media & News", "Cultural Differences"
+    ];
+    // Premium B2/C2 (расширенные)
+    const premiumTopics = [
+        { level: "B2", title: "Idioms & Slang", desc: "Master everyday expressions" },
+        { level: "B2", title: "Debate & Argumentation", desc: "Structure your thoughts" },
+        { level: "B2", title: "Business Communication", desc: "Emails & meetings" },
+        { level: "C1", title: "Rhetoric & Persuasion", desc: "Advanced speaking" },
+        { level: "C1", title: "Academic Writing", desc: "Essays & research" },
+        { level: "C2", title: "Nuanced Fluency", desc: "Native-level mastery" },
+        { level: "C2", title: "Cultural Subtext", desc: "Humor & references" },
+        { level: "B2", title: "Negotiation Skills", desc: "Win-win strategies" },
+        { level: "C1", title: "Critical Analysis", desc: "Deconstruct arguments" }
     ];
 
-    function generateMultiLangLessons() {
-        let lessons = [];
-        // A0: 100 уроков для каждого языка? Нет, каждый урок представляет язык, всего около 25 тем на A0, но для красоты создадим 130+ записей:
-        // Мы сделаем: для каждого языка по ~20-25 уроков A0 (чтобы было 100+ A0 суммарно), плюс A1/B1 и премиум мультиязык.
-        // Итог: более 100 уроков уровня А0, суммарно 5 языков = 125 записей A0!
-        let a0Topics = [
-            "Alphabet & sounds", "Greetings", "Numbers 1-20", "Colors", "Family", "Food & drinks", "Animals", "Clothes", "Weather", "House",
-            "Basic Verbs", "Present tense", "Question words", "Adjectives", "Daily routine", "City places", "Transport", "Hobbies", "Time", "Days",
-            "Months & seasons", "Ordering coffee", "Shopping", "My family", "Describing people", "Feelings", "Body parts", "Directions", "Hotel basics",
-            "At the airport", "Phone talk", "Past simple intro", "Future plans", "Modal verbs", "Prepositions", "Comparative", "Possessives", "Imperative",
-            "Making friends", "Holidays", "Work & jobs", "Technology basics", "Environment", "Music", "Movies", "Sports", "Health", "Routines"
-        ];
-        // A0: 50 тем, умножим на язык (5) => 250 A0? Но возьмем первые 20 тем на язык *5 = 100 уроков A0 именно.
-        // Генерируем ровно 100 уроков A0 (по 20 уроков на каждый язык)
-        for (let langIdx = 0; langIdx < LANGUAGES.length; langIdx++) {
-            const lang = LANGUAGES[langIdx];
-            for (let i = 0; i < 20; i++) {  // 20*5 = 100
-                const topicIdx = i % a0Topics.length;
-                const topic = a0Topics[topicIdx];
-                lessons.push({
-                    id: `A0_${lang.code}_${i}`,
-                    level: "A0",
-                    title: `[${lang.name}] A0 · ${topic}`,
-                    description: `Learn ${topic} in ${lang.name}. Vocabulary & basic dialogues. FREE.`,
-                    premium: false,
-                    langCode: lang.code,
-                    content: `✨ ${lang.name} lesson: "${topic}". 🎧 Native audio examples, exercises, and speaking practice. Perfect for beginners!`
-                });
-            }
-        }
-        // A1 уроки (на всех языках, но для компактности по 3-4 на язык, итого ~20 A1)
-        const a1sub = ["Family & relationships", "Past experiences", "Future plans", "At a restaurant", "Travel & booking", "Workplace talk", "Hobbies advanced", "Giving opinions"];
-        for (let lang of LANGUAGES) {
-            for (let i = 0; i < 5; i++) {
-                let topic = a1sub[i % a1sub.length];
-                lessons.push({
-                    id: `A1_${lang.code}_${i}`,
-                    level: "A1",
-                    title: `[${lang.name}] A1 · ${topic}`,
-                    description: `Conversations & grammar for A1. Free access.`,
-                    premium: false,
-                    langCode: lang.code,
-                    content: `📘 ${lang.name} A1: ${topic}. Situational dialogs, interactive tasks. Unlock fluency step by step.`
-                });
-            }
-        }
-        // B1 (22 урока, мультиязык)
-        const b1list = ["Work & career challenges", "Media & news", "Eco-friendly life", "Cultural differences", "Art & literature", "Social networks", "Money matters", "Education systems", "Health trends", "Urban life", "Travel stories", "Innovation", "Emotional intelligence", "Negotiation basics", "Storytelling", "Debate skills", "Global issues", "Leadership", "Job interviews", "Presentations", "Slang & idioms", "Movie analysis"];
-        for (let i = 0; i < b1list.length; i++) {
-            let lang = LANGUAGES[i % LANGUAGES.length];
-            lessons.push({
-                id: `B1_${lang.code}_${i}`,
-                level: "B1",
-                title: `[${lang.name}] B1 · ${b1list[i]}`,
-                description: `Intermediate discussion, advanced vocabulary. 100% free.`,
+    let allLessons = [];
+    // Генерация А0 (по 20 на язык = 100 уроков)
+    for (let langCode of Object.keys(languageData)) {
+        const topics = a0RealTopics[langCode];
+        for (let i = 0; i < topics.length; i++) {
+            allLessons.push({
+                id: `${langCode}_A0_${i}`,
+                level: "A0",
+                lang: langCode,
+                title: `[${languageData[langCode].flag}] A0 · ${topics[i]}`,
+                description: `Real-world vocabulary: ${topics[i]}. Start speaking from day 1.`,
                 premium: false,
-                langCode: lang.code,
-                content: `🔥 B1: ${b1list[i]} in ${lang.name}. Role plays, real media excerpts, writing tasks. Boost your confidence!`
+                content: `🎯 REAL LESSON: ${topics[i]} in ${languageData[langCode].name}.\n📖 Vocabulary list, dialogues, pronunciation tips and mini-exercises. 🎧 Listen to native speaker examples.`
             });
         }
-        // Premium B2-C2 общий (38 уроков высокого уровня, мультиязык)
-        const premHigh = [
-            "B2: Nuanced expressions", "B2: Business negotiations", "B2: Persuasive writing", "B2: Cultural taboos",
-            "B2: Humor & sarcasm", "B2: Academic vocabulary", "C1: Rhetoric mastery", "C1: Advanced debates",
-            "C1: Media analysis", "C1: Linguistic subtleties", "C1: Critical thinking", "C2: Stylistic perfection",
-            "C2: Native level fluency", "C2: Idiomatic mastery", "C2: Professional presentations", "C2: Literature analysis",
-            "B2: Travel expert", "B2: Legal terms basics", "C1: Psychology of language", "C2: Oratory skills",
-            "B2: Marketing language", "C1: Argumentation", "C2: Intercultural competence", "B2: Financial english"
-        ];
-        for (let i = 0; i < premHigh.length; i++) {
-            let lang = LANGUAGES[i % LANGUAGES.length];
-            let levelTag = premHigh[i].startsWith("B2") ? "B2" : (premHigh[i].startsWith("C1") ? "C1" : "C2");
-            lessons.push({
-                id: `premium_${levelTag}_${i}`,
-                level: levelTag,
-                title: `[${lang.name}] ${premHigh[i]} (PREMIUM)`,
-                description: `Advanced ${lang.name} lesson, exclusive for Aevi Premium members.`,
+    }
+    // A1 уроки (по 8 на язык)
+    for (let langCode of Object.keys(languageData)) {
+        for (let i = 0; i < a1Common.length; i++) {
+            allLessons.push({
+                id: `${langCode}_A1_${i}`,
+                level: "A1",
+                lang: langCode,
+                title: `[${languageData[langCode].flag}] A1 · ${a1Common[i]}`,
+                description: `Practical conversations: ${a1Common[i]}. Free access.`,
+                premium: false,
+                content: `✈️ A1 real lesson: ${a1Common[i]} in ${languageData[langCode].name}. Interactive dialogues and grammar in context. Complete with exercises.`
+            });
+        }
+    }
+    // B1 уроки (8 на язык)
+    for (let langCode of Object.keys(languageData)) {
+        for (let i = 0; i < b1Common.length; i++) {
+            allLessons.push({
+                id: `${langCode}_B1_${i}`,
+                level: "B1",
+                lang: langCode,
+                title: `[${languageData[langCode].flag}] B1 · ${b1Common[i]}`,
+                description: `Intermediate fluency: ${b1Common[i]}. Express yourself freely.`,
+                premium: false,
+                content: `🌍 B1 lesson: ${b1Common[i]} in ${languageData[langCode].name}. Real media excerpts, speaking prompts, writing tasks. Build confidence.`
+            });
+        }
+    }
+    // Premium уроки B2-C2 (мультиязык)
+    for (let langCode of Object.keys(languageData)) {
+        for (let p of premiumTopics) {
+            allLessons.push({
+                id: `${langCode}_prem_${p.level}_${p.title.replace(/\s/g,'')}`,
+                level: p.level,
+                lang: langCode,
+                title: `[${languageData[langCode].flag}] ${p.level} · ${p.title} (Premium)`,
+                description: p.desc,
                 premium: true,
-                langCode: lang.code,
-                content: `🔒 PREMIUM CONTENT: ${premHigh[i]} in ${lang.name}. Full immersion, AI speaking partner, grammar deep dive, native-level material. Subscribe to unlock.`
+                content: `🔐 PREMIUM LESSON: ${p.title} in ${languageData[langCode].name}.\nAdvanced vocabulary, real interviews, fluency hacks, teacher feedback simulations. Upgrade to access.`
             });
         }
-        // дополнительно 6 премиум для каждого уровня
-        return lessons;
     }
 
-    let lessonsDB = generateMultiLangLessons(); // больше 100 уроков A0: 100 точно, более 170 всего.
-    let isPremium = false;
-    let currentFilter = "all";
+    // Проверка: 100 уроков A0
+    console.log("A0 lessons:", allLessons.filter(l => l.level === "A0").length); // должно быть 100
+    console.log("Total lessons:", allLessons.length);
 
+    let currentLang = "en";
+    let currentLevelFilter = "all";
+    let isPremium = false;
+    
     const lessonGrid = document.getElementById("lessonGrid");
     const counterSpan = document.getElementById("lessonCounter");
-    const modal = document.getElementById("lessonModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalBodyDiv = document.getElementById("modalBody");
-    const modalActionBtn = document.getElementById("modalActionBtn");
-    const closeModalSpan = document.querySelector(".modal-close");
 
     function renderLessons() {
-        let filtered = lessonsDB.filter(lesson => {
-            if (currentFilter === "all") return true;
-            if (currentFilter === "premium") return lesson.premium === true;
-            return lesson.level === currentFilter;
+        let filtered = allLessons.filter(lesson => {
+            if (lesson.lang !== currentLang) return false;
+            if (currentLevelFilter === "all") return true;
+            if (currentLevelFilter === "premium") return lesson.premium === true;
+            return lesson.level === currentLevelFilter;
         });
-        const freeVisible = filtered.filter(l => !l.premium).length;
-        const totalVis = filtered.length;
-        counterSpan.innerText = `${freeVisible} / ${totalVis} free${!isPremium ? ' (premium locked)' : ' · full access'}`;
+        const freeCount = filtered.filter(l => !l.premium).length;
+        const total = filtered.length;
+        counterSpan.innerText = `${freeCount} / ${total} free ${!isPremium ? '🔒' : '✨'}`;
 
         if (filtered.length === 0) {
-            lessonGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:70px; color:cyan;">✨ No lessons, but neon never sleeps ✨</div>`;
+            lessonGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px;">🌀 No lessons for this level, change filter</div>`;
             return;
         }
 
         lessonGrid.innerHTML = filtered.map(lesson => {
             const locked = lesson.premium && !isPremium;
             return `
-                <div class="lesson-card" data-id="${lesson.id}" data-premium="${lesson.premium}">
+                <div class="lesson-card" data-id="${lesson.id}">
                     <div class="card-header">
-                        <span class="lesson-level">${lesson.level} · ${lesson.langCode?.toUpperCase() || 'LANG'}</span>
-                        ${lesson.premium && !isPremium ? '<span class="premium-lock"><i class="fas fa-lock"></i> PREMIUM</span>' : ''}
-                        ${lesson.premium && isPremium ? '<span class="premium-lock" style="color:#2effb0;"><i class="fas fa-unlock-alt"></i> unlocked</span>' : ''}
+                        <span class="lesson-level">${lesson.level}</span>
+                        ${lesson.premium && !isPremium ? '<span class="premium-lock"><i class="fas fa-crown"></i> Premium</span>' : ''}
                     </div>
                     <div class="lesson-title">${lesson.title}</div>
-                    <div class="lesson-desc">${lesson.description}</div>
+                    <div class="lesson-desc" style="color:#bbd4f0; font-size:0.85rem;">${lesson.description}</div>
                     <button class="start-btn" data-id="${lesson.id}" ${locked ? 'disabled' : ''}>
-                        ${locked ? '<i class="fas fa-crown"></i> Upgrade' : '<i class="fas fa-play-circle"></i> START'}
+                        ${locked ? '<i class="fas fa-lock"></i> Upgrade' : '<i class="fas fa-play"></i> Start lesson'}
                     </button>
                 </div>
             `;
         }).join('');
 
+        // attach events
         document.querySelectorAll('.start-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const card = btn.closest('.lesson-card');
-                const lessonId = card?.dataset.id;
-                const lesson = lessonsDB.find(l => l.id === lessonId);
-                if (lesson) openLessonModal(lesson);
+                const id = card.dataset.id;
+                const lesson = allLessons.find(l => l.id === id);
+                if (lesson) openModal(lesson);
             });
         });
-        // Также карточки кликабельны (клик по области открывает урок)
         document.querySelectorAll('.lesson-card').forEach(card => {
-            const btn = card.querySelector('.start-btn');
             card.addEventListener('click', (e) => {
-                if (e.target === btn || btn.contains(e.target)) return;
-                const lessonId = card.dataset.id;
-                const lesson = lessonsDB.find(l => l.id === lessonId);
-                if (lesson && (!lesson.premium || isPremium)) openLessonModal(lesson);
-                else if (lesson && lesson.premium && !isPremium) openLessonModal(lesson);
+                if(e.target.classList.contains('start-btn')) return;
+                const id = card.dataset.id;
+                const lesson = allLessons.find(l => l.id === id);
+                if (lesson && (!lesson.premium || isPremium)) openModal(lesson);
+                else if (lesson?.premium && !isPremium) openModal(lesson);
             });
         });
     }
 
-    function openLessonModal(lesson) {
-        const isLocked = lesson.premium && !isPremium;
+    // Модальное окно
+    const modal = document.getElementById("lessonModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalActionBtn = document.getElementById("modalActionBtn");
+    const closeSpan = document.querySelector(".modal-close");
+
+    function openModal(lesson) {
+        const locked = lesson.premium && !isPremium;
         modalTitle.innerText = lesson.title;
-        if (isLocked) {
-            modalBodyDiv.innerHTML = `
-                <div class="premium-overlay">
-                    <i class="fas fa-gem" style="font-size: 2.5rem; color: #ffaa55;"></i>
-                    <p style="margin: 16px 0; font-size:1rem;"><strong>🔓 Премиум-урок (${lesson.level})</strong><br>Получите доступ к B2, C1, C2 и всем продвинутым языкам: английский, испанский, французский, немецкий, итальянский.<br>⭐ Интерактивные сценарии, ИИ-тьютор, экзамены.</p>
-                    <button id="upgradeNeonModal" class="upgrade-button"><i class="fas fa-bolt"></i> Активировать Aevi Premium</button>
+        if (locked) {
+            modalBody.innerHTML = `
+                <div style="background:#221c1a; border-radius:28px; padding:24px; text-align:center;">
+                    <i class="fas fa-gem" style="font-size:48px; color:#ffaa55;"></i>
+                    <p style="margin:16px 0;">⭐ Этот урок требует Premium подписки (${lesson.level}).<br>Получите доступ к B2, C1, C2 и эксклюзивным материалам на всех 5 языках.</p>
+                    <button id="premiumUpgradeModalBtn" class="upgrade-button">🔥 Активировать Premium</button>
                 </div>
             `;
             modalActionBtn.style.display = "none";
-            const upgradeModalBtn = document.getElementById("upgradeNeonModal");
-            if (upgradeModalBtn) upgradeModalBtn.onclick = () => showPremiumUpgrade();
+            document.getElementById("premiumUpgradeModalBtn")?.addEventListener("click", () => {
+                upgradePremium();
+                closeModal();
+            });
         } else {
-            modalBodyDiv.innerHTML = `<p style="line-height:1.5;">${lesson.content}</p><p><i class="fas fa-head-side-vr"></i> Полноценный тренажёр: аудирование, произношение, диалоги доступны в интерактивной версии Aevi. Наслаждайтесь уроком!</p>`;
+            modalBody.innerHTML = `<p style="line-height:1.5; font-size:1rem;">${lesson.content}</p><p style="margin-top:16px;"><i class="fas fa-headphones-alt"></i> Полноценный интерактив: карточки, диктанты, разговорная практика с ИИ — в расширенной версии Aevi.</p>`;
             modalActionBtn.style.display = "block";
-            modalActionBtn.innerText = "🚀 Начать практику (симуляция)";
+            modalActionBtn.innerText = "🚀 Начать тренировку";
             modalActionBtn.onclick = () => {
-                alert(`✨ Открыт интерактивный режим: "${lesson.title}". Практика слов, диалогов и тестов (AI driven). Учитесь в неоновом ритме!`);
+                alert(`✨ Открыт тренажёр: "${lesson.title}". Выполните 5 упражнений: слова, грамматика, аудирование. Успехов!`);
                 closeModal();
             };
         }
         modal.style.display = "flex";
     }
 
-    function showPremiumUpgrade() {
-        closeModal();
-        if (confirm("🌟 Aevi PREMIUM 🌟\n🔥 Уровни B2, C1, C2 | 5 языков | ИИ-репетитор, speaking клубы, сертификаты.\n💰 590₽/мес или 3990₽/год\nПопробовать демо-доступ на 7 дней?")) {
+    function upgradePremium() {
+        if (confirm("🌟 Aevi PREMIUM 🌟\nУровни B2, C1, C2 открыты. Все уроки на 5 языках без ограничений. Цена: 590₽/мес. Активировать демо-доступ на 7 дней?")) {
             isPremium = true;
             renderLessons();
-            alert("✅ Премиум активирован! Все уроки B2, C1, C2 разблокированы. Погружайтесь в языки без границ!");
+            alert("✅ Premium активирован! Теперь все уроки B2, C1, C2 доступны. Учитесь без границ.");
         }
     }
 
-    function closeModal() {
-        modal.style.display = "none";
-    }
+    function closeModal() { modal.style.display = "none"; }
 
-    // tab switching
-    const tabs = document.querySelectorAll(".tab");
-    tabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            tabs.forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
-            currentFilter = tab.dataset.level;
+    // Переключение языков
+    document.querySelectorAll(".lang-option").forEach(el => {
+        el.addEventListener("click", () => {
+            document.querySelectorAll(".lang-option").forEach(opt => opt.classList.remove("active"));
+            el.classList.add("active");
+            currentLang = el.dataset.lang;
             renderLessons();
         });
     });
 
-    document.getElementById("upgradeNeonBtn")?.addEventListener("click", (e) => {
-        e.preventDefault();
-        showPremiumUpgrade();
+    // Фильтры уровней
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            currentLevelFilter = tab.dataset.level;
+            renderLessons();
+        });
     });
 
-    closeModalSpan.onclick = closeModal;
+    document.getElementById("upgradeNeonBtn").addEventListener("click", upgradePremium);
+    closeSpan.onclick = closeModal;
     window.onclick = (e) => { if (e.target === modal) closeModal(); };
 
     renderLessons();
-
-    // выводим в консоль количество уроков A0 для проверки: 100 точно.
-    const a0count = lessonsDB.filter(l => l.level === "A0").length;
-    console.log(`Aevi Neon: ${a0count} уроков A0, всего уроков: ${lessonsDB.length}, премиум B2-C2: ${lessonsDB.filter(l=>l.premium).length}`);
 </script>
 </body>
 </html>
