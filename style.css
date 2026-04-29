@@ -16,6 +16,7 @@ body {
   padding: 1rem;
 }
 
+/* ---------- ОСНОВНОЕ ПРИЛОЖЕНИЕ ---------- */
 .app-container {
   max-width: 800px;
   width: 100%;
@@ -74,7 +75,7 @@ h2 {
   font-size: 0.9rem;
 }
 
-/* ---------- ТЕСТ, ОПЦИИ ---------- */
+/* ---------- ТЕСТ ---------- */
 .question-box, .option-btn {
   background: #11161f;
   border-radius: 24px;
@@ -249,7 +250,7 @@ h2 {
   margin-top: 1rem;
 }
 
-/* ---------- СПЛЕШ-ЭКРАН (ЗАСТАВКА) ---------- */
+/* ---------- СПЛЕШ-ЭКРАН (ЗАСТАВКА НА 5 СЕКУНД) ---------- */
 .splash-screen {
   position: fixed;
   top: 0;
@@ -261,7 +262,7 @@ h2 {
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 
 .splash-content {
@@ -270,39 +271,56 @@ h2 {
 }
 
 .splash-logo {
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 800;
   background: linear-gradient(135deg, #bfffc7, #7df9ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(125, 249, 255, 0.5);
+  text-shadow: 0 0 40px rgba(125, 249, 255, 0.6);
+  letter-spacing: -2px;
 }
 
 .splash-glow {
-  width: 80px;
+  width: 120px;
   height: 4px;
-  margin: 20px auto 0;
+  margin: 25px auto 0;
   background: linear-gradient(90deg, #0aff9d, #00c3ff);
   border-radius: 4px;
-  box-shadow: 0 0 20px #0aff9d;
+  box-shadow: 0 0 25px #0aff9d;
   animation: widthPulse 1s ease-in-out infinite;
+}
+
+.splash-timer {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 30px;
+  color: #0aff9d;
+  text-shadow: 0 0 20px #0aff9d;
+  font-family: monospace;
+}
+
+.splash-text {
+  font-size: 0.85rem;
+  color: #6a7c8f;
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 
 /* ---------- АНИМАЦИИ ---------- */
 @keyframes pulse {
   0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
+  50% { transform: scale(1.03); opacity: 1; }
   100% { transform: scale(1); opacity: 0.8; }
 }
 
 @keyframes widthPulse {
-  0% { width: 60px; opacity: 0.6; }
-  50% { width: 100px; opacity: 1; }
-  100% { width: 60px; opacity: 0.6; }
+  0% { width: 80px; opacity: 0.6; }
+  50% { width: 160px; opacity: 1; }
+  100% { width: 80px; opacity: 0.6; }
 }
 
-/* ---------- АДАПТИВ ДЛЯ МОБИЛЬНЫХ ---------- */
+/* ---------- АДАПТИВ ---------- */
 @media (max-width: 600px) {
   .card {
     padding: 1.2rem;
@@ -317,7 +335,11 @@ h2 {
   }
   
   .splash-logo {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+  
+  .splash-timer {
+    font-size: 2rem;
   }
   
   .btn, .btn-small {
