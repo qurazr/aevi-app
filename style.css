@@ -47,6 +47,7 @@ header {
   box-shadow: 0 0 12px #0aff9d;
 }
 
+/* ---------- КАРТОЧКИ ---------- */
 .card {
   background: rgba(15, 20, 30, 0.75);
   backdrop-filter: blur(10px);
@@ -73,6 +74,7 @@ h2 {
   font-size: 0.9rem;
 }
 
+/* ---------- ТЕСТ, ОПЦИИ ---------- */
 .question-box, .option-btn {
   background: #11161f;
   border-radius: 24px;
@@ -117,6 +119,7 @@ h2 {
   box-shadow: 0 0 10px #0aff9d40;
 }
 
+/* ---------- КНОПКИ ---------- */
 .btn {
   background: linear-gradient(95deg, #0aff9d, #00c3ff);
   border: none;
@@ -132,11 +135,26 @@ h2 {
   letter-spacing: 0.3px;
 }
 
-.btn:hover {
+.btn-small {
+  background: linear-gradient(95deg, #0aff9d, #00c3ff);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #0a0f1a;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 0.5rem;
+  width: auto;
+}
+
+.btn:hover, .btn-small:hover {
   transform: scale(0.98);
   box-shadow: 0 0 18px #0aff9d;
 }
 
+/* ---------- ВЫБОР ЯЗЫКА ---------- */
 .lang-select {
   background: #0f141c;
   border: 1px solid #2c3a4a;
@@ -148,6 +166,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* ---------- ПРОГРЕСС ---------- */
 .progress {
   margin: 20px 0 10px;
   height: 6px;
@@ -163,6 +182,7 @@ h2 {
   box-shadow: 0 0 5px #0aff9d;
 }
 
+/* ---------- СЛОВАРЬ ---------- */
 .word-list {
   display: flex;
   flex-direction: column;
@@ -179,6 +199,7 @@ h2 {
   border-left: 4px solid #0aff9d;
 }
 
+/* ---------- ПРАКТИКА ---------- */
 .practice-question {
   background: #11161f;
   border-radius: 24px;
@@ -220,4 +241,96 @@ h2 {
   font-size: 1.3rem;
   font-weight: 700;
   color: #0aff9d;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* ---------- СПЛЕШ-ЭКРАН (ЗАСТАВКА) ---------- */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+}
+
+.splash-content {
+  text-align: center;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.splash-logo {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #bfffc7, #7df9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(125, 249, 255, 0.5);
+}
+
+.splash-glow {
+  width: 80px;
+  height: 4px;
+  margin: 20px auto 0;
+  background: linear-gradient(90deg, #0aff9d, #00c3ff);
+  border-radius: 4px;
+  box-shadow: 0 0 20px #0aff9d;
+  animation: widthPulse 1s ease-in-out infinite;
+}
+
+/* ---------- АНИМАЦИИ ---------- */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes widthPulse {
+  0% { width: 60px; opacity: 0.6; }
+  50% { width: 100px; opacity: 1; }
+  100% { width: 60px; opacity: 0.6; }
+}
+
+/* ---------- АДАПТИВ ДЛЯ МОБИЛЬНЫХ ---------- */
+@media (max-width: 600px) {
+  .card {
+    padding: 1.2rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  .logo {
+    font-size: 2rem;
+  }
+  
+  .splash-logo {
+    font-size: 3rem;
+  }
+  
+  .btn, .btn-small {
+    width: 100%;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .word-item {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
