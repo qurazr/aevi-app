@@ -16,36 +16,10 @@ body {
   padding: 1rem;
 }
 
-/* ---------- ОСНОВНОЕ ПРИЛОЖЕНИЕ ---------- */
 .app-container {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-}
-
-header {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.logo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #bfffc7, #7df9ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 15px rgba(125, 249, 255, 0.3);
-  letter-spacing: -0.5px;
-}
-
-.glow-bar {
-  height: 4px;
-  width: 100px;
-  margin: 12px auto 0;
-  background: linear-gradient(90deg, #0aff9d, #00c3ff);
-  border-radius: 4px;
-  box-shadow: 0 0 12px #0aff9d;
 }
 
 /* ---------- КАРТОЧКИ ---------- */
@@ -250,7 +224,7 @@ h2 {
   margin-top: 1rem;
 }
 
-/* ---------- СПЛЕШ-ЭКРАН (ЗАСТАВКА НА 5 СЕКУНД) ---------- */
+/* ---------- СПЛЕШ-ЭКРАН (ЗАСТАВКА) ---------- */
 .splash-screen {
   position: fixed;
   top: 0;
@@ -328,10 +302,6 @@ h2 {
   
   h2 {
     font-size: 1.4rem;
-  }
-  
-  .logo {
-    font-size: 2rem;
   }
   
   .splash-logo {
