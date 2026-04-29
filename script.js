@@ -41,7 +41,8 @@ function saveState() {
 async function loadLessonsDB() {
     try {
         console.log('Loading lessons.json...');
-        const response = await fetch('lessons.json');
+        // Меняй цифру v=1 на v=2, v=3 и т.д. каждый раз, когда обновляешь lessons.json на GitHub
+        const response = await fetch('lessons.json?v=1'); 
         if (!response.ok) throw new Error('File not found');
         
         LESSONS_DB = await response.json();
