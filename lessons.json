@@ -1,0 +1,31 @@
+    {
+      "id": "A0_L1",
+      "title": "Урок 1: Глагол to be",
+      "theory": [
+        "📘 <b>Глагол TO BE (быть)</b>\n\nЭто самый важный глагол. Он показывает состояние.\n\n<b>Формы:</b>\n• I <b>am</b> (я)\n• He/She/It <b>is</b> (он/она/оно)\n• You/We/They <b>are</b> (ты/мы/они)",
+        "📝 <b>Отрицания и вопросы</b>\n\n<b>Нет:</b> I am <b>not</b>, She is <b>not</b>.\n<b>Вопрос:</b> <b>Are</b> you ready? <b>Is</b> she a doctor?",
+        "💡 <b>Запомни!</b>\n\nИспользуем для:\n1. Профессии: I <b>am</b> a student.\n2. Места: We <b>are</b> at home.\n3. Возраста: He <b>is</b> 20."
+      ],
+      "questions": [
+        {"q": "I ___ a student.", "a": ["am", "is", "are", "be"], "c": 0},
+        {"q": "She ___ my sister.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "They ___ at home.", "a": ["am", "is", "are", "be"], "c": 2},
+        {"q": "___ you happy?", "a": ["Am", "Is", "Are", "Be"], "c": 2},
+        {"q": "He ___ not ready.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "We ___ friends.", "a": ["am", "is", "are", "be"], "c": 2},
+        {"q": "It ___ a cat.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "___ she a doctor?", "a": ["Am", "Is", "Are", "Be"], "c": 1},
+        {"q": "I ___ not tired.", "a": ["am", "is", "are", "be"], "c": 0},
+        {"q": "You ___ very kind.", "a": ["am", "is", "are", "be"], "c": 2},
+        {"q": "My name ___ Anna.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "___ they students?", "a": ["Am", "Is", "Are", "Be"], "c": 2},
+        {"q": "This ___ my book.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "I ___ 20 years old.", "a": ["am", "is", "are", "be"], "c": 0},
+        {"q": "She ___ not at work.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "___ I late?", "a": ["Am", "Is", "Are", "Be"], "c": 0},
+        {"q": "These ___ apples.", "a": ["am", "is", "are", "be"], "c": 2},
+        {"q": "He ___ my brother.", "a": ["am", "is", "are", "be"], "c": 1},
+        {"q": "We ___ not hungry.", "a": ["am", "is", "are", "be"], "c": 2},
+        {"q": "___ it cold today?", "a": ["Am", "Is", "Are", "Be"], "c": 1}
+      ]
+    },
