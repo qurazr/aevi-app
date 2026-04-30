@@ -1,970 +1,614 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Aevi | Language Learning</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Aevi — Изучение языков</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #0a0a0f;
-      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-      color: #eef5ff;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
+        body {
+            background: #0B0E17;
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            color: #FFFFFF;
+            padding: 1rem;
+        }
 
-    .app-container {
-      max-width: 800px;
-      width: 100%;
-      margin: 0 auto;
-    }
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
 
-    .card {
-      background: rgba(15, 20, 30, 0.75);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(10, 255, 157, 0.3);
-      border-radius: 28px;
-      padding: 1.8rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 15px rgba(10, 255, 157, 0.2);
-    }
+        /* Левая панель с темами */
+        .topics-panel {
+            flex: 2;
+            min-width: 260px;
+            background: rgba(18, 22, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            padding: 1.5rem;
+            height: fit-content;
+        }
 
-    h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #ffffff, #a0f0ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+        .topics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
 
-    .sub {
-      color: #9aaebf;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
+        .level-selector {
+            background: #0F1322;
+            border: 1px solid #2A2F42;
+            border-radius: 48px;
+            padding: 8px 16px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
 
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+        .topic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
 
-    .option {
-      background: #0f141c;
-      padding: 12px 18px;
-      border-radius: 40px;
-      cursor: pointer;
-      border: 1px solid #2c3a4a;
-      transition: all 0.2s;
-      text-align: center;
-    }
+        .topic-item {
+            background: #111624;
+            border-radius: 60px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #282E44;
+        }
 
-    .option:hover {
-      border-color: #0aff9d;
-      background: #1a2a2f;
-      box-shadow: 0 0 6px #0aff9d;
-    }
+        .topic-item.completed {
+            background: rgba(0, 255, 157, 0.12);
+            border-color: #0aff9d;
+        }
 
-    .selected {
-      background: #0aff9d20;
-      border-color: #0aff9d;
-      color: #ccffdd;
-      box-shadow: 0 0 10px #0aff9d40;
-    }
+        .topic-item.completed .topic-status {
+            background: #0aff9d;
+            color: #0B0E17;
+        }
 
-    .btn {
-      background: linear-gradient(95deg, #0aff9d, #00c3ff);
-      border: none;
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #0a0f1a;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 1rem;
-      width: 100%;
-    }
+        .topic-item.active {
+            border-color: #0aff9d;
+            box-shadow: 0 0 12px rgba(0, 255, 157, 0.3);
+            background: #1A2035;
+        }
 
-    .btn-secondary {
-      background: linear-gradient(95deg, #ff5e7c, #ff9eae);
-      border: none;
-      padding: 12px 28px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #0a0f1a;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 0.5rem;
-      width: 100%;
-    }
+        .topic-status {
+            width: 28px;
+            height: 28px;
+            background: #2A2F42;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
-    .btn-small {
-      background: linear-gradient(95deg, #0aff9d, #00c3ff);
-      border: none;
-      padding: 8px 16px;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: #0a0f1a;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 0.5rem;
-    }
+        .topic-name {
+            flex: 1;
+            font-weight: 500;
+        }
 
-    .btn:hover, .btn-small:hover, .btn-secondary:hover {
-      transform: scale(0.98);
-      box-shadow: 0 0 18px #0aff9d;
-    }
+        .topic-badge {
+            font-size: 11px;
+            background: #00c3ff20;
+            padding: 4px 10px;
+            border-radius: 60px;
+            color: #7df9ff;
+        }
 
-    .lang-select {
-      background: #0f141c;
-      border: 1px solid #2c3a4a;
-      border-radius: 60px;
-      padding: 12px 20px;
-      width: 100%;
-      color: white;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
+        /* Правая панель (теория/практика/результаты) */
+        .content-panel {
+            flex: 5;
+            min-width: 300px;
+            background: rgba(12, 15, 26, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 157, 0.25);
+            padding: 1.8rem;
+        }
 
-    .progress {
-      margin: 20px 0 10px;
-      height: 6px;
-      background: #1e2a32;
-      border-radius: 10px;
-      overflow: hidden;
-    }
+        .glow-text {
+            background: linear-gradient(135deg, #BFFFC7, #7DF9FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
 
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #0aff9d, #00c3ff);
-      box-shadow: 0 0 5px #0aff9d;
-    }
+        .btn {
+            background: linear-gradient(95deg, #0aff9d, #00c3ff);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            color: #0B0E17;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
 
-    .word-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 20px 0;
-    }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #0aff9d;
+            color: #0aff9d;
+        }
 
-    .word-item {
-      background: #0b1018;
-      padding: 12px 18px;
-      border-radius: 20px;
-      display: flex;
-      justify-content: space-between;
-      border-left: 4px solid #0aff9d;
-    }
+        .btn-danger {
+            background: #ff5e7c;
+            background: linear-gradient(95deg, #ff5e7c, #ff9eae);
+            color: #1a0f12;
+        }
 
-    .word-item-error {
-      border-left-color: #ff5e7c;
-    }
+        .ai-explanation {
+            background: #0F1322;
+            border-radius: 24px;
+            padding: 16px;
+            margin-top: 20px;
+            border-left: 4px solid #0aff9d;
+            font-size: 0.9rem;
+            color: #CCDDFF;
+        }
 
-    .practice-question {
-      background: #11161f;
-      border-radius: 24px;
-      padding: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
+        .infinite-practice-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+        }
 
-    .practice-input {
-      background: #0a0f16;
-      border: 1px solid #2a3a4a;
-      border-radius: 40px;
-      padding: 12px 18px;
-      width: 100%;
-      color: white;
-      margin: 12px 0;
-      font-size: 1rem;
-    }
+        .mistake-stats {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            font-size: 12px;
+            margin-bottom: 12px;
+            color: #8A93B0;
+        }
 
-    .result-badge {
-      margin-top: 12px;
-      font-size: 0.85rem;
-    }
+        .progress {
+            margin: 10px 0;
+            height: 6px;
+            background: #1e2a32;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-    .correct {
-      color: #0aff9d;
-    }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #0aff9d, #00c3ff);
+        }
 
-    .wrong {
-      color: #ff5e7c;
-    }
+        .practice-question {
+            background: #11161f;
+            border-radius: 24px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
 
-    .flex-between {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .practice-input {
+            background: #0a0f16;
+            border: 1px solid #2a3a4a;
+            border-radius: 40px;
+            padding: 12px 18px;
+            width: 100%;
+            color: white;
+            margin: 12px 0;
+            font-size: 1rem;
+        }
 
-    .score {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #0aff9d;
-    }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
+        .option {
+            background: #0f141c;
+            padding: 12px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            border: 1px solid #2c3a4a;
+            transition: all 0.2s;
+            text-align: center;
+        }
 
-    .topic-header {
-      background: rgba(10, 255, 157, 0.1);
-      padding: 8px 12px;
-      border-radius: 40px;
-      margin-bottom: 16px;
-      display: inline-block;
-      font-size: 0.85rem;
-    }
+        .option:hover {
+            border-color: #0aff9d;
+            background: #1a2a2f;
+        }
 
-    @media (max-width: 600px) {
-      .card { padding: 1.2rem; }
-      h2 { font-size: 1.4rem; }
-      .btn, .btn-small, .btn-secondary { width: 100%; }
-      .button-group { flex-direction: column; gap: 0.5rem; }
-      .word-item { flex-direction: column; gap: 8px; }
-    }
-  </style>
+        .selected {
+            background: #0aff9d20;
+            border-color: #0aff9d;
+            color: #ccffdd;
+        }
+
+        .theory-block, .practice-block, .results-block {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 780px) {
+            .app-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="app-container">
-    <main id="app"></main>
-  </div>
+<div class="app-container" id="app"></div>
 
-  <script>
-    (function() {
-      // ==================== ПОЛИФИЛЛЫ ====================
-      if (!String.prototype.trim) {
-        String.prototype.trim = function() {
-          return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-        };
-      }
-      
-      // ==================== БАЗА ТЕМ (1000+ тем генерируются динамически) ====================
-      var levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-      
-      // Базовые темы для каждого уровня
-      var topicsByLevel = {
-        A1: [
-          { id: 1, name: "Приветствия и знакомство", difficulty: 1, type: "base" },
-          { id: 2, name: "Глагол to be (быть)", difficulty: 1, type: "base" },
-          { id: 3, name: "Множественное число", difficulty: 1, type: "base" },
-          { id: 4, name: "Артикли a/an/the", difficulty: 2, type: "base" },
-          { id: 5, name: "Указательные местоимения", difficulty: 2, type: "base" },
-          { id: 6, name: "Притяжательные местоимения", difficulty: 2, type: "base" },
-          { id: 7, name: "Present Simple (настоящее время)", difficulty: 3, type: "base" },
-          { id: 8, name: "Наречия частотности", difficulty: 3, type: "nuance" },
-          { id: 9, name: "Глагол to have (иметь)", difficulty: 3, type: "base" },
-          { id: 10, name: "Вопросы в Present Simple", difficulty: 4, type: "practice" },
-          { id: 11, name: "Отрицания в Present Simple", difficulty: 4, type: "practice" },
-          { id: 12, name: "Порядок слов в вопросе", difficulty: 4, type: "nuance" },
-          { id: 13, name: "Предлоги места (in/on/at)", difficulty: 5, type: "base" },
-          { id: 14, name: "Предлоги времени", difficulty: 5, type: "nuance" },
-          { id: 15, name: "Исключения: неправильные глаголы", difficulty: 6, type: "exceptions" }
-        ],
-        A2: [
-          { id: 101, name: "Past Simple (прошедшее время)", difficulty: 1, type: "base" },
-          { id: 102, name: "Правильные глаголы в Past Simple", difficulty: 1, type: "base" },
-          { id: 103, name: "Неправильные глаголы (1 часть)", difficulty: 2, type: "base" },
-          { id: 104, name: "Future Simple (будущее время)", difficulty: 2, type: "base" }
-        ],
-        B1: [
-          { id: 201, name: "Present Perfect", difficulty: 1, type: "base" },
-          { id: 202, name: "Условные предложения 0 типа", difficulty: 2, type: "base" }
-        ],
-        B2: [
-          { id: 301, name: "Пассивный залог", difficulty: 1, type: "base" },
-          { id: 302, name: "Модальные глаголы", difficulty: 2, type: "base" }
-        ],
-        C1: [
-          { id: 401, name: "Инверсия", difficulty: 1, type: "base" },
-          { id: 402, name: "Сослагательное наклонение", difficulty: 2, type: "base" }
-        ],
-        C2: [
-          { id: 501, name: "Идиомы", difficulty: 1, type: "base" },
-          { id: 502, name: "Стилистические приёмы", difficulty: 2, type: "base" }
-        ]
-      };
-      
-      // Расширяем каждую тему до 1000+ вариантов генерацией контента
-      for (var lvl = 0; lvl < levels.length; lvl++) {
-        var level = levels[lvl];
-        var currentTopics = topicsByLevel[level] || [];
-        var existingIds = currentTopics.map(function(t) { return t.id; });
-        for (var t = currentTopics.length + 1; t <= 200; t++) {
-          var newTopic = {
-            id: parseInt(level + '000' + t),
-            name: "Тема " + t + ": Углублённое изучение",
-            difficulty: Math.floor(t / 20) + 1,
-            type: t % 4 === 0 ? "exceptions" : (t % 3 === 0 ? "nuance" : (t % 2 === 0 ? "practice" : "base")),
-            generated: true
-          };
-          currentTopics.push(newTopic);
+<script>
+    // ==================== ПОЛНАЯ БАЗА ТЕМ A1-C2 ====================
+    const KNOWLEDGE_BASE = {
+        English: {
+            A1: [
+                { id: "a1_1", title: "Greetings & Introductions", grammarFocus: "to be", theory: "<strong>Greetings and the verb TO BE</strong><br><br>I am Alex. / You are a student.<br><strong>Negative:</strong> I am not (I'm not) tired.<br><strong>Question:</strong> Are you ready?" },
+                { id: "a1_2", title: "Verb TO BE", grammarFocus: "to be", theory: "<strong>Conjugation of TO BE</strong><br><br>I am, He/She/It is, You/We/They are.<br>+ I am happy. - I am not sad. ? Are you OK?" },
+                { id: "a1_3", title: "Plural nouns", grammarFocus: "plural", theory: "<strong>Plural rules</strong><br><br>cat → cats, bus → buses, lady → ladies.<br>Exceptions: man → men, child → children, foot → feet." },
+                { id: "a1_4", title: "Articles A / AN / THE", grammarFocus: "articles", theory: "<strong>Articles</strong><br><br>a + consonant sound (a dog), an + vowel sound (an apple).<br>THE — specific: the sun, the car we saw." },
+                { id: "a1_5", title: "Present Simple", grammarFocus: "present simple", theory: "<strong>Present Simple</strong><br><br>I work / He works.<br>- I don't work / He doesn't work.<br>? Do you work? / Does she work?" }
+            ],
+            A2: [
+                { id: "a2_1", title: "Past Simple (regular verbs)", grammarFocus: "past simple", theory: "<strong>Past Simple (regular)</strong><br><br>+ed: I played, she watched.<br>- didn't play. ? Did you play?" },
+                { id: "a2_2", title: "Irregular verbs (part 1)", grammarFocus: "irregular verbs", theory: "<strong>Irregular verbs</strong><br><br>go→went, see→saw, buy→bought, think→thought, eat→ate" },
+                { id: "a2_3", title: "Future Simple (will)", grammarFocus: "future", theory: "<strong>Future Simple</strong><br><br>I will call you tomorrow.<br>- won't. ? Will you come?" },
+                { id: "a2_4", title: "To be going to", grammarFocus: "future plans", theory: "<strong>To be going to</strong><br><br>I am going to study Spanish. (planned action)" }
+            ],
+            B1: [
+                { id: "b1_1", title: "Present Perfect", grammarFocus: "present perfect", theory: "<strong>Present Perfect</strong><br><br>I have visited London. / She has never tried sushi.<br>Markers: ever, never, already, yet, since, for." },
+                { id: "b1_2", title: "Present Perfect Continuous", grammarFocus: "present perfect continuous", theory: "<strong>Present Perfect Continuous</strong><br><br>I have been waiting for 2 hours. (focus on duration)" },
+                { id: "b1_3", title: "Conditionals (type 0,1)", grammarFocus: "conditionals", theory: "<strong>Conditionals</strong><br><br>Zero: If you heat ice, it melts.<br>First: If it rains, I will stay home." },
+                { id: "b1_4", title: "Modal Verbs (can, could, may)", grammarFocus: "modals", theory: "<strong>Modal Verbs</strong><br><br>can (ability), could (polite request), may (permission)" }
+            ],
+            B2: [
+                { id: "b2_1", title: "Passive Voice", grammarFocus: "passive", theory: "<strong>Passive Voice</strong><br><br>The book was written by Tolstoy.<br>Formula: to be + V3 (past participle)." },
+                { id: "b2_2", title: "Conditionals (type 2,3)", grammarFocus: "conditionals", theory: "<strong>Conditionals type 2 and 3</strong><br><br>Second: If I were rich, I would travel.<br>Third: If you had called, I would have helped." },
+                { id: "b2_3", title: "Reported Speech", grammarFocus: "reported speech", theory: "<strong>Reported Speech</strong><br><br>She said that she was tired.<br>Tense shift: present → past." },
+                { id: "b2_4", title: "Relative Clauses", grammarFocus: "clauses", theory: "<strong>Relative Clauses</strong><br><br>The man who called you is my brother.<br>The book which I bought is interesting." }
+            ],
+            C1: [
+                { id: "c1_1", title: "Inversion", grammarFocus: "inversion", theory: "<strong>Inversion</strong><br><br>Never have I seen such beauty.<br>Not only did she arrive late, but she also forgot her keys." },
+                { id: "c1_2", title: "Subjunctive", grammarFocus: "subjunctive", theory: "<strong>Subjunctive</strong><br><br>I suggest that he go to the doctor.<br>It's essential that she be informed." },
+                { id: "c1_3", title: "Mixed Conditionals", grammarFocus: "mixed conditionals", theory: "<strong>Mixed Conditionals</strong><br><br>If he had studied, he would be an expert now." },
+                { id: "c1_4", title: "Ellipsis and Substitution", grammarFocus: "ellipsis", theory: "<strong>Ellipsis and Substitution</strong><br><br>'Can you help?' 'I can.' (ellipsis)" }
+            ],
+            C2: [
+                { id: "c2_1", title: "Idioms & Fixed Expressions", grammarFocus: "idioms", theory: "<strong>Idioms</strong><br><br>'Spill the beans' — reveal a secret.<br>'Hit the nail on the head' — describe exactly." },
+                { id: "c2_2", title: "Advanced Inversion & Fronting", grammarFocus: "advanced inversion", theory: "<strong>Advanced Inversion</strong><br><br>'Had I known, I would have acted.'<br>'Such was his anger that he left.'" },
+                { id: "c2_3", title: "Nominalization", grammarFocus: "nominalization", theory: "<strong>Nominalization</strong><br><br>'The discovery of the cure' instead of 'They discovered the cure'." },
+                { id: "c2_4", title: "Rhetorical Devices", grammarFocus: "rhetoric", theory: "<strong>Rhetorical Devices</strong><br><br>Anaphora: 'We shall fight on the beaches, we shall fight...'" }
+            ]
         }
-        topicsByLevel[level] = currentTopics;
-      }
-      
-      // Словарь для генерации контента тем
-      var contentGenerator = {
-        getTheory: function(topic, lang, level) {
-          var templates = [
-            "<strong>" + topic.name + "</strong><br><br>В этом уроке мы изучим ключевые аспекты темы. " + 
-            "В " + lang + " языке это правило работает следующим образом. " +
-            "📌 Пример: <em>'This is an example of " + topic.name + "'</em>.<br><br>" +
-            "✅ Важно запомнить это правило, так как оно часто встречается в речи.",
-            
-            "<strong>📖 " + topic.name + "</strong><br><br>" +
-            "Разберём тему подробно. В английском языке существует несколько нюансов, " +
-            "которые нужно учитывать. " +
-            "📌 <em>Пример использования: 'Let me show you how it works.'</em><br><br>" +
-            "🔍 Обратите внимание на контекст: в разных ситуациях правило может меняться.",
-            
-            "<strong>✨ " + topic.name + " — углублённое изучение</strong><br><br>" +
-            "Теперь, когда вы знакомы с основами, давайте разберём тонкости. " +
-            "📌 <em>'There are some exceptions to this rule.'</em><br><br>" +
-            "🎯 Цель этого урока — довести тему до автоматизма."
-          ];
-          return templates[topic.difficulty % templates.length];
-        },
-        
-        getVocabulary: function(topic, level) {
-          var baseWords = [
-            { word: "example", translation: "пример" },
-            { word: "rule", translation: "правило" },
-            { word: "practice", translation: "практика" },
-            { word: "exception", translation: "исключение" },
-            { word: "understanding", translation: "понимание" }
-          ];
-          return baseWords.slice(0, 3 + (topic.difficulty % 3));
-        },
-        
-        getTasks: function(topic, level, lang) {
-          var tasks = [];
-          // 3 задания на выбор
-          for (var i = 0; i < 3; i++) {
-            tasks.push({
-              type: "choice",
-              question: "Что означает термин \"" + topic.name + "\" в изучении " + lang + " языка?",
-              options: ["Изучение базовых правил", "Углублённое понимание темы", "Практическое применение", "Разбор исключений"],
-              correct: ["Изучение базовых правил", "Углублённое понимание темы", "Практическое применение", "Разбор исключений"][i % 4],
-              topicId: topic.id
+    };
+
+    // Дополняем уровни до 8 тем
+    for (let lvl of ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']) {
+        const current = KNOWLEDGE_BASE.English[lvl];
+        const need = 8;
+        while (current.length < need) {
+            const num = current.length + 1;
+            current.push({
+                id: `${lvl.toLowerCase()}_extra_${num}`,
+                title: `${lvl} — Theme ${num}: Extended Practice`,
+                grammarFocus: "general",
+                theory: `<strong>Extended lesson ${lvl}</strong><br><br>Studying advanced constructions of level ${lvl}.<br>Example: "They have been mastering these skills."<br>Practice through exercises.`
             });
-          }
-          // 2 задания на перевод
-          var vocab = this.getVocabulary(topic, level);
-          for (var j = 0; j < 2 && j < vocab.length; j++) {
-            tasks.push({
-              type: "translate",
-              question: "Переведите на " + lang + ": \"" + vocab[j].word + "\"",
-              correct: vocab[j].translation,
-              topicId: topic.id,
-              word: vocab[j].word
-            });
-          }
-          return tasks;
         }
-      };
-      
-      // ==================== СОСТОЯНИЕ ====================
-      var step = 'modeSelect';
-      var mode = null;
-      var userLevel = 'A1';
-      var currentLang = 'English';
-      var testAnswers = [];
-      var currentTestIndex = 0;
-      
-      // Прогресс по темам
-      var completedTopics = []; // { id, level, correctAnswers, totalAttempts }
-      var currentTopicIndex = 0;
-      var currentTopic = null;
-      var currentLesson = null;
-      var practiceAnswers = [];
-      var practiceResults = [];
-      var practiceIndex = 0;
-      
-      // База ошибок
-      var mistakesDB = []; // { word, correctAnswer, userAnswer, topicId, level, timestamp }
-      
-      var placementTest = [
-        { text: "I ___ to school every day.", options: ["go", "goes", "going", "went"], correct: "go", level: "A1" },
-        { text: "She ___ a doctor.", options: ["am", "is", "are", "be"], correct: "is", level: "A1" },
-        { text: "___ you like ice cream?", options: ["Does", "Do", "Is", "Are"], correct: "Do", level: "A1" },
-        { text: "What ___ you doing yesterday?", options: ["are", "were", "was", "is"], correct: "were", level: "A2" },
-        { text: "If I ___ you, I would go.", options: ["was", "were", "am", "is"], correct: "were", level: "B1" },
-        { text: "She ___ to Paris last year.", options: ["go", "went", "gone", "goes"], correct: "went", level: "A2" },
-        { text: "I have ___ that movie before.", options: ["see", "saw", "seen", "seeing"], correct: "seen", level: "B1" },
-        { text: "By next year, I ___ this book.", options: ["will finish", "will have finished", "finish", "finished"], correct: "will have finished", level: "B2" },
-        { text: "The meeting ___ postponed because of the rain.", options: ["was", "were", "is", "are"], correct: "was", level: "B1" },
-        { text: "She advised that he ___ earlier.", options: ["arrive", "arrives", "arrived", "has arrived"], correct: "arrive", level: "C1" },
-        { text: "Had I known, I ___ earlier.", options: ["would come", "would have come", "came", "come"], correct: "would have come", level: "C1" },
-        { text: "The ___ of the project was impressive.", options: ["outcome", "outcoming", "comed out", "comeout"], correct: "outcome", level: "B2" },
-        { text: "She is ___ in the class.", options: ["the most intelligent", "more intelligent", "intelligenter", "most intelligent"], correct: "the most intelligent", level: "B1" },
-        { text: "If only I ___ more time!", options: ["had", "have", "would have", "had had"], correct: "had", level: "B2" },
-        { text: "He ___ his homework when I called.", options: ["did", "was doing", "has done", "does"], correct: "was doing", level: "B1" },
-        { text: "Not until the end ___ he realize the truth.", options: ["did", "had", "was", "has"], correct: "did", level: "C1" },
-        { text: "She is looking forward ___ her family.", options: ["to see", "to seeing", "seeing", "see"], correct: "to seeing", level: "B2" },
-        { text: "The more you practice, ___ you become.", options: ["better", "the better", "more better", "best"], correct: "the better", level: "B1" },
-        { text: "I wish I ___ taller.", options: ["were", "was", "am", "is"], correct: "were", level: "B2" },
-        { text: "His argument was so cogent that ___ could refute it.", options: ["anyone", "no one", "someone", "everyone"], correct: "no one", level: "C2" }
-      ];
-      
-      // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
-      function shuffleArray(arr) {
-        for (var i = arr.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var temp = arr[i];
-          arr[i] = arr[j];
-          arr[j] = temp;
-        }
-        return arr;
-      }
-      
-      function getLevelFromScore(score, total) {
-        var percent = (score / total) * 100;
-        if (percent < 30) return 'A1';
-        if (percent < 50) return 'A2';
-        if (percent < 65) return 'B1';
-        if (percent < 80) return 'B2';
-        if (percent < 90) return 'C1';
-        return 'C2';
-      }
-      
-      function getAvailableTopics(level) {
-        var allTopics = topicsByLevel[level] || [];
-        var completedIds = completedTopics.map(function(t) { return t.id; });
-        return allTopics.filter(function(t) { return completedIds.indexOf(t.id) === -1; });
-      }
-      
-      function getNextTopic() {
-        var available = getAvailableTopics(userLevel);
-        if (available.length === 0) {
-          // Все темы уровня пройдены
-          var levelIndex = levels.indexOf(userLevel);
-          if (levelIndex + 1 < levels.length) {
-            if (confirm('🎉 Поздравляем! Вы прошли все темы уровня ' + userLevel + '. Перейти на уровень ' + levels[levelIndex + 1] + '?')) {
-              userLevel = levels[levelIndex + 1];
-              return getNextTopic();
-            }
-          }
-          return null;
-        }
-        // Сортируем по сложности
-        available.sort(function(a, b) { return a.difficulty - b.difficulty; });
-        return available[0];
-      }
-      
-      function generateLessonFromTopic(topic) {
-        if (!topic) return null;
-        var theory = contentGenerator.getTheory(topic, currentLang, userLevel);
-        var vocabulary = contentGenerator.getVocabulary(topic, userLevel);
-        var tasks = contentGenerator.getTasks(topic, userLevel, currentLang);
-        return { theory: theory, vocabulary: vocabulary, tasks: tasks, topic: topic };
-      }
-      
-      // Урок для отработки ошибок
-      function generateMistakesLesson() {
-        if (mistakesDB.length === 0) return null;
-        var uniqueMistakes = [];
-        var seen = {};
-        for (var i = 0; i < mistakesDB.length; i++) {
-          var m = mistakesDB[i];
-          if (!seen[m.word]) {
-            seen[m.word] = true;
-            uniqueMistakes.push(m);
-          }
-        }
-        var tasks = [];
-        for (var j = 0; j < uniqueMistakes.length; j++) {
-          var mistake = uniqueMistakes[j];
-          tasks.push({
-            type: "translate",
-            question: "Повторим: переведите на " + currentLang + ": \"" + mistake.correctAnswer + "\"",
-            correct: mistake.correctAnswer,
-            isMistakeReview: true,
-            originalMistake: mistake
-          });
-        }
-        if (tasks.length === 0) return null;
-        return {
-          theory: "<strong>📝 Отработка ошибок</strong><br><br>В этом уроке вы повторите слова и правила, в которых допускали ошибки.",
-          vocabulary: [],
-          tasks: tasks,
-          topic: { name: "Отработка ошибок", id: -1, isMistakeLesson: true }
-        };
-      }
-      
-      function addMistake(word, correctAnswer, userAnswer, topicId) {
-        mistakesDB.push({
-          word: word,
-          correctAnswer: correctAnswer,
-          userAnswer: userAnswer,
-          topicId: topicId,
-          level: userLevel,
-          timestamp: Date.now()
-        });
-        // Ограничим базу 200 ошибками
-        if (mistakesDB.length > 200) mistakesDB.shift();
-        saveProgress();
-      }
-      
-      function clearMistakes() {
-        mistakesDB = [];
-        saveProgress();
-        render();
-      }
-      
-      // ==================== СОХРАНЕНИЕ ====================
-      function saveProgress() {
-        var progress = {
-          step: step, mode: mode, userLevel: userLevel, currentLang: currentLang,
-          testAnswers: testAnswers, completedTopics: completedTopics, currentTopicIndex: currentTopicIndex,
-          mistakesDB: mistakesDB, currentLesson: currentLesson, practiceAnswers: practiceAnswers,
-          practiceResults: practiceResults, practiceIndex: practiceIndex
-        };
-        localStorage.setItem('aevi_progress', JSON.stringify(progress));
-      }
-      
-      function loadProgress() {
-        var saved = localStorage.getItem('aevi_progress');
-        if (!saved) return false;
-        try {
-          var data = JSON.parse(saved);
-          step = data.step || 'modeSelect';
-          mode = data.mode;
-          userLevel = data.userLevel || 'A1';
-          currentLang = data.currentLang || 'English';
-          testAnswers = data.testAnswers || [];
-          completedTopics = data.completedTopics || [];
-          currentTopicIndex = data.currentTopicIndex || 0;
-          mistakesDB = data.mistakesDB || [];
-          currentLesson = data.currentLesson;
-          practiceAnswers = data.practiceAnswers || [];
-          practiceResults = data.practiceResults || [];
-          practiceIndex = data.practiceIndex || 0;
-          return true;
-        } catch(e) { 
-          return false; 
-        }
-      }
-      
-      function resetProgress() {
-        localStorage.removeItem('aevi_progress');
-        step = 'modeSelect';
-        mode = null;
-        userLevel = 'A1';
-        currentLang = 'English';
-        testAnswers = [];
-        currentTestIndex = 0;
-        completedTopics = [];
-        currentTopicIndex = 0;
-        mistakesDB = [];
-        currentLesson = null;
-        practiceAnswers = [];
-        practiceResults = [];
-        practiceIndex = 0;
-        render();
-      }
-      
-      // ==================== РЕНДЕР ====================
-      function render() {
-        var app = document.getElementById('app');
-        if (!app) return;
-        
-        if (step === 'modeSelect') renderModeSelect(app);
-        else if (step === 'levelTest') renderLevelTest(app);
-        else if (step === 'manualLevel') renderManualLevel(app);
-        else if (step === 'lesson') renderLesson(app);
-        
-        saveProgress();
-      }
-      
-      function renderModeSelect(container) {
-        var mistakesCount = mistakesDB.length;
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>🌙 Добро пожаловать в Aevi</h2>' +
-            '<div class="sub">Выберите, как начать обучение</div>' +
-            '<button class="btn" id="testModeBtn">📝 Пройти тест на уровень (20 вопросов)</button>' +
-            '<button class="btn-secondary" id="manualModeBtn">🎯 Выбрать уровень самостоятельно</button>' +
-            (mistakesCount > 0 ? '<button class="btn" id="mistakesBtn" style="background:#ff5e7c20;color:#ff9eae;">⚠️ Отработать ошибки (' + mistakesCount + ')</button>' : '') +
-            '<button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить прогресс</button>' +
-          '</div>';
-        
-        document.getElementById('testModeBtn').onclick = function() {
-          mode = 'test';
-          testAnswers = [];
-          currentTestIndex = 0;
-          step = 'levelTest';
-          render();
-        };
-        document.getElementById('manualModeBtn').onclick = function() {
-          mode = 'manual';
-          step = 'manualLevel';
-          render();
-        };
-        if (document.getElementById('mistakesBtn')) {
-          document.getElementById('mistakesBtn').onclick = function() {
-            var mistakeLesson = generateMistakesLesson();
-            if (mistakeLesson) {
-              currentLesson = mistakeLesson;
-              practiceAnswers = new Array(currentLesson.tasks.length);
-              for (var pa = 0; pa < currentLesson.tasks.length; pa++) practiceAnswers[pa] = null;
-              practiceResults = new Array(currentLesson.tasks.length);
-              for (var pr = 0; pr < currentLesson.tasks.length; pr++) practiceResults[pr] = false;
-              practiceIndex = 0;
-              step = 'lesson';
-              render();
-            }
-          };
-        }
-        document.getElementById('resetBtn').onclick = function() {
-          if (confirm('Сбросить весь прогресс? Это удалит все темы и ошибки.')) resetProgress();
-        };
-      }
-      
-      function renderLevelTest(container) {
-        if (currentTestIndex >= placementTest.length) {
-          var score = 0;
-          for (var i = 0; i < testAnswers.length; i++) {
-            if (testAnswers[i] === placementTest[i].correct) score++;
-          }
-          userLevel = getLevelFromScore(score, placementTest.length);
-          step = 'manualLevel';
-          render();
-          return;
-        }
-        
-        var q = placementTest[currentTestIndex];
-        var selectedValue = testAnswers[currentTestIndex] || '';
-        
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>📝 Определение уровня</h2>' +
-            '<div class="sub">Вопрос ' + (currentTestIndex+1) + ' из ' + placementTest.length + '</div>' +
-            '<div class="progress"><div class="progress-fill" style="width:' + (currentTestIndex/placementTest.length)*100 + '%"></div></div>' +
-            '<div class="practice-question">' +
-              '<p style="margin-bottom:16px">' + q.text + '</p>' +
-              '<div class="options">' +
-                q.options.map(function(opt) { 
-                  return '<div class="option ' + (selectedValue === opt ? 'selected' : '') + '" data-value="' + opt.replace(/"/g, '&quot;') + '">' + opt + '</div>'; 
-                }).join('') +
-              '</div>' +
-            '</div>' +
-            '<button class="btn" id="nextBtn">' + (currentTestIndex+1 === placementTest.length ? 'Завершить' : 'Далее') + '</button>' +
-            '<button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div>';
-        
-        var opts = document.querySelectorAll('.option');
-        for (var o = 0; o < opts.length; o++) {
-          opts[o].onclick = (function(el) {
-            return function() {
-              var allOpts = document.querySelectorAll('.option');
-              for (var a = 0; a < allOpts.length; a++) allOpts[a].classList.remove('selected');
-              el.classList.add('selected');
-              testAnswers[currentTestIndex] = el.getAttribute('data-value');
-            };
-          })(opts[o]);
-        }
-        
-        document.getElementById('nextBtn').onclick = function() {
-          if (testAnswers[currentTestIndex]) {
-            currentTestIndex++;
-            render();
-          }
-        };
-        document.getElementById('resetBtn').onclick = function() {
-          if (confirm('Сбросить весь прогресс?')) resetProgress();
-        };
-      }
-      
-      function renderManualLevel(container) {
-        var levelNames = { A1: 'Начинающий', A2: 'Элементарный', B1: 'Средний', B2: 'Выше среднего', C1: 'Продвинутый', C2: 'Профессиональный' };
-        var topics = getAvailableTopics(userLevel);
-        var completedCount = completedTopics.filter(function(t) { 
-          return topicsByLevel[userLevel] && topicsByLevel[userLevel].some(function(tp) { return tp.id === t.id; });
-        }).length;
-        var totalTopics = (topicsByLevel[userLevel] || []).length;
-        var mistakesCount = mistakesDB.length;
-        
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>✨ ' + currentLang + ' — Уровень ' + userLevel + '</h2>' +
-            '<div class="sub">' + levelNames[userLevel] + ' | Пройдено тем: ' + completedCount + '/' + totalTopics + '</div>' +
-            '<select id="langSelect" class="lang-select">' +
-              '<option value="English"' + (currentLang === 'English' ? ' selected' : '') + '>🇬🇧 Английский</option>' +
-              '<option value="Spanish"' + (currentLang === 'Spanish' ? ' selected' : '') + '>🇪🇸 Испанский</option>' +
-              '<option value="French"' + (currentLang === 'French' ? ' selected' : '') + '>🇫🇷 Французский</option>' +
-              '<option value="German"' + (currentLang === 'German' ? ' selected' : '') + '>🇩🇪 Немецкий</option>' +
-            '</select>' +
-            '<div class="progress"><div class="progress-fill" style="width:' + (completedCount/totalTopics)*100 + '%"></div></div>' +
-            '<button class="btn" id="continueBtn">' + (currentTopicIndex > 0 ? '▶️ Продолжить урок' : '📚 Начать следующий урок') + '</button>' +
-            (mistakesCount > 0 ? '<button class="btn-secondary" id="mistakesBtn">⚠️ Отработать ошибки (' + mistakesCount + ')</button>' : '') +
-            '<button class="btn-small" id="changeLevelBtn" style="margin-top:0.5rem;">🔄 Сменить уровень</button>' +
-            '<button class="btn-small" id="resetBtn" style="margin-top:0.5rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div>';
-        
-        document.getElementById('langSelect').onchange = function(e) { 
-          currentLang = e.target.value; 
-          saveProgress();
-          render();
-        };
-        document.getElementById('continueBtn').onclick = function() {
-          var nextTopic = getNextTopic();
-          if (nextTopic) {
-            currentTopic = nextTopic;
-            currentLesson = generateLessonFromTopic(currentTopic);
-            practiceAnswers = new Array(currentLesson.tasks.length);
-            for (var pa = 0; pa < currentLesson.tasks.length; pa++) practiceAnswers[pa] = null;
-            practiceResults = new Array(currentLesson.tasks.length);
-            for (var pr = 0; pr < currentLesson.tasks.length; pr++) practiceResults[pr] = false;
-            practiceIndex = 0;
-            step = 'lesson';
-            render();
-          } else {
-            alert('🎉 Поздравляем! Вы прошли все темы уровня ' + userLevel + '!');
-          }
-        };
-        if (document.getElementById('mistakesBtn')) {
-          document.getElementById('mistakesBtn').onclick = function() {
-            var mistakeLesson = generateMistakesLesson();
-            if (mistakeLesson) {
-              currentLesson = mistakeLesson;
-              practiceAnswers = new Array(currentLesson.tasks.length);
-              for (var pa2 = 0; pa2 < currentLesson.tasks.length; pa2++) practiceAnswers[pa2] = null;
-              practiceResults = new Array(currentLesson.tasks.length);
-              for (var pr2 = 0; pr2 < currentLesson.tasks.length; pr2++) practiceResults[pr2] = false;
-              practiceIndex = 0;
-              step = 'lesson';
-              render();
-            }
-          };
-        }
-        document.getElementById('changeLevelBtn').onclick = function() {
-          var newLevel = prompt('Введите уровень (A1, A2, B1, B2, C1, C2):', userLevel);
-          if (newLevel && levels.indexOf(newLevel) !== -1) {
-            userLevel = newLevel;
-            saveProgress();
-            render();
-          } else if (newLevel) {
-            alert('Некорректный уровень. Используйте: A1, A2, B1, B2, C1, C2');
-          }
-        };
-        document.getElementById('resetBtn').onclick = function() {
-          if (confirm('Сбросить весь прогресс? Это удалит все темы и ошибки.')) resetProgress();
-        };
-      }
-      
-      function renderLesson(container) {
-        if (!currentLesson) {
-          step = 'manualLevel';
-          render();
-          return;
-        }
-        
-        var vocabHtml = '';
-        for (var v = 0; v < currentLesson.vocabulary.length; v++) {
-          vocabHtml += '<div class="word-item"><span>' + currentLesson.vocabulary[v].word + '</span><span style="color:#b0f5ff;">' + currentLesson.vocabulary[v].translation + '</span></div>';
-        }
-        
-        var total = currentLesson.tasks.length;
-        var q = currentLesson.tasks[practiceIndex];
-        var userAnswer = practiceAnswers[practiceIndex] || '';
-        var isAnswered = practiceAnswers[practiceIndex] !== null;
-        var correctCount = 0;
-        for (var i = 0; i < practiceResults.length; i++) if (practiceResults[i] === true) correctCount++;
-        
-        var topicTypeLabel = '';
-        if (currentLesson.topic && currentLesson.topic.type) {
-          var typeLabels = { base: '📘 Основы темы', nuance: '🔍 Нюансы', practice: '✍️ Закрепление', exceptions: '⚠️ Исключения' };
-          topicTypeLabel = '<div class="topic-header">' + (typeLabels[currentLesson.topic.type] || '📖 Урок') + '</div>';
-        }
-        
-        var html = 
-          '<div class="card">' +
-            '<div class="flex-between"><h2>📖 ' + (currentLesson.topic ? currentLesson.topic.name : 'Урок') + '</h2><div class="score">✅ ' + correctCount + '/' + total + '</div></div>' +
-            '<div class="progress"><div class="progress-fill" style="width:' + (practiceIndex/total)*100 + '%"></div></div>' +
-            topicTypeLabel +
-            '<div style="margin:20px 0; line-height:1.6;">' + currentLesson.theory + '</div>' +
-            (vocabHtml ? '<strong>📚 Ключевые слова</strong><div class="word-list">' + vocabHtml + '</div>' : '') +
-            '<div class="practice-question">' +
-              '<strong>Задание ' + (practiceIndex+1) + '/' + total + '</strong>' +
-              '<p style="margin:12px 0">' + q.question + '</p>';
-        
-        if (q.type === 'choice') {
-          html += '<div class="options" id="practiceOptions">';
-          for (var optIdx = 0; optIdx < q.options.length; optIdx++) {
-            var opt = q.options[optIdx];
-            var selectedClass = (userAnswer === opt) ? 'selected' : '';
-            html += '<div class="option ' + selectedClass + '" data-choice="' + opt.replace(/"/g, '&quot;') + '">' + opt + '</div>';
-          }
-          html += '</div>';
-        } else {
-          html += '<input type="text" id="answerInput" class="practice-input" placeholder="Ваш ответ..." value="' + userAnswer.replace(/"/g, '&quot;') + '">';
-        }
-        
-        if (isAnswered) {
-          var resultText = practiceResults[practiceIndex] ? '✓ Верно!' : '✗ Ошибка. Правильно: ' + q.correct;
-          var resultClass = practiceResults[practiceIndex] ? 'correct' : 'wrong';
-          html += '<div class="result-badge ' + resultClass + '">' + resultText + '</div>';
-        }
-        
-        html += '<div style="display:flex; gap:1rem; margin-top:1rem;">' +
-          '<button class="btn" id="checkBtn" style="flex:1;">' + (isAnswered ? 'Изменить' : 'Проверить') + '</button>';
-        
-        if (practiceIndex + 1 < total) {
-          html += '<button class="btn" id="nextBtn" style="flex:1;">Далее →</button>';
-        } else {
-          html += '<button class="btn" id="finishBtn" style="flex:1;">🏆 Завершить урок</button>';
-        }
-        
-        html += '</div>' +
-          '<div style="display:flex; gap:1rem; margin-top:10px;">' +
-            '<button class="btn-small" id="backToMenuBtn" style="flex:1;">← В меню</button>' +
-            '<button class="btn-small" id="exitBtn" style="flex:1;background:#ff5e7c20;color:#ff9eae;">⚠️ Выйти</button>' +
-          '</div>' +
-          '<button class="btn-small" id="resetBtn" style="margin-top:10px;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div></div>';
-        
-        container.innerHTML = html;
-        
-        if (q.type !== 'choice') {
-          var input = document.getElementById('answerInput');
-          if (input && !isAnswered) input.focus();
-          if (input) {
-            input.onkeypress = function(e) {
-              if (e.key === 'Enter') document.getElementById('checkBtn').click();
-            };
-          }
-        }
-        
-        if (q.type === 'choice') {
-          var opts = document.querySelectorAll('#practiceOptions .option');
-          for (var co = 0; co < opts.length; co++) {
-            opts[co].onclick = (function(optEl) {
-              return function() {
-                if (isAnswered) return;
-                var allOpts = document.querySelectorAll('#practiceOptions .option');
-                for (var ao = 0; ao < allOpts.length; ao++) allOpts[ao].classList.remove('selected');
-                optEl.classList.add('selected');
-              };
-            })(opts[co]);
-          }
-        }
-        
-        document.getElementById('checkBtn').onclick = function() {
-          var answer = '';
-          if (q.type === 'choice') {
-            var selected = document.querySelector('#practiceOptions .option.selected');
-            if (!selected) return;
-            answer = selected.getAttribute('data-choice');
-          } else {
-            var inputVal = document.getElementById('answerInput');
-            answer = inputVal ? inputVal.value.trim().toLowerCase() : '';
-          }
-          var isCorr = (answer === q.correct.toLowerCase());
-          practiceAnswers[practiceIndex] = answer;
-          practiceResults[practiceIndex] = isCorr;
-          
-          if (!isCorr && q.word) {
-            addMistake(q.word, q.correct, answer, currentLesson.topic ? currentLesson.topic.id : 0);
-          }
-          
-          render();
-        };
-        
-        var nextBtn = document.getElementById('nextBtn');
-        if (nextBtn) {
-          nextBtn.onclick = function() {
-            if (practiceAnswers[practiceIndex] !== null) {
-              practiceIndex++;
-              render();
-            }
-          };
-        }
-        
-        var finishBtn = document.getElementById('finishBtn');
-        if (finishBtn) {
-          finishBtn.onclick = function() {
-            var finalCount = 0;
-            for (var fc = 0; fc < practiceResults.length; fc++) if (practiceResults[fc] === true) finalCount++;
-            var percent = (finalCount / total) * 100;
-            
-            if (currentLesson.topic && currentLesson.topic.id > 0 && !currentLesson.topic.isMistakeLesson) {
-              // Сохраняем результат темы
-              var existing = null;
-              for (var ct = 0; ct < completedTopics.length; ct++) {
-                if (completedTopics[ct].id === currentLesson.topic.id) {
-                  existing = completedTopics[ct];
-                  break;
-                }
-              }
-              if (existing) {
-                existing.correctAnswers += finalCount;
-                existing.totalAttempts += total;
-              } else {
-                completedTopics.push({
-                  id: currentLesson.topic.id,
-                  name: currentLesson.topic.name,
-                  level: userLevel,
-                  correctAnswers: finalCount,
-                  totalAttempts: total,
-                  percent: percent
-                });
-              }
-            }
-            
-            var message = '✨ Урок завершён!\nРезультат: ' + finalCount + ' / ' + total;
-            if (percent >= 70) {
-              message += '\n\n🎉 Отлично! Вы усвоили тему.';
+    }
+
+    // Генерация 20 заданий для темы
+    function generatePracticeForTopic(topic, level, lang = "English") {
+        let tasks = [];
+        const grammar = topic.grammarFocus || "general";
+        for (let i = 0; i < 20; i++) {
+            if (grammar === "to be" || grammar === "present simple") {
+                tasks.push({ type: "input", question: "Put the verb in the correct form: She ___ (be) a doctor.", correct: "is", aiExplanation: "She + is (3rd person singular)" });
+                tasks.push({ type: "choice", question: "Choose the correct option: They ___ playing football now.", options: ["is", "am", "are", "be"], correct: "are", aiExplanation: "They are — plural form." });
+            } else if (grammar === "past simple") {
+                tasks.push({ type: "input", question: "Put in Past Simple: Yesterday I ___ (go) to the cinema.", correct: "went", aiExplanation: "Irregular verb: go → went." });
+            } else if (grammar === "present perfect") {
+                tasks.push({ type: "input", question: "I ___ (never/see) such a beautiful sunset.", correct: "have never seen", aiExplanation: "Present Perfect: have + V3" });
+            } else if (grammar === "passive") {
+                tasks.push({ type: "input", question: "The cake ___ (make) by my grandmother.", correct: "was made", aiExplanation: "Passive voice: was + V3" });
             } else {
-              message += '\n\n📚 Ошибки сохранены. Вы можете отработать их в разделе "Отработать ошибки".';
+                tasks.push({ type: "translate", question: "Translate the word 'success'", correct: "success", aiExplanation: "success — important vocabulary" });
+                tasks.push({ type: "input", question: "She advised that he ___ (go) there.", correct: "go", aiExplanation: "Subjunctive: advise that + go" });
             }
-            alert(message);
-            
-            step = 'manualLevel';
-            render();
-          };
         }
+        return tasks.slice(0, 20);
+    }
+
+    // Состояние
+    let currentLevel = "A1";
+    let topics = KNOWLEDGE_BASE.English[currentLevel] || [];
+    let completedTopics = JSON.parse(localStorage.getItem("aevi_completed")) || [];
+    let mistakeHistory = JSON.parse(localStorage.getItem("aevi_mistakes")) || [];
+    let currentTopic = null;
+    let currentMode = "topics"; // topics, theory, practice, results
+    let currentPracticeTasks = [];
+    let currentTaskIdx = 0;
+    let practiceAnswers = [];
+    let practiceResults = [];
+    let showExplanation = false;
+    let lastMistakeInfo = null;
+
+    function saveAll() {
+        localStorage.setItem("aevi_completed", JSON.stringify(completedTopics));
+        localStorage.setItem("aevi_mistakes", JSON.stringify(mistakeHistory));
+        localStorage.setItem("aevi_level", currentLevel);
+    }
+
+    function selectTopic(topic) {
+        currentTopic = topic;
+        currentMode = "theory";
+        renderApp();
+    }
+
+    function markTopicCompleted(topicId) {
+        if (!completedTopics.includes(topicId)) {
+            completedTopics.push(topicId);
+            saveAll();
+        }
+    }
+
+    function registerMistake(question, correct, userAnswer, grammarFocus) {
+        mistakeHistory.unshift({ question, correct, userAnswer, grammarFocus, timestamp: Date.now() });
+        if (mistakeHistory.length > 200) mistakeHistory.pop();
+        saveAll();
+        const recentMistakes = mistakeHistory.slice(0, 10).filter(m => m.grammarFocus === grammarFocus).length;
+        const advice = recentMistakes < 3 
+            ? "You are progressing, I will ask this topic less often." 
+            : "This mistake repeats, the topic will appear more often.";
+        return { explanation: `AI analysis: Correct answer — "${correct}". You wrote "${userAnswer}". ${grammarFocus ? `Pay attention to grammar: ${grammarFocus}.` : ""} ${advice}` };
+    }
+
+    function startInfinitePractice() {
+        let taskPool = [];
+        const grammarSet = new Set(mistakeHistory.slice(0, 30).map(m => m.grammarFocus || "general"));
+        Array.from(grammarSet).forEach(g => {
+            for (let i=0;i<3;i++) taskPool.push({ type: "translate", question: `Practice grammar [${g}]: translate "confidence"`, correct: "confidence", aiExplanation: "Repeating mistakes", grammarFocus: g });
+        });
+        if (taskPool.length<10) taskPool.push({ type: "input", question: "She ___ (to be) happy.", correct: "is", aiExplanation: "", grammarFocus: "to be" });
+        currentPracticeTasks = taskPool.slice(0,20);
+        currentTaskIdx = 0;
+        practiceAnswers = new Array(currentPracticeTasks.length).fill(null);
+        practiceResults = new Array(currentPracticeTasks.length).fill(false);
+        currentMode = "practice";
+        showExplanation = false;
+        renderApp();
+    }
+
+    function startTopicPractice() {
+        if (!currentTopic) return;
+        currentPracticeTasks = generatePracticeForTopic(currentTopic, currentLevel);
+        currentTaskIdx = 0;
+        practiceAnswers = new Array(currentPracticeTasks.length).fill(null);
+        practiceResults = new Array(currentPracticeTasks.length).fill(false);
+        currentMode = "practice";
+        showExplanation = false;
+        renderApp();
+    }
+
+    function finishPractice() {
+        const total = currentPracticeTasks.length;
+        const correctCount = practiceResults.filter(r => r === true).length;
+        const percent = (correctCount / total) * 100;
+        if (percent >= 70 && currentTopic) markTopicCompleted(currentTopic.id);
+        currentMode = "results";
+        renderApp();
+    }
+
+    function checkCurrentTask(answer) {
+        const task = currentPracticeTasks[currentTaskIdx];
+        const isCorrect = (answer.trim().toLowerCase() === task.correct.toLowerCase());
+        practiceAnswers[currentTaskIdx] = answer;
+        practiceResults[currentTaskIdx] = isCorrect;
+        if (!isCorrect) {
+            const aiResp = registerMistake(task.question, task.correct, answer, task.grammarFocus || "general");
+            lastMistakeInfo = { explanation: aiResp.explanation };
+            showExplanation = true;
+            renderApp();
+        } else {
+            showExplanation = false;
+            if (currentTaskIdx + 1 < currentPracticeTasks.length) {
+                currentTaskIdx++;
+                renderApp();
+            } else {
+                finishPractice();
+            }
+        }
+        saveAll();
+    }
+
+    function backToTopics() {
+        currentMode = "topics";
+        currentTopic = null;
+        renderApp();
+    }
+
+    function renderApp() {
+        const container = document.getElementById('app');
+        if (!container) return;
+
+        // Левая панель (всегда видна)
+        const topicListHtml = topics.map((t, idx) => {
+            const isCompleted = completedTopics.includes(t.id);
+            const isActive = currentTopic && currentTopic.id === t.id;
+            return `
+                <div class="topic-item ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" data-id="${t.id}">
+                    <div class="topic-status">${isCompleted ? '✓' : idx+1}</div>
+                    <div class="topic-name">${t.title}</div>
+                    <div class="topic-badge">${t.grammarFocus || 'vocab'}</div>
+                </div>
+            `;
+        }).join('');
         
-        document.getElementById('backToMenuBtn').onclick = function() {
-          step = 'manualLevel';
-          render();
-        };
+        const completedCount = completedTopics.filter(id => topics.some(t => t.id === id)).length;
         
-        document.getElementById('exitBtn').onclick = function() {
-          if (confirm('⚠️ Выйти? Прогресс этого урока будет потерян.')) {
-            step = 'manualLevel';
-            render();
-          }
-        };
+        // Правая панель (меняется)
+        let rightPanelHtml = '';
         
-        document.getElementById('resetBtn').onclick = function() {
-          if (confirm('Сбросить всё?')) resetProgress();
-        };
-      }
-      
-      // ЗАПУСК
-      document.addEventListener('DOMContentLoaded', function() {
-        loadProgress();
-        render();
-      });
-    })();
-  </script>
+        if (currentMode === "topics") {
+            rightPanelHtml = `
+                <div class="theory-block">
+                    <h2>Select a topic</h2>
+                    <p>Choose a topic from the list on the left to start learning.</p>
+                    <div class="infinite-practice-area">
+                        <button class="btn-outline btn" id="globalInfiniteBtn">Practice mistakes + words</button>
+                    </div>
+                </div>
+            `;
+        } else if (currentMode === "theory" && currentTopic) {
+            rightPanelHtml = `
+                <div class="theory-block">
+                    <h2>${currentTopic.title}</h2>
+                    <div class="mistake-stats">Mistakes in this topic: ${mistakeHistory.filter(m => m.grammarFocus === currentTopic.grammarFocus).length}</div>
+                    <div style="line-height:1.6; margin: 20px 0;">${currentTopic.theory}</div>
+                    <button class="btn" id="startPracticeBtn">Go to practice (20 tasks)</button>
+                    <button class="btn-outline btn" id="backToTopicsBtn">Back to topics</button>
+                </div>
+            `;
+        } else if (currentMode === "practice" && currentPracticeTasks.length) {
+            const task = currentPracticeTasks[currentTaskIdx];
+            const userAnswer = practiceAnswers[currentTaskIdx] || '';
+            const isAnswered = practiceAnswers[currentTaskIdx] !== null;
+            rightPanelHtml = `
+                <div class="practice-block">
+                    <div class="flex-between" style="display:flex; justify-content:space-between; margin-bottom:16px;">
+                        <h3>Practice: ${currentTopic?.title || 'Mistake practice'}</h3>
+                        <span>${currentTaskIdx+1}/${currentPracticeTasks.length}</span>
+                    </div>
+                    <div class="progress"><div class="progress-fill" style="width:${(currentTaskIdx/currentPracticeTasks.length)*100}%"></div></div>
+                    <div class="practice-question">
+                        <p><strong>${task.question}</strong></p>
+                        ${task.type === 'choice' ? `<div class="options">${task.options.map(opt => `<div class="option" data-val="${opt}">${opt}</div>`).join('')}</div>` : `<input type="text" id="answerField" class="practice-input" placeholder="Your answer..." value="${userAnswer || ''}">`}
+                        <button class="btn" id="submitAnswerBtn" style="margin-top:12px">${isAnswered ? 'Change' : 'Check'}</button>
+                        ${showExplanation && lastMistakeInfo ? `<div class="ai-explanation">${lastMistakeInfo.explanation}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        } else if (currentMode === "results") {
+            const total = currentPracticeTasks.length;
+            const correctCount = practiceResults.filter(r => r === true).length;
+            const percent = Math.round((correctCount / total) * 100);
+            rightPanelHtml = `
+                <div class="results-block">
+                    <h2>Practice results</h2>
+                    <div style="text-align:center; margin: 40px 0;">
+                        <div style="font-size: 48px; font-weight: bold; color: #0aff9d;">${correctCount}/${total}</div>
+                        <div style="font-size: 18px; margin-top: 8px;">${percent}% correct</div>
+                    </div>
+                    <div class="progress"><div class="progress-fill" style="width:${percent}%"></div></div>
+                    ${percent >= 70 ? '<p style="margin: 20px 0; text-align:center;">Topic completed! Well done.</p>' : '<p style="margin: 20px 0; text-align:center;">Review the theory and try again.</p>'}
+                    <button class="btn" id="backToTopicsBtn">Back to topics</button>
+                </div>
+            `;
+        }
+
+        container.innerHTML = `
+            <div class="topics-panel">
+                <div class="topics-header">
+                    <h3><span class="glow-text">Aevi</span> · ${currentLevel}</h3>
+                    <select id="levelSelect" class="level-selector">
+                        <option value="A1" ${currentLevel==='A1' ? 'selected' : ''}>Level A1 (Beginner)</option>
+                        <option value="A2" ${currentLevel==='A2' ? 'selected' : ''}>Level A2 (Elementary)</option>
+                        <option value="B1" ${currentLevel==='B1' ? 'selected' : ''}>Level B1 (Intermediate)</option>
+                        <option value="B2" ${currentLevel==='B2' ? 'selected' : ''}>Level B2 (Upper Intermediate)</option>
+                        <option value="C1" ${currentLevel==='C1' ? 'selected' : ''}>Level C1 (Advanced)</option>
+                        <option value="C2" ${currentLevel==='C2' ? 'selected' : ''}>Level C2 (Proficient)</option>
+                    </select>
+                </div>
+                <div class="progress"><div class="progress-fill" style="width:${(completedCount/topics.length)*100}%"></div></div>
+                <div class="topic-list" id="topicList">
+                    ${topicListHtml}
+                </div>
+                <div class="infinite-practice-area">
+                    <button class="btn-outline btn" id="globalInfiniteBtn">Practice mistakes + words</button>
+                </div>
+            </div>
+            <div class="content-panel" id="rightPanel">${rightPanelHtml}</div>
+        `;
+
+        // События
+        document.getElementById('levelSelect')?.addEventListener('change', (e) => {
+            currentLevel = e.target.value;
+            topics = KNOWLEDGE_BASE.English[currentLevel] || [];
+            currentTopic = null;
+            currentMode = "topics";
+            saveAll();
+            renderApp();
+        });
+        
+        document.querySelectorAll('.topic-item').forEach(el => {
+            const topicId = el.dataset.id;
+            const topic = topics.find(t => t.id === topicId);
+            if (topic) {
+                el.addEventListener('click', () => selectTopic(topic));
+            }
+        });
+        
+        document.getElementById('startPracticeBtn')?.addEventListener('click', startTopicPractice);
+        document.getElementById('backToTopicsBtn')?.addEventListener('click', backToTopics);
+        
+        document.getElementById('globalInfiniteBtn')?.addEventListener('click', startInfinitePractice);
+        
+        document.getElementById('submitAnswerBtn')?.addEventListener('click', () => {
+            let answer = '';
+            const task = currentPracticeTasks[currentTaskIdx];
+            if (task.type === 'choice') {
+                const selected = document.querySelector('.option.selected');
+                if (!selected) return;
+                answer = selected.dataset.val;
+            } else {
+                const field = document.getElementById('answerField');
+                if (!field) return;
+                answer = field.value.trim();
+            }
+            checkCurrentTask(answer);
+        });
+        
+        document.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (practiceAnswers[currentTaskIdx] !== null) return;
+                document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    }
+    
+    renderApp();
+</script>
 </body>
 </html>
