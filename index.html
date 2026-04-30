@@ -21,7 +21,7 @@
             justify-content: center;
         }
         .app-container {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
             margin: 0 auto;
             display: flex;
@@ -38,7 +38,6 @@
             border: 1px solid rgba(0, 255, 157, 0.25);
             padding: 1.5rem;
             height: fit-content;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         .logo {
             font-size: 1.8rem;
@@ -58,20 +57,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        .streak-count {
-            color: #ff9e2c;
-            font-weight: bold;
-        }
         .level-progress {
             margin: 12px 0;
         }
-        .level-text {
-            font-size: 0.8rem;
-            color: #8a93b0;
-            display: flex;
-            justify-content: space-between;
-        }
-                .progress-bar {
+        .progress-bar {
             height: 6px;
             background: #2a2f42;
             border-radius: 10px;
@@ -82,7 +71,24 @@
             height: 100%;
             background: linear-gradient(90deg, #0aff9d, #00c3ff);
             width: 0%;
-            border-radius: 10px;
+        }
+        .level-selector {
+            background: #0f1322;
+            border: 1px solid #2a2f42;
+            border-radius: 40px;
+            padding: 8px 12px;
+            width: 100%;
+            color: white;
+            margin: 12px 0;
+        }
+        .lang-selector {
+            background: #0f1322;
+            border: 1px solid #2a2f42;
+            border-radius: 40px;
+            padding: 8px 12px;
+            width: 100%;
+            color: white;
+            margin: 12px 0;
         }
         .premium-badge {
             background: linear-gradient(135deg, #ffd700, #ffaa00);
@@ -90,75 +96,47 @@
             padding: 4px 12px;
             border-radius: 60px;
             font-size: 0.7rem;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-        .locked-icon {
-            opacity: 0.5;
-            filter: grayscale(0.3);
         }
         .topic-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-height: 55vh;
+            gap: 8px;
+            max-height: 50vh;
             overflow-y: auto;
-            padding-right: 6px;
+            margin-top: 16px;
         }
         .topic-item {
             background: #111624;
             border-radius: 60px;
-            padding: 12px 18px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             cursor: pointer;
             border: 1px solid #2a2f42;
-            transition: all 0.2s;
+            font-size: 0.9rem;
         }
         .topic-item.completed {
             background: rgba(0, 255, 157, 0.12);
             border-color: #0aff9d;
         }
         .topic-item.locked {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
-            filter: grayscale(0.2);
         }
         .topic-status {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             background: #2a2f42;
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .topic-status.premium {
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            color: #1a1a2a;
-        }
-                .topic-name {
-            flex: 1;
-            font-weight: 500;
-        }
-        .topic-badge {
             font-size: 11px;
-            background: #00c3ff20;
-            padding: 4px 10px;
-            border-radius: 60px;
-            color: #7df9ff;
         }
-        .premium-lock {
-            font-size: 14px;
-            color: #ffd700;
-        }
-        /* Правая панель */
-        .right-panel {
+                .right-panel {
             flex: 5;
-            min-width: 320px;
+            min-width: 330px;
             background: rgba(12, 15, 26, 0.7);
             backdrop-filter: blur(10px);
             border-radius: 32px;
@@ -166,11 +144,7 @@
             padding: 1.8rem;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
         }
-        /* Кнопки */
         .btn {
             background: linear-gradient(95deg, #0aff9d, #00c3ff);
             border: none;
@@ -182,102 +156,71 @@
             width: 100%;
             margin-top: 1rem;
             font-size: 1rem;
-            transition: 0.2s;
         }
         .btn-premium {
             background: linear-gradient(95deg, #ffd700, #ffaa00);
-            color: #1a1a2a;
         }
         .btn-outline {
             background: transparent;
             border: 1px solid #0aff9d;
             color: #0aff9d;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 60px;
             cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
         }
-        .btn-outline:hover {
-            background: rgba(10, 255, 157, 0.1);
-        }
-                .btn-back {
+        .btn-back {
             background: rgba(255, 94, 124, 0.15);
             border: 1px solid #ff5e7c;
             color: #ff9eae;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 60px;
             cursor: pointer;
-            font-weight: 500;
-        }
-        .btn-back:hover {
-            background: rgba(255, 94, 124, 0.3);
-        }
-        /* Чат и теория */
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 500px;
         }
         .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
             background: #0f1322;
             border-radius: 24px;
-            margin-bottom: 16px;
-            max-height: 450px;
+            padding: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 16px 0;
         }
         .message {
-            margin-bottom: 12px;
-            padding: 14px 18px;
-            border-radius: 20px;
             background: #1a2035;
             border: 1px solid #2a2f42;
-            color: #fff;
-            line-height: 1.5;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
             white-space: pre-wrap;
         }
         .button-panel {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin: 12px 0 16px;
+            margin: 16px 0;
         }
         .topic-btn {
             background: #0f1322;
             border: 1px solid #0aff9d;
             border-radius: 40px;
-            padding: 10px 18px;
+            padding: 8px 16px;
             cursor: pointer;
             font-size: 0.85rem;
             color: #0aff9d;
-            font-weight: 500;
         }
-        .topic-btn:hover {
-            background: #0aff9d20;
-        }
-                /* Практика */
         .practice-question {
             background: #11161f;
             border-radius: 24px;
             padding: 1.2rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
         .practice-input {
             background: #0a0f16;
             border: 1px solid #2a3a4a;
             border-radius: 40px;
-            padding: 12px 18px;
+            padding: 12px;
             width: 100%;
             color: white;
             margin: 12px 0;
-            font-size: 1rem;
-        }
-        .practice-input:focus {
-            outline: none;
-            border-color: #0aff9d;
         }
         .options {
             display: flex;
@@ -287,21 +230,15 @@
         }
         .option {
             background: #0f141c;
-            padding: 12px 18px;
+            padding: 12px;
             border-radius: 40px;
             cursor: pointer;
             border: 1px solid #2c3a4a;
             text-align: center;
-            transition: 0.2s;
         }
-        .option:hover {
-            border-color: #0aff9d;
-            background: #1a2a2f;
-        }
-        .selected {
+        .option.selected {
             background: #0aff9d20;
             border-color: #0aff9d;
-            color: #ccffdd;
         }
         .feedback-correct {
             color: #0aff9d;
@@ -317,334 +254,374 @@
             background: rgba(255, 94, 124, 0.1);
             border-radius: 16px;
         }
-                .practice-footer {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-            justify-content: space-between;
-        }
-        /* Магазин и премиум */
         .shop-item {
             background: #111624;
             border-radius: 20px;
-            padding: 16px;
+            padding: 12px;
             margin-bottom: 12px;
-            border: 1px solid #2a2f42;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .price {
-            color: #ffd700;
-            font-weight: bold;
-        }
-        .coin-icon {
-            color: #ffd700;
-            margin-right: 4px;
-        }
-        /* Ачивки */
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin: 16px 0;
         }
         .achievement-card {
             background: #0f1322;
-            border-radius: 20px;
-            padding: 12px;
+            border-radius: 16px;
+            padding: 10px;
             text-align: center;
-            border: 1px solid #2a2f42;
+            font-size: 12px;
         }
         .achievement-card.unlocked {
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
         }
-        /* Уведомления */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #1a2035;
-            border-left: 4px solid #0aff9d;
-            padding: 12px 20px;
-            border-radius: 12px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
+        .pet-container {
+            background: #0f1322;
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+            margin: 16px 0;
         }
-                @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        /* Табы */
         .tab-switch {
             display: flex;
             gap: 8px;
             margin: 16px 0;
         }
         .tab-btn {
-            background: #0f1322;
-            border: 1px solid #2a2f42;
-            border-radius: 40px;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-weight: 500;
             flex: 1;
             text-align: center;
+            padding: 8px;
+            border-radius: 40px;
+            background: #0f1322;
+            cursor: pointer;
         }
         .tab-btn.active {
             background: #0aff9d;
             color: #0a0f1a;
-            border-color: #0aff9d;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a2035;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #0aff9d;
-            border-radius: 10px;
         }
         @media (max-width: 780px) {
             .app-container { flex-direction: column; }
-            .practice-footer { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-<div class="app-container" id="app"></div>
+<div id="app"></div>
 <script>
-    // ==================== ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ====================
-    let userCoins = JSON.parse(localStorage.getItem("aevi_coins")) || 150;
-    let userStreak = JSON.parse(localStorage.getItem("aevi_streak")) || 0;
-        let lastActiveDate = localStorage.getItem("aevi_last_active") || null;
-    let isPremium = JSON.parse(localStorage.getItem("aevi_premium")) || false;
-    let userLevel = JSON.parse(localStorage.getItem("aevi_user_level")) || 1;
-    let userXp = JSON.parse(localStorage.getItem("aevi_xp")) || 0;
-    let completedLessons = JSON.parse(localStorage.getItem("aevi_completed")) || [];
-    let unlockedTopics = JSON.parse(localStorage.getItem("aevi_unlocked")) || ["g1"];
-    let achievements = JSON.parse(localStorage.getItem("aevi_achievements")) || [];
-    let dailyChallengeCompleted = JSON.parse(localStorage.getItem("aevi_daily")) || false;
+    // ==================== КОНФИГУРАЦИЯ ====================
+    const TELEGRAM_BOT_TOKEN = ""; // Вставьте токен бота
+    const PREMIUM_PRICE_STARS = 50;
     
-    // ==================== ГРАММАТИЧЕСКИЕ ТЕМЫ ====================
-    const grammarTopics = [
-        { id: "g1", name: "Глагол TO BE (am/is/are)", premium: false, xpReward: 50, coinsReward: 20 },
-        { id: "g2", name: "Present Simple (I work)", premium: false, xpReward: 60, coinsReward: 25 },
-        { id: "g3", name: "Present Continuous (I am doing)", premium: false, xpReward: 60, coinsReward: 25 },
-        { id: "g4", name: "Модальный глагол CAN", premium: false, xpReward: 50, coinsReward: 20 },
-        { id: "g5", name: "Past Simple (was/were)", premium: false, xpReward: 70, coinsReward: 30 },
-        { id: "g6", name: "Future: to be going to", premium: true, xpReward: 80, coinsReward: 40 },
-        { id: "g7", name: "Present Perfect", premium: true, xpReward: 100, coinsReward: 50 },
-        { id: "g8", name: "Conditionals (if)", premium: true, xpReward: 120, coinsReward: 60 }
+    // ==================== ЯЗЫКИ И УРОВНИ ====================
+    const languages = [
+        { code: "en", name: "🇬🇧 Английский", levels: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+        { code: "fr", name: "🇫🇷 Французский", levels: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+        { code: "de", name: "🇩🇪 Немецкий", levels: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+        { code: "es", name: "🇪🇸 Испанский", levels: ["A1", "A2", "B1", "B2", "C1", "C2"] },
+        { code: "zh", name: "🇨🇳 Китайский", levels: ["A1", "A2", "B1"] },
+        { code: "th", name: "🇹🇭 Тайский", levels: ["A1", "A2"] },
+        { code: "ko", name: "🇰🇷 Корейский", levels: ["A1", "A2", "B1"] },
+        { code: "ja", name: "🇯🇵 Японский", levels: ["A1", "A2", "B1"] }
     ];
+        // ==================== ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ====================
+    let user = {
+        id: null,
+        name: "Гость",
+        coins: 200,
+        streak: 0,
+        lastActive: null,
+        premium: false,
+        premiumUntil: null,
+        xp: 0,
+        level: 1,
+        currentLang: "en",
+        currentLevel: "A1",
+        completedTopics: [],
+        unlockedTopics: [],
+        achievements: [],
+        pet: { type: "baby", exp: 0, level: 1 },
+        statistics: { totalPractice: 0, correctAnswers: 0, totalTime: 0 },
+        theme: "dark",
+        soundEnabled: true
+    };
     
-    // ==================== ТЕОРИЯ ДЛЯ ПЕРВОГО УРОКА ====================
-    const theoryDB = {
-        "g1": {
-            full: `Глагол TO BE (am/is/are)
+    // ==================== ТЕМЫ (50+ НА УРОВЕНЬ) ====================
+    const topicsByLevel = {
+        "en": {
+            "A1": Array.from({ length: 55 }, (_, i) => ({ id: `en_a1_${i+1}`, name: getTopicName(i+1, "en", "A1"), unlocked: i === 0, premium: i >= 40, xpReward: 50 })),
+            "A2": Array.from({ length: 50 }, (_, i) => ({ id: `en_a2_${i+1}`, name: getTopicName(i+1, "en", "A2"), unlocked: i === 0, premium: i >= 35, xpReward: 60 })),
+            "B1": Array.from({ length: 50 }, (_, i) => ({ id: `en_b1_${i+1}`, name: getTopicName(i+1, "en", "B1"), unlocked: false, premium: true, xpReward: 80 })),
+            "B2": Array.from({ length: 50 }, (_, i) => ({ id: `en_b2_${i+1}`, name: getTopicName(i+1, "en", "B2"), unlocked: false, premium: true, xpReward: 100 })),
+            "C1": Array.from({ length: 50 }, (_, i) => ({ id: `en_c1_${i+1}`, name: getTopicName(i+1, "en", "C1"), unlocked: false, premium: true, xpReward: 120 })),
+            "C2": Array.from({ length: 50 }, (_, i) => ({ id: `en_c2_${i+1}`, name: getTopicName(i+1, "en", "C2"), unlocked: false, premium: true, xpReward: 150 }))
+        },
+        "fr": generateLanguageTopics("fr", 40),
+        "de": generateLanguageTopics("de", 40),
+        "es": generateLanguageTopics("es", 40),
+        "zh": generateLanguageTopics("zh", 30),
+        "th": generateLanguageTopics("th", 25),
+        "ko": generateLanguageTopics("ko", 30),
+        "ja": generateLanguageTopics("ja", 30)
+    };
+    
+    function generateLanguageTopics(lang, maxCount) {
+        const levels = ["A1", "A2", "B1", "B2", "C1", "C2"];
+        const result = {};
+        levels.forEach(level => {
+            const count = level === "A1" ? maxCount : (level === "A2" ? maxCount - 5 : maxCount - 10);
+            result[level] = Array.from({ length: Math.max(10, count) }, (_, i) => ({
+                id: `${lang}_${level.toLowerCase()}_${i+1}`,
+                name: getTopicName(i+1, lang, level),
+                unlocked: level === "A1" && i === 0,
+                premium: (level !== "A1" && level !== "A2") || i >= (maxCount - 10),
+                xpReward: level === "A1" ? 50 : level === "A2" ? 60 : level === "B1" ? 80 : level === "B2" ? 100 : level === "C1" ? 120 : 150
+            }));
+        });
+        return result;
+    }
+    
+    function getTopicName(num, lang, level) {
+        const templates = {
+            en: { A1: `Basic Grammar ${num}`, A2: `Essential ${num}`, B1: `Intermediate ${num}`, B2: `Upper ${num}`, C1: `Advanced ${num}`, C2: `Pro ${num}` },
+            fr: { A1: `Grammaire ${num}`, A2: `Essentiel ${num}`, B1: `Intermédiaire ${num}`, B2: `Supérieur ${num}`, C1: `Avancé ${num}`, C2: `Expert ${num}` },
+            de: { A1: `Grundlagen ${num}`, A2: `Wichtig ${num}`, B1: `Mittelstufe ${num}`, B2: `Oberstufe ${num}`, C1: `Fortgeschritten ${num}`, C2: `Experte ${num}` },
+            es: { A1: `Básico ${num}`, A2: `Esencial ${num}`, B1: `Intermedio ${num}`, B2: `Avanzado ${num}`, C1: `Superior ${num}`, C2: `Experto ${num}` },
+            zh: { A1: `基础语法 ${num}`, A2: `初级 ${num}`, B1: `中级 ${num}` },
+            th: { A1: `พื้นฐาน ${num}`, A2: `จำเป็น ${num}` },
+            ko: { A1: `기초 ${num}`, A2: `초급 ${num}`, B1: `중급 ${num}` },
+            ja: { A1: `基礎 ${num}`, A2: `初級 ${num}`, B1: `中級 ${num}` }
+        };
+        return (templates[lang]?.[level] || `Topic ${num}`) + `: ${getRandomGrammarPoint(lang, level)}`;
+    }
+    
+    function getRandomGrammarPoint(lang, level) {
+        const points = ["Verbs", "Nouns", "Adjectives", "Prepositions", "Conjunctions", "Tenses", "Articles", "Pronouns", "Questions", "Negation"];
+        return points[Math.floor(Math.random() * points.length)];
+    }
+        // ==================== ТЕОРИЯ И ПРАКТИКА ДЛЯ ТЕМ ====================
+    function getTheory(topicId, lang, level) {
+        const theories = {
+            "en_a1_1": `Глагол TO BE (am/is/are)
 
-1. Значение: "быть, находиться, являться"
+1. Значение: быть, находиться, являться
 2. Формы: I am / He/She/It is / You/We/They are
 3. Утверждение: I am a student.
 4. Отрицание: I am not tired.
 5. Вопрос: Are you ready?`,
-            examples: `Примеры:
-1. I am a teacher.
-2. She is a doctor.
-3. They are happy.
-4. You are my friend.`,
-            negative: `Отрицание:
-I am not (I'm not)
-He is not (isn't)
-They are not (aren't)`,
-            questions: `Вопросы:
-Am I late?
-Is she a doctor?
-Are you ready?`
-        }
-    };
+            "en_a1_2": `Present Simple
+
+1. Используется для фактов и привычек
+2. I/You/We/They + глагол
+3. He/She/It + глагол + s/es
+4. Пример: I work every day. She works in a hospital.`
+        };
+        return theories[topicId] || `Теория по теме "${topicId}". Изучите правила и примеры.`;
+    }
     
-    // ==================== ПРАКТИКА ДЛЯ ПЕРВОГО УРОКА ====================
-    const practiceTasks = {
-        "g1": [
-            { type: "input", question: "She ___ a doctor.", correct: "is", hint: "She + is" },
-            { type: "input", question: "I ___ happy.", correct: "am", hint: "I + am" },
-            { type: "input", question: "They ___ at home.", correct: "are", hint: "They + are" },
-            { type: "input", question: "He ___ not tired.", correct: "is", hint: "He is not" },
-            { type: "choice", question: "___ you ready?", options: ["Am", "Is", "Are"], correct: "Are", hint: "Вопрос с you" },
-            { type: "choice", question: "___ she a doctor?", options: ["Am", "Is", "Are"], correct: "Is", hint: "Вопрос с she" },
-            { type: "translate", question: "Переведите: 'Я студент'", correct: "i am a student", hint: "I am a student" },
-            { type: "translate", question: "Переведите: 'Они счастливы'", correct: "they are happy", hint: "They are happy" }
-        ]
-    };
-        // ==================== АЧИВКИ ====================
+    function getPractice(topicId, lang, level) {
+        return [
+            { type: "input", question: "She ___ a doctor.", correct: "is" },
+            { type: "input", question: "I ___ happy.", correct: "am" },
+            { type: "choice", question: "___ you ready?", options: ["Am", "Is", "Are"], correct: "Are" },
+            { type: "translate", question: "Я студент", correct: "i am a student" }
+        ];
+    }
+    
+    // ==================== АЧИВКИ ====================
     const achievementsList = [
-        { id: "first_lesson", name: "Первый урок", desc: "Завершите первый урок", icon: "🎓", unlocked: false, reward: 50 },
-        { id: "streak_7", name: "7 дней подряд", desc: "Занимайтесь 7 дней без пропусков", icon: "🔥", unlocked: false, reward: 100 },
-        { id: "streak_30", name: "Месяц учёбы", desc: "30 дней подряд", icon: "🏆", unlocked: false, reward: 500, premium: true },
-        { id: "words_50", name: "Слово за словом", desc: "Выучите 50 слов", icon: "📖", unlocked: false, reward: 75 }
+        { id: "first_lesson", name: "Первый урок", desc: "Завершите первый урок", icon: "🎓", reward: 50 },
+        { id: "streak_7", name: "7 дней", desc: "7 дней подряд", icon: "🔥", reward: 100 },
+        { id: "streak_30", name: "30 дней", desc: "Месяц учёбы", icon: "🏆", reward: 500, premium: true },
+        { id: "polyglot", name: "Полиглот", desc: "Изучите 3 языка", icon: "🌍", reward: 200 },
+        { id: "master", name: "Мастер", desc: "Завершите 100 уроков", icon: "👑", reward: 1000 },
+        { id: "perfect_day", name: "Идеальный день", desc: "100% правильных ответов за день", icon: "⭐", reward: 50 }
     ];
     
-    // ==================== ЕЖЕДНЕВНЫЙ ЧЕЛЛЕНДЖ ====================
-    let dailyChallenge = {
-        task: "Выполните 5 заданий практики",
-        progress: 0,
-        target: 5,
-        reward: 30,
-        completed: false
+    // ==================== ВИРТУАЛЬНЫЙ ПИТОМЕЦ ====================
+    function updatePetExp(amount) {
+        user.pet.exp += amount;
+        let newLevel = Math.floor(user.pet.exp / 500) + 1;
+        if (newLevel > user.pet.level) {
+            user.pet.level = newLevel;
+            if (user.pet.level >= 10) user.pet.type = "legendary";
+            else if (user.pet.level >= 5) user.pet.type = "adult";
+            else if (user.pet.level >= 2) user.pet.type = "teen";
+            showNotification(`Ваш питомец вырос до ${user.pet.type} уровня!`, "pet");
+        }
+        saveUser();
+    }
+    
+    // ==================== ФУНКЦИИ СОХРАНЕНИЯ ====================
+    function saveUser() {
+        localStorage.setItem("aevi_user", JSON.stringify(user));
+    }
+    
+    function loadUser() {
+        const saved = localStorage.getItem("aevi_user");
+        if (saved) {
+            const data = JSON.parse(saved);
+            user = { ...user, ...data };
+        }
+        updateStreak();
+    }
+    
+    function updateStreak() {
+        const today = new Date().toDateString();
+        if (user.lastActive !== today) {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            if (user.lastActive === yesterday.toDateString()) {
+                user.streak++;
+                addCoins(10 * user.streak);
+                showNotification(`Серия: ${user.streak} дней! +${10 * user.streak} монет`, "streak");
+            } else if (user.lastActive !== today) {
+                user.streak = 1;
+            }
+            user.lastActive = today;
+            saveUser();
+        }
+    }
+    
+    function addXp(amount) {
+        user.xp += amount;
+        let newLevel = Math.floor(user.xp / 500) + 1;
+        if (newLevel > user.level) {
+            user.level = newLevel;
+            showNotification(`Достигнут ${user.level} уровень!`, "levelup");
+        }
+        saveUser();
+        renderApp();
+    }
+        function addCoins(amount) {
+        user.coins += amount;
+        saveUser();
+        renderApp();
+    }
+    
+    function checkAchievements() {
+        achievementsList.forEach(ach => {
+            if (!user.achievements.includes(ach.id)) {
+                let earned = false;
+                if (ach.id === "first_lesson" && user.completedTopics.length >= 1) earned = true;
+                if (ach.id === "streak_7" && user.streak >= 7) earned = true;
+                if (ach.id === "streak_30" && user.streak >= 30 && (!ach.premium || user.premium)) earned = true;
+                if (ach.id === "polyglot" && new Set(user.completedTopics.map(t => t.split("_")[0])).size >= 3) earned = true;
+                if (ach.id === "master" && user.completedTopics.length >= 100) earned = true;
+                if (earned) {
+                    user.achievements.push(ach.id);
+                    addCoins(ach.reward);
+                    showNotification(`Ачивка: ${ach.name}! +${ach.reward} монет`, "achievement");
+                }
+            }
+        });
+        saveUser();
+    }
+    
+    // ==================== ПРЕМИУМ ЧЕРЕЗ TELEGRAM STARS ====================
+    function initTelegramPayment() {
+        if (!window.Telegram?.WebApp) return;
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        user.id = tg.initDataUnsafe?.user?.id || "guest_" + Date.now();
+        user.name = tg.initDataUnsafe?.user?.first_name || "Гость";
+        document.getElementById("telegram-user").innerText = user.name;
+        loadUser();
+    }
+    
+    function buyPremium() {
+        if (window.Telegram?.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.openInvoice(TELEGRAM_BOT_TOKEN, {
+                title: "Premium Aevi",
+                description: "Доступ ко всем уровням B1-C2, эксклюзивные ачивки, безлимитная практика",
+                payload: JSON.stringify({ type: "premium", userId: user.id }),
+                currency: "XTR",
+                prices: [{ label: "Premium на месяц", amount: PREMIUM_PRICE_STARS }]
+            });
+        } else {
+            alert("Premium доступен только в Telegram Mini App");
+        }
+    }
+    
+    function activatePremium() {
+        user.premium = true;
+        user.premiumUntil = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+        saveUser();
+        showNotification("Premium активирован! Все темы открыты", "premium");
+        renderApp();
+    }
+    
+    // ==================== СОРЕВНОВАНИЯ С ДРУЗЬЯМИ ====================
+    let friendsLeaderboard = [];
+    
+    function updateLeaderboard() {
+        // В реальном приложении тут запрос к серверу
+        friendsLeaderboard = [
+            { name: user.name, xp: user.xp, level: user.level },
+            { name: "Анна", xp: 1250, level: 3 },
+            { name: "Максим", xp: 890, level: 2 }
+        ].sort((a, b) => b.xp - a.xp);
+        renderApp();
+    }
+        // ==================== ЕЖЕНЕДЕЛЬНЫЕ ТУРНИРЫ ====================
+    let weeklyTournament = {
+        id: 1,
+        startDate: new Date().toISOString(),
+        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        participants: [],
+        topScore: 0,
+        reward: 500
     };
     
-    // ==================== СОСТОЯНИЕ ПРИЛОЖЕНИЯ ====================
-    let currentTab = "grammar";
+    function joinTournament() {
+        if (!weeklyTournament.participants.includes(user.id)) {
+            weeklyTournament.participants.push(user.id);
+            showNotification("Вы участвуете в еженедельном турнире!", "tournament");
+            saveTournament();
+        }
+    }
+    
+    function saveTournament() {
+        localStorage.setItem("aevi_tournament", JSON.stringify(weeklyTournament));
+    }
+    
+    function loadTournament() {
+        const saved = localStorage.getItem("aevi_tournament");
+        if (saved) weeklyTournament = JSON.parse(saved);
+    }
+    
+    // ==================== ОСНОВНОЙ РЕНДЕР ====================
     let currentTopic = null;
     let currentMode = "topics";
     let chatMessages = [];
     let currentTasks = [];
     let currentTaskIdx = 0;
-    let userAnswers = [];
     let results = [];
     let showFeedback = false;
     let feedbackMessage = "";
-    let activeAchievement = null;
     
-    // ==================== ФУНКЦИИ СОХРАНЕНИЯ ====================
-    function saveAll() {
-        localStorage.setItem("aevi_coins", JSON.stringify(userCoins));
-        localStorage.setItem("aevi_streak", JSON.stringify(userStreak));
-        localStorage.setItem("aevi_premium", JSON.stringify(isPremium));
-        localStorage.setItem("aevi_user_level", JSON.stringify(userLevel));
-        localStorage.setItem("aevi_xp", JSON.stringify(userXp));
-        localStorage.setItem("aevi_completed", JSON.stringify(completedLessons));
-        localStorage.setItem("aevi_unlocked", JSON.stringify(unlockedTopics));
-        localStorage.setItem("aevi_achievements", JSON.stringify(achievements));
-        localStorage.setItem("aevi_daily", JSON.stringify(dailyChallengeCompleted));
-        if (lastActiveDate) localStorage.setItem("aevi_last_active", lastActiveDate);
-    }
-        // ==================== СТРИК И XP ====================
-    function updateStreak() {
-        const today = new Date().toDateString();
-        if (lastActiveDate !== today) {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            if (lastActiveDate === yesterday.toDateString()) {
-                userStreak++;
-                showNotification(`🔥 Серия: ${userStreak} дней!`, "streak");
-            } else if (lastActiveDate !== today) {
-                userStreak = 1;
-                showNotification("Начинаем новую серию!", "info");
-            }
-            lastActiveDate = today;
-            saveAll();
-            renderApp();
-        }
-    }
-    
-    function addXp(amount) {
-        userXp += amount;
-        let newLevel = Math.floor(userXp / 500) + 1;
-        if (newLevel > userLevel) {
-            userLevel = newLevel;
-            showNotification(`Поздравляем! Вы достигли ${userLevel} уровня!`, "levelup");
-        }
-        saveAll();
-        renderApp();
-    }
-    
-    function addCoins(amount) {
-        userCoins += amount;
-        showNotification(`+${amount} монет!`, "coins");
-        saveAll();
-        renderApp();
-    }
-    
-    function showNotification(message, type) {
-        const notif = document.createElement("div");
-        notif.className = "notification";
-        notif.innerHTML = message;
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 3000);
-    }
-        // ==================== РАЗБЛОКИРОВКА И АЧИВКИ ====================
-    function unlockTopic(topicId) {
-        if (!unlockedTopics.includes(topicId)) {
-            const topic = grammarTopics.find(t => t.id === topicId);
-            if (topic && topic.premium && !isPremium) {
-                if (userCoins >= 200) {
-                    userCoins -= 200;
-                    unlockedTopics.push(topicId);
-                    showNotification(`Тема "${topic.name}" разблокирована за 200 монет!`, "unlock");
-                    saveAll();
-                    renderApp();
-                    return true;
-                } else {
-                    showNotification(`Нужно 200 монет или Premium для разблокировки "${topic.name}"`, "error");
-                    return false;
-                }
-            } else if (!topic.premium) {
-                unlockedTopics.push(topicId);
-                saveAll();
-                renderApp();
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    function checkAchievements() {
-        achievementsList.forEach(ach => {
-            if (!achievements.includes(ach.id)) {
-                let earned = false;
-                if (ach.id === "first_lesson" && completedLessons.length >= 1) earned = true;
-                if (ach.id === "streak_7" && userStreak >= 7) earned = true;
-                if (ach.id === "streak_30" && userStreak >= 30 && !ach.premium) earned = true;
-                if (ach.id === "words_50" && completedLessons.length >= 3) earned = true;
-                if (earned) {
-                    achievements.push(ach.id);
-                    addCoins(ach.reward);
-                    showNotification(`🏆 Ачивка получена: ${ach.name}! +${ach.reward} монет`, "achievement");
-                }
-            }
-        });
-        saveAll();
-    }
-        // ==================== ФУНКЦИИ ПРАКТИКИ ====================
-    function startPractice(topicId) {
-        currentTasks = [...(practiceTasks[topicId] || practiceTasks.g1)];
+    function startPractice(topic) {
+        currentTasks = getPractice(topic.id, user.currentLang, user.currentLevel);
         currentTaskIdx = 0;
-        userAnswers = new Array(currentTasks.length).fill(null);
         results = new Array(currentTasks.length).fill(false);
         currentMode = "practice";
-        showFeedback = false;
         renderApp();
     }
     
     function checkAnswer(answer) {
         const task = currentTasks[currentTaskIdx];
-        const isCorrect = (answer.trim().toLowerCase() === task.correct.toLowerCase());
-        userAnswers[currentTaskIdx] = answer;
+        const isCorrect = answer.trim().toLowerCase() === task.correct.toLowerCase();
         results[currentTaskIdx] = isCorrect;
-        
         if (isCorrect) {
-            feedbackMessage = `✅ Правильно! ${task.hint || ""}`;
-            if (dailyChallenge.task.includes("заданий") && dailyChallenge.progress < dailyChallenge.target) {
-                dailyChallenge.progress++;
-                if (dailyChallenge.progress >= dailyChallenge.target && !dailyChallenge.completed) {
-                    dailyChallenge.completed = true;
-                    addCoins(dailyChallenge.reward);
-                    showNotification(`Ежедневный челлендж выполнен! +${dailyChallenge.reward} монет`, "challenge");
-                    dailyChallengeCompleted = true;
-                    saveAll();
-                }
-                renderApp();
-            }
+            feedbackMessage = `✅ Правильно!`;
         } else {
-            feedbackMessage = `❌ Неправильно. Правильный ответ: ${task.correct}. ${task.hint || ""}`;
+            feedbackMessage = `❌ Неправильно. Правильно: ${task.correct}`;
         }
         showFeedback = true;
-        
         setTimeout(() => {
             showFeedback = false;
             if (currentTaskIdx + 1 < currentTasks.length) {
@@ -654,311 +631,165 @@ Are you ready?`
                 finishPractice();
             }
         }, 1500);
-        
         renderApp();
     }
-        function finishPractice() {
+    
+    function finishPractice() {
         const correctCount = results.filter(r => r === true).length;
         const percent = (correctCount / currentTasks.length) * 100;
-        const topic = grammarTopics.find(t => t.id === currentTopic);
-        
-        if (percent >= 70 && topic && !completedLessons.includes(topic.id)) {
-            completedLessons.push(topic.id);
-            addXp(topic.xpReward);
-            addCoins(topic.coinsReward);
+        if (percent >= 70 && currentTopic && !user.completedTopics.includes(currentTopic.id)) {
+            user.completedTopics.push(currentTopic.id);
+            addXp(currentTopic.xpReward);
+            addCoins(20);
+            updatePetExp(50);
             checkAchievements();
-            if (topic.id === "g1") unlockTopic("g2");
-            if (topic.id === "g2") unlockTopic("g3");
-            if (topic.id === "g3") { unlockTopic("g4"); unlockTopic("g5"); }
-            showNotification(`Урок пройден! +${topic.xpReward} XP, +${topic.coinsReward} монет`, "complete");
+            if (weeklyTournament.participants.includes(user.id)) {
+                weeklyTournament.topScore = Math.max(weeklyTournament.topScore, user.xp);
+                saveTournament();
+            }
+            showNotification(`Урок пройден! +${currentTopic.xpReward} XP`, "complete");
         }
         currentMode = "results";
         renderApp();
     }
-    
-    function buyPremium() {
-        if (userCoins >= 500) {
-            userCoins -= 500;
-            isPremium = true;
-            saveAll();
-            showNotification("Premium активирован! Все темы открыты", "premium");
-            renderApp();
-        } else {
-            showNotification(`Не хватает монет. Нужно 500. У вас ${userCoins}`, "error");
-        }
-    }
-    
-    function resetDailyChallenge() {
-        const today = new Date().toDateString();
-        if (lastActiveDate !== today) {
-            dailyChallenge = {
-                task: "Выполните 5 заданий практики",
-                progress: 0,
-                target: 5,
-                reward: 30,
-                completed: false
-            };
-            dailyChallengeCompleted = false;
-            saveAll();
-        }
-    }
-        // ==================== ОСНОВНОЙ РЕНДЕР ====================
-    function renderApp() {
-        resetDailyChallenge();
-        updateStreak();
-        
+        function renderApp() {
         const container = document.getElementById('app');
         if (!container) return;
         
-        const totalTopics = grammarTopics.length;
-        const unlockedCount = unlockedTopics.length;
-        const completedCount = completedLessons.length;
-        const nextXpNeeded = 500 - (userXp % 500);
+        const currentTopics = topicsByLevel[user.currentLang]?.[user.currentLevel] || [];
+        const unlockedCount = currentTopics.filter(t => t.unlocked || user.premium || user.completedTopics.includes(t.id)).length;
+        const completedCount = currentTopics.filter(t => user.completedTopics.includes(t.id)).length;
+        const xpPercent = (user.xp % 500) / 500 * 100;
         
-        const topicsHtml = grammarTopics.map(topic => {
-            const isUnlocked = unlockedTopics.includes(topic.id);
-            const isCompleted = completedLessons.includes(topic.id);
-            const isLocked = !isUnlocked;
-            const lockedClass = isLocked ? 'locked' : '';
-            const completedClass = isCompleted ? 'completed' : '';
-            const premiumBadge = topic.premium && !isUnlocked && !isPremium ? '<span class="premium-lock">🔒 Premium</span>' : '';
-            const lockIcon = isLocked && !topic.premium ? '<span class="premium-lock">🔒</span>' : '';
-            
+        const topicsHtml = currentTopics.map(topic => {
+            const isUnlocked = topic.unlocked || user.premium || user.completedTopics.includes(topic.id);
+            const isCompleted = user.completedTopics.includes(topic.id);
+            const isPremium = topic.premium && !user.premium && !isUnlocked;
             return `
-                <div class="topic-item ${completedClass} ${lockedClass}" data-id="${topic.id}" data-premium="${topic.premium}">
-                    <div class="topic-status ${topic.premium && !isUnlocked ? 'premium' : ''}">${isCompleted ? '✓' : (isUnlocked ? (parseInt(topic.id.slice(1)) || 1) : '🔒')}</div>
-                    <div class="topic-name">${topic.name}</div>
-                    <div class="topic-badge">${premiumBadge || lockIcon || 'грамматика'}</div>
+                <div class="topic-item ${isCompleted ? 'completed' : ''} ${!isUnlocked ? 'locked' : ''}" data-id="${topic.id}" data-premium="${isPremium}">
+                    <div class="topic-status">${isCompleted ? '✓' : (isUnlocked ? (currentTopics.indexOf(topic)+1) : '🔒')}</div>
+                    <div style="flex:1">${topic.name}</div>
+                    ${isPremium ? '<span class="premium-badge" style="font-size:10px; padding:2px 8px;">Premium</span>' : ''}
                 </div>
             `;
         }).join('');
         
-        const xpPercent = (userXp % 500) / 500 * 100;
-                let rightPanelHtml = '';
+        const languagesHtml = languages.map(lang => `
+            <option value="${lang.code}" ${user.currentLang === lang.code ? 'selected' : ''}>${lang.name}</option>
+        `).join('');
         
-        if (currentMode === "topics") {
-            rightPanelHtml = `
-                <div class="chat-container">
-                    <h2 style="margin-bottom: 16px;">Добро пожаловать в Aevi</h2>
-                    <p style="color: #8a93b0; margin-bottom: 20px;">Выберите тему слева, чтобы начать обучение.</p>
-                    <div class="shop-item">
-                        <div>
-                            <strong>⭐ Premium доступ</strong>
-                            <div style="font-size: 12px; color: #8a93b0;">Все темы + эксклюзивные ачивки</div>
-                        </div>
-                        <div>
-                            ${!isPremium ? `<button class="btn-outline" id="premiumBuyBtn" style="padding: 6px 16px;">${userCoins >= 500 ? 'Купить за 500' : '500 монет'}</button>` : '<span class="premium-badge">PREMIUM</span>'}
-                        </div>
-                    </div>
-                    ${!dailyChallenge.completed ? `
-                    <div class="shop-item">
-                        <div>
-                            <strong>📅 Ежедневный челлендж</strong>
-                            <div style="font-size: 12px; color: #8a93b0;">${dailyChallenge.task} (${dailyChallenge.progress}/${dailyChallenge.target})</div>
-                        </div>
-                        <div class="price">+${dailyChallenge.reward} 🪙</div>
-                    </div>
-                    ` : '<div class="shop-item"><div><strong>✅ Челлендж выполнен!</strong></div><div>+30 🪙 получено</div></div>'}
-                    <div class="achievement-grid" style="margin-top: 20px;">
-                        <h4>🏆 Достижения</h4>
-                        ${achievementsList.map(ach => {
-                            const isUnlocked = achievements.includes(ach.id);
-                            return `
-                                <div class="achievement-card ${isUnlocked ? 'unlocked' : ''}">
-                                    <div style="font-size: 24px;">${ach.icon}</div>
-                                    <div style="font-size: 12px; font-weight: bold;">${ach.name}</div>
-                                    <div style="font-size: 10px; color: #8a93b0;">${ach.desc}</div>
-                                    ${!isUnlocked && ach.premium && !isPremium ? '<div style="font-size: 10px; color: #ffd700;">Premium</div>' : ''}
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
+        const levelsHtml = (languages.find(l => l.code === user.currentLang)?.levels || ["A1", "A2", "B1", "B2", "C1", "C2"]).map(level => `
+            <option value="${level}" ${user.currentLevel === level ? 'selected' : ''}>${level}</option>
+        `).join('');
+        
+        const achievementsHtml = achievementsList.map(ach => {
+            const isUnlocked = user.achievements.includes(ach.id);
+            const isLockedByPremium = ach.premium && !user.premium;
+            return `
+                <div class="achievement-card ${isUnlocked ? 'unlocked' : ''}" style="opacity: ${isLockedByPremium ? 0.5 : 1}">
+                    <div style="font-size:24px">${ach.icon}</div>
+                    <div><strong>${ach.name}</strong></div>
+                    <div style="font-size:10px; color:#8a93b0">${ach.desc}</div>
+                    ${!isUnlocked && !isLockedByPremium ? `<div style="color:#ffd700; font-size:10px">+${ach.reward} 🪙</div>` : ''}
+                    ${isLockedByPremium ? '<div style="color:#ffd700; font-size:10px">Premium</div>' : ''}
                 </div>
             `;
-        }
-                else if (currentMode === "chat" && currentTopic) {
-            const topic = grammarTopics.find(t => t.id === currentTopic);
-            const theory = theoryDB[currentTopic];
-            const messagesHtml = chatMessages.map(msg => `<div class="message">${msg.content}</div>`).join('');
-            
-            rightPanelHtml = `
-                <div class="chat-container">
-                    <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;">
-                        <h2>${topic.name}</h2>
-                        <button class="btn-outline" id="practiceBtn">📝 Практика</button>
-                        <button class="btn-back" id="backBtn">← Назад</button>
-                    </div>
-                    <div class="chat-messages" id="chatMessages">
-                        ${messagesHtml}
-                    </div>
-                    <div class="button-panel">
-                        <button class="topic-btn" data-type="full">📖 Теория</button>
-                        <button class="topic-btn" data-type="examples">📋 Примеры</button>
-                        <button class="topic-btn" data-type="negative">❌ Отрицание</button>
-                        <button class="topic-btn" data-type="questions">❓ Вопросы</button>
-                    </div>
-                </div>
-            `;
-        }
-        else if (currentMode === "practice" && currentTasks.length) {
-            const task = currentTasks[currentTaskIdx];
-            const optionsHtml = task.type === "choice" ? 
-                `<div class="options">${task.options.map(opt => `<div class="option" data-val="${opt}">${opt}</div>`).join('')}</div>` : '';
-            
-            rightPanelHtml = `
-                <div class="practice-block">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                        <h3>Практика: ${grammarTopics.find(t => t.id === currentTopic)?.name}</h3>
-                        <span>${currentTaskIdx+1}/${currentTasks.length}</span>
-                    </div>
-                    <div class="progress"><div class="progress-fill" style="width: ${(currentTaskIdx/currentTasks.length)*100}%"></div></div>
-                    <div class="practice-question">
-                        <strong>${task.question}</strong>
-                        ${optionsHtml}
-                        ${task.type !== "choice" ? `<input type="text" id="answerInput" class="practice-input" placeholder="Введите ответ...">` : ''}
-                        ${showFeedback ? `<div class="${feedbackMessage.includes('✅') ? 'feedback-correct' : 'feedback-wrong'}">${feedbackMessage}</div>` : ''}
-                        <div class="practice-footer">
-                            <button class="btn-back" id="backToChatBtn">← К теории</button>
-                            <button class="btn" id="submitBtn">Проверить</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-                else if (currentMode === "results") {
-            const correctCount = results.filter(r => r === true).length;
-            const percent = Math.round((correctCount / currentTasks.length) * 100);
-            const topic = grammarTopics.find(t => t.id === currentTopic);
-            const isCompleted = completedLessons.includes(currentTopic);
-            
-            rightPanelHtml = `
-                <div class="results-block">
-                    <h2>Результаты практики</h2>
-                    <div style="text-align: center; margin: 40px 0;">
-                        <div style="font-size: 48px; font-weight: bold; color: #0aff9d;">${correctCount}/${currentTasks.length}</div>
-                        <div style="font-size: 18px;">${percent}% правильно</div>
-                        ${!isCompleted && percent >= 70 ? '<div style="color: #ffd700; margin-top: 12px;">+50 XP, +20 монет</div>' : ''}
-                    </div>
-                    <div class="progress"><div class="progress-fill" style="width: ${percent}%"></div></div>
-                    ${percent >= 70 ? '<p style="margin: 20px 0; text-align: center;">Тема пройдена! Отличная работа.</p>' : '<p style="margin: 20px 0; text-align: center;">Повторите тему и попробуйте снова.</p>'}
-                    <button class="btn" id="backToChatBtn">Вернуться к теории</button>
-                </div>
-            `;
-        }
+        }).join('');
+        
+        const petEmojis = { baby: "🐣", teen: "🐥", adult: "🐔", legendary: "🐉" };
         
         container.innerHTML = `
             <div class="left-panel">
                 <div class="logo">Aevi</div>
-                <div class="streak-bar">
-                    <span>🔥 Серия</span>
-                    <span class="streak-count">${userStreak} дней</span>
-                </div>
+                <div class="streak-bar"><span>🔥 Серия</span><span>${user.streak} дней</span></div>
                 <div class="level-progress">
-                    <div class="level-text"><span>Уровень ${userLevel}</span><span>${userXp % 500}/${500} XP</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: ${xpPercent}%"></div></div>
+                    <div>🎯 Уровень ${user.level}</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${xpPercent}%"></div></div>
+                    <div>⭐ ${user.xp} XP</div>
                 </div>
-                <div class="streak-bar" style="margin-top: 8px;">
+                <div class="streak-bar">
                     <span>🪙 Монеты</span>
-                    <span class="streak-count">${userCoins}</span>
-                    ${!isPremium ? '<button class="btn-outline" id="premiumBuyBtn2" style="padding: 4px 12px; font-size: 12px;">Premium</button>' : '<span class="premium-badge">PREMIUM</span>'}
+                    <span>${user.coins}</span>
+                    ${!user.premium ? `<button class="btn-outline" id="premiumBtn" style="padding:4px 12px; font-size:12px">⭐ Premium (${PREMIUM_PRICE_STARS}⭐)</button>` : '<span class="premium-badge">PREMIUM</span>'}
+                </div>
+                <select class="lang-selector" id="langSelect">${languagesHtml}</select>
+                <select class="level-selector" id="levelSelect">${levelsHtml}</select>
+                <div class="pet-container">
+                    <div style="font-size:32px">${petEmojis[user.pet.type] || "🐣"}</div>
+                    <div>Питомец ${user.pet.type}</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${(user.pet.exp % 500) / 5}%"></div></div>
                 </div>
                 <div class="tab-switch">
                     <div class="tab-btn active">📖 Грамматика</div>
-                    <div class="tab-btn" style="opacity:0.5; cursor:not-allowed;">📚 Лексика (скоро)</div>
+                    <div class="tab-btn" id="leaderboardTab">🏆 Рейтинг</div>
+                    <div class="tab-btn" id="shopTab">🛒 Магазин</div>
                 </div>
                 <div class="topic-list" id="topicList">${topicsHtml}</div>
             </div>
-            <div class="right-panel" id="rightPanel">${rightPanelHtml}</div>
+            <div class="right-panel" id="rightPanel">
+                ${currentMode === "topics" ? `
+                    <h2>Добро пожаловать, ${user.name}!</h2>
+                    <p>Выберите тему слева. Пройдено ${completedCount}/${currentTopics.length} тем.</p>
+                    <div class="shop-item"><div><strong>📅 Еженедельный турнир</strong><div>Приз: ${weeklyTournament.reward} монет</div></div><button class="btn-outline" id="joinTournamentBtn">Участвовать</button></div>
+                    <div class="achievement-grid">${achievementsHtml}</div>
+                ` : currentMode === "practice" && currentTasks.length ? `
+                    <div><h3>Практика</h3><div class="progress-bar"><div class="progress-fill" style="width:${(currentTaskIdx/currentTasks.length)*100}%"></div></div>
+                    <div class="practice-question"><strong>${currentTasks[currentTaskIdx].question}</strong>
+                    ${currentTasks[currentTaskIdx].type === "choice" ? `<div class="options">${currentTasks[currentTaskIdx].options.map(opt => `<div class="option" data-val="${opt}">${opt}</div>`).join('')}</div>` : `<input type="text" id="answerInput" class="practice-input" placeholder="Ответ...">`}
+                    ${showFeedback ? `<div class="${feedbackMessage.includes('✅') ? 'feedback-correct' : 'feedback-wrong'}">${feedbackMessage}</div>` : ''}
+                    <button class="btn" id="submitBtn">Проверить</button>
+                    <button class="btn-back" id="backBtn" style="margin-top:8px">← Назад</button></div></div>
+                ` : currentMode === "results" ? `
+                    <h2>Результаты</h2>
+                    <div style="text-align:center;margin:40px 0"><div style="font-size:48px;color:#0aff9d">${results.filter(r=>r===true).length}/${results.length}</div><button class="btn" id="backBtn">Вернуться</button></div>
+                ` : `<div class="chat-messages">Выберите тему для начала</div>`}
+            </div>
         `;
-                // Обработчики для тем
+        
         document.querySelectorAll('.topic-item').forEach(el => {
             el.addEventListener('click', () => {
                 const topicId = el.dataset.id;
                 const isPremiumTopic = el.dataset.premium === 'true';
-                const isUnlocked = unlockedTopics.includes(topicId);
-                
-                if (!isUnlocked) {
-                    if (isPremiumTopic && !isPremium) {
-                        if (userCoins >= 200) {
-                            if (confirm(`Разблокировать тему за 200 монет?`)) {
-                                userCoins -= 200;
-                                unlockedTopics.push(topicId);
-                                saveAll();
-                                showNotification(`Тема разблокирована!`, "unlock");
-                                renderApp();
-                            }
-                        } else {
-                            showNotification(`Не хватает монет. Нужно 200. Купите Premium за 500 монет, чтобы открыть все темы.`, "error");
+                const topic = currentTopics.find(t => t.id === topicId);
+                if (!topic) return;
+                if (isPremiumTopic && !user.premium) {
+                    if (user.coins >= 200) {
+                        if (confirm(`Разблокировать тему "${topic.name}" за 200 монет?`)) {
+                            user.coins -= 200;
+                            user.completedTopics.push(topic.id);
+                            saveUser();
+                            renderApp();
                         }
+                    } else {
+                        alert("Не хватает монет. Купите Premium или накопите 200 монет.");
                     }
                     return;
                 }
-                
-                currentTopic = topicId;
-                chatMessages = [{ content: `Вы выбрали тему: ${grammarTopics.find(t => t.id === topicId)?.name}. Нажмите на кнопку, чтобы получить информацию.` }];
+                currentTopic = topic;
+                chatMessages = [{ content: getTheory(topic.id, user.currentLang, user.currentLevel) }];
                 currentMode = "chat";
                 renderApp();
             });
         });
         
-        // Кнопки назад
-        document.getElementById('backBtn')?.addEventListener('click', () => {
-            currentMode = "topics";
-            currentTopic = null;
-            renderApp();
-        });
-        
-        document.getElementById('backToChatBtn')?.addEventListener('click', () => {
-            currentMode = "chat";
-            renderApp();
-        });
-        
-        // Кнопка практики
-        document.getElementById('practiceBtn')?.addEventListener('click', () => {
-            startPractice(currentTopic);
-        });
-                // Кнопки теории
-        document.querySelectorAll('.topic-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const type = btn.dataset.type;
-                const theory = theoryDB[currentTopic];
-                if (theory && theory[type]) {
-                    chatMessages.push({ content: theory[type] });
-                    renderApp();
-                }
-            });
-        });
-        
-        // Кнопка проверки ответа
+        document.getElementById('backBtn')?.addEventListener('click', () => { currentMode = "topics"; renderApp(); });
         document.getElementById('submitBtn')?.addEventListener('click', () => {
-            if (currentTasks[currentTaskIdx].type === 'choice') {
-                const selected = document.querySelector('.option.selected');
-                if (selected) checkAnswer(selected.dataset.val);
-            } else {
-                const input = document.getElementById('answerInput');
-                if (input && input.value.trim()) checkAnswer(input.value.trim());
-            }
+            const selected = document.querySelector('.option.selected');
+            if (selected) checkAnswer(selected.dataset.val);
+            else { const input = document.getElementById('answerInput'); if (input?.value) checkAnswer(input.value); }
         });
-        
-        // Выбор варианта в choice
-        document.querySelectorAll('.option').forEach(opt => {
-            opt.addEventListener('click', function() {
-                document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
-        
-        // Кнопки покупки Premium
-        document.getElementById('premiumBuyBtn')?.addEventListener('click', buyPremium);
-        document.getElementById('premiumBuyBtn2')?.addEventListener('click', buyPremium);
-        
-        // Скролл чата вниз
-        const chatMessagesDiv = document.getElementById('chatMessages');
-        if (chatMessagesDiv) chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+        document.querySelectorAll('.option').forEach(opt => opt.addEventListener('click', function() { document.querySelectorAll('.option').forEach(o => o.classList.remove('selected')); this.classList.add('selected'); }));
+        document.getElementById('premiumBtn')?.addEventListener('click', buyPremium);
+        document.getElementById('langSelect')?.addEventListener('change', (e) => { user.currentLang = e.target.value; saveUser(); renderApp(); });
+        document.getElementById('levelSelect')?.addEventListener('change', (e) => { user.currentLevel = e.target.value; saveUser(); renderApp(); });
+        document.getElementById('joinTournamentBtn')?.addEventListener('click', joinTournament);
+        document.getElementById('leaderboardTab')?.addEventListener('click', () => { updateLeaderboard(); alert("Рейтинг:\n" + friendsLeaderboard.map((f,i) => `${i+1}. ${f.name} - ${f.xp} XP`).join("\n")); });
+        document.getElementById('shopTab')?.addEventListener('click', () => { alert("Магазин:\n🎨 Темы оформления - 100 монет\n🐉 Легендарный питомец - 500 монет\n⭐ Premium - 50 звёзд"); });
     }
     
-    // ==================== ЗАПУСК ПРИЛОЖЕНИЯ ====================
-    updateStreak();
+    loadUser();
+    loadTournament();
+    if (window.Telegram?.WebApp) initTelegramPayment();
     renderApp();
 </script>
 </body>
