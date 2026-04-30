@@ -221,20 +221,19 @@
   </div>
 
   <script>
+    // ==================== AEVi LANGUAGE LEARNING APP ====================
     (function() {
-      // Функция перемешивания массива
+      // ---------- UTILITY ----------
       function shuffleArray(arr) {
-        for (var i = arr.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var temp = arr[i];
-          arr[i] = arr[j];
-          arr[j] = temp;
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
         }
         return arr;
       }
 
-      // Переводы слов
-      var translations = {
+      // ---------- DATA ----------
+      const translations = {
         hello: { English: 'hello', Spanish: 'hola', French: 'bonjour', German: 'hallo' },
         goodbye: { English: 'goodbye', Spanish: 'adiós', French: 'au revoir', German: 'auf wiedersehen' },
         please: { English: 'please', Spanish: 'por favor', French: 's\'il vous plaît', German: 'bitte' },
@@ -243,35 +242,50 @@
         no: { English: 'no', Spanish: 'no', French: 'non', German: 'nein' }
       };
 
-      var words = ['hello', 'goodbye', 'please', 'thanks', 'yes', 'no'];
+      const words = ['hello', 'goodbye', 'please', 'thanks', 'yes', 'no'];
 
-      // Генерация урока
+      const levelQuestions = [
+        { text: 'She ___ to school every day.', options: ['go', 'goes', 'going', 'went'], correct: 'goes' },
+        { text: 'Синоним "быстрый"?', options: ['медленный', 'скорый', 'тихий', 'глубокий'], correct: 'скорый' },
+        { text: 'Как "собака" по-английски?', options: ['cat', 'dog', 'bird', 'fish'], correct: 'dog' },
+        { text: 'Время в "I have seen"?', options: ['Present Simple', 'Past Simple', 'Present Perfect', 'Future'], correct: 'Present Perfect' },
+        { text: 'I am interested ___ learning.', options: ['in', 'on', 'at', 'for'], correct: 'in' }
+      ];
+
+      // ---------- STATE ----------
+      let step = 'level';
+      let userLevel = null;
+      let currentLang = 'English';
+      let levelAnswers = [];
+      let currentLesson = null;
+      let practiceAnswers = [];
+      let practiceResults = [];
+      let practiceIndex = 0;
+
+      // ---------- AI GENERATOR ----------
       function generateLesson(level, language) {
-        var levels = { beginner: 'A1', intermediate: 'B1', advanced: 'C1' };
-        var lvl = levels[level] || 'B1';
+        const levels = { beginner: 'A1', intermediate: 'B1', advanced: 'C1' };
+        const lvl = levels[level] || 'B1';
         
-        var vocab = [];
-        for (var w = 0; w < words.length; w++) {
-          vocab.push({ 
-            word: words[w], 
-            translation: translations[words[w]][language] || words[w]
-          });
-        }
+        const vocab = words.map(w => ({ 
+          word: w, 
+          translation: translations[w][language] || w 
+        }));
         
-        var theoryByLevel = {
+        const theoryByLevel = {
           beginner: '📘 <strong>Основы ' + language + '</strong><br><br>В ' + language + ' базовый порядок слов — SVO.<br>Пример: "I learn ' + language + '"<br><br>✅ Артикли важны<br>✅ Глаголы спрягаются',
           intermediate: '📙 <strong>' + language + ' для среднего уровня</strong><br><br>Времена Perfect и условные предложения.<br>📌 Пример: "If I had studied, I would have passed"',
           advanced: '📕 <strong>Продвинутый ' + language + '</strong><br><br>Сослагательное наклонение, инверсии.<br>✨ Пример: "Never have I seen such a sunset"'
         };
         
-        var theory = theoryByLevel[level] + '<br><br>🎯 <strong>Уровень: ' + lvl.toUpperCase() + '</strong>';
+        const theory = theoryByLevel[level] + '<br><br>🎯 <strong>Уровень: ' + lvl.toUpperCase() + '</strong>';
         
-        var tasks = [];
-        for (var i = 0; i < 20; i++) {
-          var wordObj = vocab[i % vocab.length];
+        const tasks = [];
+        for (let i = 0; i < 20; i++) {
+          const wordObj = vocab[i % vocab.length];
           if (i < 10) {
-            var options = [wordObj.translation, '❌ ошибка1', '❌ ошибка2'];
-            options = shuffleArray(options.slice());
+            let options = [wordObj.translation, '❌ ошибка1', '❌ ошибка2'];
+            options = shuffleArray([...options]);
             tasks.push({
               type: 'choice',
               question: '📝 Перевод слова "' + wordObj.word + '":',
@@ -290,27 +304,9 @@
         return { theory: theory, vocabulary: vocab, practice: tasks };
       }
 
-      // Состояние
-      var step = 'level';
-      var userLevel = null;
-      var currentLang = 'English';
-      var levelAnswers = [];
-      var currentLesson = null;
-      var practiceAnswers = [];
-      var practiceResults = [];
-      var practiceIndex = 0;
-
-      var levelQuestions = [
-        { text: 'She ___ to school every day.', options: ['go', 'goes', 'going', 'went'], correct: 'goes' },
-        { text: 'Синоним "быстрый"?', options: ['медленный', 'скорый', 'тихий', 'глубокий'], correct: 'скорый' },
-        { text: 'Как "собака" по-английски?', options: ['cat', 'dog', 'bird', 'fish'], correct: 'dog' },
-        { text: 'Время в "I have seen"?', options: ['Present Simple', 'Past Simple', 'Present Perfect', 'Future'], correct: 'Present Perfect' },
-        { text: 'I am interested ___ learning.', options: ['in', 'on', 'at', 'for'], correct: 'in' }
-      ];
-
-      // Сохранение и загрузка
+      // ---------- SAVE / LOAD ----------
       function saveProgress() {
-        var progress = {
+        const progress = {
           step: step,
           userLevel: userLevel,
           currentLang: currentLang,
@@ -324,10 +320,10 @@
       }
 
       function loadProgress() {
-        var saved = localStorage.getItem('aevi_progress');
+        const saved = localStorage.getItem('aevi_progress');
         if (!saved) return false;
         try {
-          var data = JSON.parse(saved);
+          const data = JSON.parse(saved);
           step = data.step;
           userLevel = data.userLevel;
           currentLang = data.currentLang;
@@ -355,9 +351,9 @@
         render();
       }
 
-      // Рендер
+      // ---------- RENDER ----------
       function render() {
-        var app = document.getElementById('app');
+        const app = document.getElementById('app');
         if (!app) return;
         
         if (step === 'level') renderLevel(app);
@@ -369,12 +365,12 @@
       }
 
       function renderLevel(container) {
-        var answeredCount = levelAnswers.length;
-        var currentQ = levelQuestions[answeredCount];
+        const answeredCount = levelAnswers.length;
+        const currentQ = levelQuestions[answeredCount];
         
         if (!currentQ) {
-          var correct = 0;
-          for (var i = 0; i < levelAnswers.length; i++) {
+          let correct = 0;
+          for (let i = 0; i < levelAnswers.length; i++) {
             if (levelAnswers[i] === levelQuestions[i].correct) correct++;
           }
           if (correct <= 2) userLevel = 'beginner';
@@ -385,145 +381,141 @@
           return;
         }
         
-        var optionsHtml = '';
-        for (var o = 0; o < currentQ.options.length; o++) {
-          optionsHtml += '<div class="option" data-value="' + currentQ.options[o] + '">' + currentQ.options[o] + '</div>';
-        }
+        container.innerHTML = `
+          <div class="card">
+            <h2>🌙 Оценка уровня</h2>
+            <div class="sub">Вопрос ${answeredCount+1} из ${levelQuestions.length}</div>
+            <div class="options">
+              ${currentQ.options.map(opt => `<div class="option" data-value="${opt}">${opt}</div>`).join('')}
+            </div>
+            <button class="btn" id="nextBtn">${answeredCount+1 === levelQuestions.length ? 'Завершить' : 'Далее'}</button>
+            <div class="progress"><div class="progress-fill" style="width:${(answeredCount/levelQuestions.length)*100}%"></div></div>
+            <button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>
+          </div>
+        `;
         
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>🌙 Оценка уровня</h2>' +
-            '<div class="sub">Вопрос ' + (answeredCount+1) + ' из ' + levelQuestions.length + '</div>' +
-            '<div class="options">' + optionsHtml + '</div>' +
-            '<button class="btn" id="nextBtn">' + (answeredCount+1 === levelQuestions.length ? 'Завершить' : 'Далее') + '</button>' +
-            '<div class="progress"><div class="progress-fill" style="width:' + (answeredCount/levelQuestions.length)*100 + '%"></div></div>' +
-            '<button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div>';
+        document.querySelectorAll('.option').forEach(el => {
+          el.onclick = () => {
+            document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            levelAnswers[answeredCount] = el.getAttribute('data-value');
+          };
+        });
         
-        var opts = document.querySelectorAll('.option');
-        for (var oi = 0; oi < opts.length; oi++) {
-          opts[oi].onclick = (function(el) {
-            return function() {
-              var allOpts = document.querySelectorAll('.option');
-              for (var ao = 0; ao < allOpts.length; ao++) {
-                allOpts[ao].classList.remove('selected');
-              }
-              el.classList.add('selected');
-              levelAnswers[answeredCount] = el.getAttribute('data-value');
-            };
-          })(opts[oi]);
-        }
-        
-        document.getElementById('nextBtn').onclick = function() {
+        document.getElementById('nextBtn').onclick = () => {
           if (levelAnswers[answeredCount]) render();
         };
         
-        var resetBtn = document.getElementById('resetBtn');
-        if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Сбросить весь прогресс?')) resetProgress();
-          };
-        }
+        document.getElementById('resetBtn').onclick = () => {
+          if (confirm('Сбросить весь прогресс?')) resetProgress();
+        };
       }
 
       function renderLanguage(container) {
-        var levelNames = { beginner: 'Начинающий', intermediate: 'Средний', advanced: 'Продвинутый' };
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>✨ Выбери язык</h2>' +
-            '<div class="sub">Твой уровень: ' + levelNames[userLevel] + '</div>' +
-            '<select id="langSelect" class="lang-select">' +
-              '<option value="English">🇬🇧 Английский</option>' +
-              '<option value="Spanish">🇪🇸 Испанский</option>' +
-              '<option value="French">🇫🇷 Французский</option>' +
-              '<option value="German">🇩🇪 Немецкий</option>' +
-            '</select>' +
-            '<button class="btn" id="generateBtn">🚀 Сгенерировать урок</button>' +
-            '<button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div>';
+        const levelNames = { beginner: 'Начинающий', intermediate: 'Средний', advanced: 'Продвинутый' };
+        container.innerHTML = `
+          <div class="card">
+            <h2>✨ Выбери язык</h2>
+            <div class="sub">Твой уровень: ${levelNames[userLevel]}</div>
+            <select id="langSelect" class="lang-select">
+              <option value="English" ${currentLang === 'English' ? 'selected' : ''}>🇬🇧 Английский</option>
+              <option value="Spanish" ${currentLang === 'Spanish' ? 'selected' : ''}>🇪🇸 Испанский</option>
+              <option value="French" ${currentLang === 'French' ? 'selected' : ''}>🇫🇷 Французский</option>
+              <option value="German" ${currentLang === 'German' ? 'selected' : ''}>🇩🇪 Немецкий</option>
+            </select>
+            <button class="btn" id="generateBtn">🚀 Сгенерировать урок</button>
+            <button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>
+          </div>
+        `;
         
-        document.getElementById('langSelect').onchange = function(e) { 
+        document.getElementById('langSelect').onchange = (e) => { 
           currentLang = e.target.value; 
           saveProgress(); 
         };
-        document.getElementById('generateBtn').onclick = function() {
+        document.getElementById('generateBtn').onclick = () => {
           currentLesson = generateLesson(userLevel, currentLang);
-          practiceAnswers = new Array(20);
-          for (var pa = 0; pa < 20; pa++) practiceAnswers[pa] = null;
-          practiceResults = new Array(20);
-          for (var pr = 0; pr < 20; pr++) practiceResults[pr] = false;
+          practiceAnswers = new Array(20).fill(null);
+          practiceResults = new Array(20).fill(false);
           practiceIndex = 0;
           step = 'theory';
           render();
         };
-        var resetBtn = document.getElementById('resetBtn');
-        if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Сбросить весь прогресс?')) resetProgress();
-          };
-        }
+        document.getElementById('resetBtn').onclick = () => {
+          if (confirm('Сбросить весь прогресс?')) resetProgress();
+        };
       }
 
       function renderTheory(container) {
-        var vocabHtml = '';
-        for (var v = 0; v < currentLesson.vocabulary.length; v++) {
-          vocabHtml += '<div class="word-item"><span>' + currentLesson.vocabulary[v].word + '</span><span style="color:#b0f5ff;">' + currentLesson.vocabulary[v].translation + '</span></div>';
+        if (!currentLesson) {
+          step = 'language';
+          render();
+          return;
         }
         
-        container.innerHTML = 
-          '<div class="card">' +
-            '<h2>📖 Теория — ' + currentLang + '</h2>' +
-            '<div class="sub">Уровень: ' + userLevel + '</div>' +
-            '<div style="margin:20px 0; line-height:1.6;">' + currentLesson.theory + '</div>' +
-            '<strong>📚 Словарь</strong>' +
-            '<div class="word-list">' + vocabHtml + '</div>' +
-            '<div class="button-group">' +
-              '<button class="btn-small" id="backBtn">← Назад</button>' +
-              '<button class="btn" id="startPracticeBtn">🎯 К практике (20 заданий)</button>' +
-            '</div>' +
-            '<button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>' +
-          '</div>';
+        let vocabHtml = '';
+        for (let i = 0; i < currentLesson.vocabulary.length; i++) {
+          vocabHtml += '<div class="word-item"><span>' + currentLesson.vocabulary[i].word + '</span><span style="color:#b0f5ff;">' + currentLesson.vocabulary[i].translation + '</span></div>';
+        }
         
-        document.getElementById('backBtn').onclick = function() {
+        container.innerHTML = `
+          <div class="card">
+            <h2>📖 Теория — ${currentLang}</h2>
+            <div class="sub">Уровень: ${userLevel}</div>
+            <div style="margin:20px 0; line-height:1.6;">${currentLesson.theory}</div>
+            <strong>📚 Словарь</strong>
+            <div class="word-list">${vocabHtml}</div>
+            <div class="button-group">
+              <button class="btn-small" id="backBtn">← Назад</button>
+              <button class="btn" id="startPracticeBtn">🎯 К практике (20 заданий)</button>
+            </div>
+            <button class="btn-small" id="resetBtn" style="margin-top:1rem;background:#ff5e7c20;color:#ff9eae;">🔄 Сбросить всё</button>
+          </div>
+        `;
+        
+        document.getElementById('backBtn').onclick = () => {
           step = 'language';
           render();
         };
-        document.getElementById('startPracticeBtn').onclick = function() {
+        document.getElementById('startPracticeBtn').onclick = () => {
           step = 'practice';
           render();
         };
-        var resetBtn = document.getElementById('resetBtn');
-        if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Сбросить весь прогресс?')) resetProgress();
-          };
-        }
+        document.getElementById('resetBtn').onclick = () => {
+          if (confirm('Сбросить весь прогресс?')) resetProgress();
+        };
       }
 
       function renderPractice(container) {
-        var total = currentLesson.practice.length;
-        var q = currentLesson.practice[practiceIndex];
-        var userAnswer = practiceAnswers[practiceIndex] || '';
-        var isAnswered = practiceAnswers[practiceIndex] !== null;
-        
-        var correctCount = 0;
-        for (var rc = 0; rc < practiceResults.length; rc++) {
-          if (practiceResults[rc] === true) correctCount++;
+        if (!currentLesson) {
+          step = 'language';
+          render();
+          return;
         }
         
-        var html = 
-          '<div class="card">' +
-            '<div class="flex-between"><h2>✍️ Практика</h2><div class="score">✅ ' + correctCount + '/' + total + '</div></div>' +
-            '<div class="progress"><div class="progress-fill" style="width:' + (practiceIndex/total)*100 + '%"></div></div>' +
-            '<div class="practice-question">' +
-              '<strong>' + (practiceIndex+1) + '/' + total + '</strong>' +
-              '<p style="margin:12px 0">' + q.question + '</p>';
+        const total = currentLesson.practice.length;
+        const q = currentLesson.practice[practiceIndex];
+        const userAnswer = practiceAnswers[practiceIndex] || '';
+        const isAnswered = practiceAnswers[practiceIndex] !== null;
+        
+        let correctCount = 0;
+        for (let i = 0; i < practiceResults.length; i++) {
+          if (practiceResults[i] === true) correctCount++;
+        }
+        
+        let html = `
+          <div class="card">
+            <div class="flex-between"><h2>✍️ Практика</h2><div class="score">✅ ${correctCount}/${total}</div></div>
+            <div class="progress"><div class="progress-fill" style="width:${(practiceIndex/total)*100}%"></div></div>
+            <div class="practice-question">
+              <strong>${practiceIndex+1}/${total}</strong>
+              <p style="margin:12px 0">${q.question}</p>
+        `;
         
         if (q.type === 'choice') {
           html += '<div class="options" id="practiceOptions">';
-          for (var optIdx = 0; optIdx < q.options.length; optIdx++) {
-            var opt = q.options[optIdx];
-            var selectedClass = (userAnswer === opt) ? 'selected' : '';
+          for (let i = 0; i < q.options.length; i++) {
+            const opt = q.options[i];
+            const selectedClass = (userAnswer === opt) ? 'selected' : '';
             html += '<div class="option ' + selectedClass + '" data-choice="' + opt.replace(/"/g, '&quot;') + '">' + opt + '</div>';
           }
           html += '</div>';
@@ -532,13 +524,13 @@
         }
         
         if (isAnswered) {
-          var resultText = practiceResults[practiceIndex] ? '✓ Верно!' : '✗ Ошибка. Правильно: ' + q.correct;
-          var resultClass = practiceResults[practiceIndex] ? 'correct' : 'wrong';
+          const resultText = practiceResults[practiceIndex] ? '✓ Верно!' : '✗ Ошибка. Правильно: ' + q.correct;
+          const resultClass = practiceResults[practiceIndex] ? 'correct' : 'wrong';
           html += '<div class="result-badge ' + resultClass + '">' + resultText + '</div>';
         }
         
-        html += '<div style="display:flex; gap:1rem; margin-top:1rem;">' +
-          '<button class="btn" id="checkBtn" style="flex:1;">' + (isAnswered ? 'Изменить' : 'Проверить') + '</button>';
+        html += '<div style="display:flex; gap:1rem; margin-top:1rem;">';
+        html += '<button class="btn" id="checkBtn" style="flex:1;">' + (isAnswered ? 'Изменить' : 'Проверить') + '</button>';
         
         if (practiceIndex + 1 < total) {
           html += '<button class="btn" id="nextBtn" style="flex:1;">Далее →</button>';
@@ -557,54 +549,50 @@
         container.innerHTML = html;
         
         if (q.type !== 'choice') {
-          var input = document.getElementById('answerInput');
+          const input = document.getElementById('answerInput');
           if (input && !isAnswered) input.focus();
           if (input) {
-            input.onkeypress = function(e) {
-              if (e.key === 'Enter') {
-                document.getElementById('checkBtn').click();
-              }
+            input.onkeypress = (e) => {
+              if (e.key === 'Enter') document.getElementById('checkBtn').click();
             };
           }
         }
         
         if (q.type === 'choice') {
-          var choiceOptions = document.querySelectorAll('#practiceOptions .option');
-          for (var co = 0; co < choiceOptions.length; co++) {
-            choiceOptions[co].onclick = (function(optEl) {
+          const opts = document.querySelectorAll('#practiceOptions .option');
+          for (let i = 0; i < opts.length; i++) {
+            opts[i].onclick = (function(optEl) {
               return function() {
                 if (isAnswered) return;
-                var allOpts = document.querySelectorAll('#practiceOptions .option');
-                for (var ao2 = 0; ao2 < allOpts.length; ao2++) {
-                  allOpts[ao2].classList.remove('selected');
+                const allOpts = document.querySelectorAll('#practiceOptions .option');
+                for (let j = 0; j < allOpts.length; j++) {
+                  allOpts[j].classList.remove('selected');
                 }
                 optEl.classList.add('selected');
               };
-            })(choiceOptions[co]);
+            })(opts[i]);
           }
         }
         
-        document.getElementById('checkBtn').onclick = function() {
-          var answer = '';
+        document.getElementById('checkBtn').onclick = () => {
+          let answer = '';
           if (q.type === 'choice') {
-            var selected = document.querySelector('#practiceOptions .option.selected');
+            const selected = document.querySelector('#practiceOptions .option.selected');
             if (!selected) return;
             answer = selected.getAttribute('data-choice');
           } else {
-            var inputVal = document.getElementById('answerInput');
-            if (inputVal) {
-              answer = inputVal.value.trim().toLowerCase();
-            }
+            const inputVal = document.getElementById('answerInput');
+            answer = inputVal ? inputVal.value.trim().toLowerCase() : '';
           }
-          var isCorrect = (answer === q.correct.toLowerCase());
+          const isCorrect = (answer === q.correct.toLowerCase());
           practiceAnswers[practiceIndex] = answer;
           practiceResults[practiceIndex] = isCorrect;
           render();
         };
         
-        var nextBtn = document.getElementById('nextBtn');
+        const nextBtn = document.getElementById('nextBtn');
         if (nextBtn) {
-          nextBtn.onclick = function() {
+          nextBtn.onclick = () => {
             if (practiceAnswers[practiceIndex] !== null) {
               practiceIndex++;
               render();
@@ -612,45 +600,40 @@
           };
         }
         
-        var finishBtn = document.getElementById('finishBtn');
+        const finishBtn = document.getElementById('finishBtn');
         if (finishBtn) {
-          finishBtn.onclick = function() {
-            var finalCount = 0;
-            for (var fc = 0; fc < practiceResults.length; fc++) {
-              if (practiceResults[fc] === true) finalCount++;
+          finishBtn.onclick = () => {
+            let final = 0;
+            for (let i = 0; i < practiceResults.length; i++) {
+              if (practiceResults[i] === true) final++;
             }
-            alert('✨ Результат: ' + finalCount + ' / 20');
+            alert('✨ Результат: ' + final + ' / 20');
             step = 'theory';
             render();
           };
         }
         
-        document.getElementById('backToTheoryBtn').onclick = function() {
+        document.getElementById('backToTheoryBtn').onclick = () => {
           step = 'theory';
           render();
         };
         
-        document.getElementById('exitBtn').onclick = function() {
+        document.getElementById('exitBtn').onclick = () => {
           if (confirm('⚠️ Выйти? Прогресс этого урока будет потерян.')) {
-            practiceAnswers = new Array(20);
-            for (var pea = 0; pea < 20; pea++) practiceAnswers[pea] = null;
-            practiceResults = new Array(20);
-            for (var per = 0; per < 20; per++) practiceResults[per] = false;
+            practiceAnswers = new Array(20).fill(null);
+            practiceResults = new Array(20).fill(false);
             practiceIndex = 0;
             step = 'theory';
             render();
           }
         };
         
-        var resetBtn = document.getElementById('resetBtn');
-        if (resetBtn) {
-          resetBtn.onclick = function() {
-            if (confirm('Сбросить всё?')) resetProgress();
-          };
-        }
+        document.getElementById('resetBtn').onclick = () => {
+          if (confirm('Сбросить всё?')) resetProgress();
+        };
       }
 
-      // Запуск
+      // ---------- START ----------
       document.addEventListener('DOMContentLoaded', function() {
         loadProgress();
         render();
