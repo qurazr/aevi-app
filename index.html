@@ -26,6 +26,7 @@
             gap: 24px;
         }
 
+        /* Левая панель */
         .topics-panel {
             flex: 2;
             min-width: 260px;
@@ -130,6 +131,7 @@
             color: #7df9ff;
         }
 
+        /* Правая панель */
         .content-panel {
             flex: 5;
             min-width: 300px;
@@ -152,6 +154,7 @@
             font-weight: 700;
         }
 
+        /* Кнопки */
         .btn {
             background: linear-gradient(95deg, #0aff9d, #00c3ff);
             border: none;
@@ -170,15 +173,26 @@
             background: transparent;
             border: 1px solid #0aff9d;
             color: #0aff9d;
+            padding: 10px 20px;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(10, 255, 157, 0.1);
+            transform: scale(0.98);
         }
 
         .btn-back {
             background: rgba(255, 94, 124, 0.15);
             border: 1px solid #ff5e7c;
             color: #ff9eae;
-            margin-top: 0;
-            width: auto;
             padding: 10px 20px;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 500;
             transition: 0.2s;
         }
 
@@ -201,6 +215,7 @@
             background: linear-gradient(90deg, #0aff9d, #00c3ff);
         }
 
+        /* Чат */
         .chat-container {
             flex: 1;
             display: flex;
@@ -212,7 +227,7 @@
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 12px;
+            padding: 16px;
             background: #0F1322;
             border-radius: 24px;
             margin-bottom: 16px;
@@ -220,17 +235,14 @@
         }
 
         .message {
-            margin-bottom: 8px;
-            padding: 10px 14px;
+            margin-bottom: 12px;
+            padding: 12px 16px;
             border-radius: 18px;
             max-width: 95%;
             word-wrap: break-word;
             white-space: pre-wrap;
             font-size: 0.95rem;
-            line-height: 1.45;
-        }
-
-        .ai-message {
+            line-height: 1.5;
             background: #1A2035;
             border: 1px solid #2A2F42;
             color: #fff;
@@ -258,75 +270,7 @@
 
         .question-btn:hover {
             background: #0aff9d20;
-        }
-
-        .vocabulary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .vocab-card {
-            background: #0F1322;
-            border-radius: 16px;
-            padding: 12px;
-            border: 1px solid #2A2F42;
-        }
-
-        .vocab-word {
-            font-weight: bold;
-            color: #0aff9d;
-        }
-
-        .vocab-translation {
-            font-size: 0.9rem;
-            color: #8A93B0;
-            margin-top: 4px;
-        }
-
-        .practice-question {
-            background: #11161f;
-            border-radius: 24px;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .practice-input {
-            background: #0a0f16;
-            border: 1px solid #2a3a4a;
-            border-radius: 40px;
-            padding: 12px 18px;
-            width: 100%;
-            color: white;
-            margin: 12px 0;
-            font-size: 1rem;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option {
-            background: #0f141c;
-            padding: 12px 18px;
-            border-radius: 40px;
-            cursor: pointer;
-            border: 1px solid #2c3a4a;
-            text-align: center;
-        }
-
-        .option:hover {
-            border-color: #0aff9d;
-            background: #1a2a2f;
-        }
-
-        .selected {
-            background: #0aff9d20;
-            border-color: #0aff9d;
-            color: #ccffdd;
+            transform: scale(0.95);
         }
 
         .header-buttons {
@@ -337,29 +281,8 @@
             align-items: center;
         }
 
-        .feedback-correct {
-            color: #0aff9d;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        .feedback-wrong {
-            color: #ff5e7c;
-            margin-top: 8px;
-        }
-
-        .practice-footer {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-            justify-content: space-between;
-        }
-
         @media (max-width: 780px) {
             .app-container {
-                flex-direction: column;
-            }
-            .practice-footer {
                 flex-direction: column;
             }
         }
@@ -371,287 +294,123 @@
 <script>
     // ==================== ГРАММАТИЧЕСКИЕ ТЕМЫ A1 ====================
     const grammarTopics = [
-        { id: "g1", name: "Глагол TO BE (am/is/are)" },
-        { id: "g2", name: "Present Simple (I work, he works)" },
-        { id: "g3", name: "Present Continuous (I am doing)" },
-        { id: "g4", name: "Модальный глагол CAN" },
-        { id: "g5", name: "Future: to be going to" },
-        { id: "g6", name: "Past Simple: was/were" },
-        { id: "g7", name: "Wh-questions (what, where, when)" },
-        { id: "g8", name: "There is / There are" },
-        { id: "g9", name: "Like + verb-ing (like reading)" },
-        { id: "g10", name: "Местоимения (I, me, my)" }
+        { id: "g1", name: "Глагол TO BE (am/is/are)" }
     ];
 
-    // ==================== ТЕОРИЯ ДЛЯ КАЖДОЙ ТЕМЫ ====================
+    // ==================== ТЕОРИЯ ДЛЯ ТЕМЫ TO BE ====================
     const theoryDB = {
-        "g1": { full: `Глагол TO BE (am/is/are)\n\nФормы: I am, He/She/It is, You/We/They are\n\nУтверждение: I am a student.\nОтрицание: I am not tired.\nВопрос: Are you ready?`, examples: `I am a teacher.\nShe is a doctor.\nThey are happy.`, negative: `I am not (I'm not)\nHe is not (isn't)\nThey are not (aren't)`, questions: `Am I late?\nIs she your sister?\nAre you OK?` },
-        "g2": { full: `Present Simple\n\nI/You/We/They + глагол\nHe/She/It + глагол + s/es\n\nI work. She works.`, examples: `I drink coffee every day.\nShe works in a hospital.`, negative: `I don't like coffee.\nShe doesn't speak Spanish.`, questions: `Do you like music?\nDoes she play tennis?` },
-        "g3": { full: `Present Continuous\n\nam/is/are + глагол + ing\n\nI am reading now.\nShe is watching TV.`, examples: `I am writing a letter.\nThey are playing football.`, negative: `I am not sleeping.\nHe isn't working.`, questions: `Are you listening?\nWhat are you doing?` },
-        "g4": { full: `Модальный глагол CAN\n\nI can swim. She can speak French.\nОтрицание: cannot / can't\nВопрос: Can you help me?`, examples: `I can swim.\nHe can speak three languages.`, negative: `I can't drive.\nShe cannot find her keys.`, questions: `Can you help me?\nCan she sing?` },
-        "g5": { full: `Конструкция to be going to\n\nam/is/are + going to + глагол\n\nI am going to study.\nIt is going to rain.`, examples: `I am going to visit my parents.\nIt is going to snow.`, negative: `I am not going to do it.\nShe isn't going to come.`, questions: `Are you going to stay?\nIs he going to call?` },
-        "g6": { full: `Past Simple: was/were\n\nI/He/She/It was\nYou/We/They were\n\nI was tired.\nThey were at home.`, examples: `I was born in 1990.\nWe were at the cinema.`, negative: `I wasn't late.\nWe weren't ready.`, questions: `Was she happy?\nWere you at the party?` },
-        "g7": { full: `Wh-questions\n\nWhat - что, Where - где, When - когда, Who - кто, Why - почему, How - как\n\nWhat do you do?\nWhere does she live?`, examples: `What is your name?\nWhere do you live?\nHow are you?`, negative: `Why aren't you coming?`, questions: `What do you do?\nWhere does she live?` },
-        "g8": { full: `There is / There are\n\nThere is + ед.число\nThere are + мн.число\n\nThere is a cat.\nThere are two windows.`, examples: `There is a book on the table.\nThere are three chairs.`, negative: `There isn't a phone.\nThere aren't any chairs.`, questions: `Is there a supermarket?\nAre there any problems?` },
-        "g9": { full: `Like + verb-ing\n\nlike/love/hate + глагол + ing\n\nI like reading.\nShe loves dancing.`, examples: `I like playing tennis.\nHe hates doing homework.`, negative: `I don't like cooking.`, questions: `Do you like swimming?` },
-        "g10": { full: `Местоимения\n\nSubject: I, you, he, she, it, we, they\nObject: me, you, him, her, it, us, them\nPossessive: my, your, his, her, its, our, their`, examples: `I love her.\nThis is my book.`, negative: `I don't know him.`, questions: `Do you know him?` }
+        "g1": {
+            full: `Глагол TO BE (am/is/are)
+
+1. Значение глагола TO BE
+
+Глагол to be переводится как "быть, находиться, являться".
+В русском языке мы часто опускаем этот глагол: "Я студент" (а не "я есть студент").
+В английском языке to be обязателен: "I am a student."
+
+2. Формы глагола TO BE в настоящем времени
+
+Форма зависит от того, кто или что является подлежащим:
+
+I (я) → am
+He / She / It (он/она/оно) → is
+You / We / They (ты/вы/мы/они) → are
+
+Правило-запоминалка: Я am, он/она is, а для всех остальных are.
+
+3. Утверждение (Affirmative)
+
+I am a teacher. (Я учитель)
+He is my brother. (Он мой брат)
+She is beautiful. (Она красивая)
+It is a cat. (Это кот)
+You are my friend. (Ты мой друг)
+We are students. (Мы студенты)
+They are at home. (Они дома)`,
+            examples: `Примеры утвердительных предложений с глаголом TO BE:
+
+1. I am a student. (Я студент)
+2. You are my best friend. (Ты мой лучший друг)
+3. He is from London. (Он из Лондона)
+4. She is a doctor. (Она врач)
+5. It is a big house. (Это большой дом)
+6. We are happy. (Мы счастливы)
+7. They are at the park. (Они в парке)
+8. I am hungry. (Я голоден)
+9. She is tired. (Она устала)
+10. They are ready. (Они готовы)`,
+            negative: `Отрицание с глаголом TO BE
+
+Чтобы построить отрицание, добавьте частицу not после формы to be.
+
+Сокращённые формы:
+I am not → I'm not
+He is not → He isn't
+She is not → She isn't
+It is not → It isn't
+You are not → You aren't
+We are not → We aren't
+They are not → They aren't
+
+Примеры:
+I am not tired. (Я не устал)
+She is not a doctor. (Она не врач)
+They are not ready. (Они не готовы)
+He isn't at home. (Его нет дома)
+We aren't late. (Мы не опоздали)`,
+            questions: `Вопросы с глаголом TO BE
+
+Чтобы задать вопрос, поставьте форму to be в начало предложения (перед подлежащим).
+
+Схема: To be + подлежащее + ...?
+
+Примеры:
+Am I late? (Я опоздал?)
+Are you ready? (Ты готов?)
+Is she a doctor? (Она врач?)
+Is he your brother? (Он твой брат?)
+Are they at home? (Они дома?)
+Is it cold outside? (На улице холодно?)
+
+Короткие ответы:
+Are you ready? → Yes, I am. / No, I'm not.
+Is she a doctor? → Yes, she is. / No, she isn't.
+Are they at home? → Yes, they are. / No, they aren't.`
+        }
     };
-
-    // ==================== ЛЕКСИЧЕСКИЕ ТЕМЫ ====================
-    const vocabularyTopics = [
-        { id: "v1", name: "Numbers 1-100", words: ["one - один", "two - два", "three - три", "four - четыре", "five - пять", "six - шесть", "seven - семь", "eight - восемь", "nine - девять", "ten - десять", "twenty - двадцать", "thirty - тридцать", "forty - сорок", "fifty - пятьдесят", "hundred - сто"] },
-        { id: "v2", name: "Family", words: ["mother - мама", "father - папа", "brother - брат", "sister - сестра", "grandmother - бабушка", "grandfather - дедушка", "aunt - тётя", "uncle - дядя", "cousin - двоюродный", "parents - родители", "children - дети", "son - сын", "daughter - дочь"] },
-        { id: "v3", name: "Home & Furniture", words: ["house - дом", "room - комната", "door - дверь", "window - окно", "table - стол", "chair - стул", "bed - кровать", "kitchen - кухня", "bathroom - ванная", "bedroom - спальня", "sofa - диван"] },
-        { id: "v4", name: "Food & Drink", words: ["bread - хлеб", "water - вода", "milk - молоко", "coffee - кофе", "tea - чай", "apple - яблоко", "banana - банан", "orange - апельсин", "meat - мясо", "chicken - курица", "fish - рыба", "rice - рис"] },
-        { id: "v5", name: "Clothes", words: ["shirt - рубашка", "trousers - брюки", "dress - платье", "shoes - туфли", "jacket - куртка", "hat - шапка", "jeans - джинсы", "skirt - юбка", "coat - пальто"] },
-        { id: "v6", name: "Weather & Seasons", words: ["sun - солнце", "rain - дождь", "snow - снег", "hot - жарко", "cold - холодно", "summer - лето", "winter - зима", "spring - весна", "autumn - осень"] }
-    ];
-
-    // ==================== ПРАКТИКА НА ОСНОВЕ ТЕОРИИ ====================
-    function generateGrammarPractice(topicId) {
-        const questions = [];
-        
-        if (topicId === "g1") {
-            const data = [
-                { q: "She ___ a doctor.", a: "is" }, { q: "I ___ happy.", a: "am" }, { q: "They ___ at home.", a: "are" },
-                { q: "He ___ not tired.", a: "is" }, { q: "We ___ friends.", a: "are" }, { q: "It ___ a cat.", a: "is" },
-                { q: "You ___ my friend.", a: "are" }, { q: "___ you ready?", a: "are", type: "choice", opts: ["Am", "Is", "Are"] },
-                { q: "___ she a doctor?", a: "is", type: "choice", opts: ["Am", "Is", "Are"] }, { q: "I ___ from Russia.", a: "am" },
-                { q: "They ___ happy.", a: "are" }, { q: "She ___ not at work.", a: "is" }, { q: "We ___ in the park.", a: "are" },
-                { q: "___ I late?", a: "am", type: "choice", opts: ["Am", "Is", "Are"] }, { q: "He ___ a teacher.", a: "is" },
-                { q: "The cat ___ black.", a: "is" }, { q: "My parents ___ at home.", a: "are" }, { q: "I ___ not ready.", a: "am" },
-                { q: "She ___ my sister.", a: "is" }, { q: "___ they coming?", a: "are", type: "choice", opts: ["Am", "Is", "Are"] }
-            ];
-            for (let i = 0; i < data.length; i++) {
-                const item = data[i];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери правильную форму to be" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "вставь am/is/are" });
-                }
-            }
-        } else if (topicId === "g2") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "She ___ (work) every day.", a: "works" }, { q: "I ___ (like) coffee.", a: "like" }, { q: "He ___ to school.", a: "goes" },
-                    { q: "They ___ (live) in London.", a: "live" }, { q: "We ___ (play) tennis.", a: "play" }, { q: "It ___ (rain) a lot.", a: "rains" },
-                    { q: "You ___ (speak) English.", a: "speak" }, { q: "She ___ (not/like) fish.", a: "doesn't like" }, { q: "I ___ (not/drink) tea.", a: "don't drink" },
-                    { q: "___ you like music?", a: "do", type: "choice", opts: ["Do", "Does"] }, { q: "___ she play tennis?", a: "does", type: "choice", opts: ["Do", "Does"] },
-                    { q: "He ___ (eat) breakfast at 8.", a: "eats" }, { q: "The sun ___ (rise) in the east.", a: "rises" }, { q: "We ___ (not/have) a car.", a: "don't have" },
-                    { q: "She ___ (study) every evening.", a: "studies" }, { q: "The train ___ (leave) at 6 PM.", a: "leaves" }, { q: "My father ___ (work) in a bank.", a: "works" },
-                    { q: "I ___ (get up) at 7 AM.", a: "get up" }, { q: "___ they speak French?", a: "do", type: "choice", opts: ["Do", "Does"] }, { q: "He ___ (not/smoke).", a: "doesn't smoke" }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери вспомогательный глагол" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "поставь глагол в правильную форму" });
-                }
-            }
-        } else if (topicId === "g3") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "I ___ (read) a book now.", a: "am reading" }, { q: "She ___ (watch) TV.", a: "is watching" }, { q: "They ___ (play) football.", a: "are playing" },
-                    { q: "He ___ (not/sleep) now.", a: "isn't sleeping" }, { q: "We ___ (wait) for the bus.", a: "are waiting" }, { q: "___ you listening?", a: "are", type: "choice", opts: ["am", "is", "are"] },
-                    { q: "What ___ you doing?", a: "are", type: "choice", opts: ["am", "is", "are"] }, { q: "She ___ (cook) dinner.", a: "is cooking" }, { q: "They ___ (not/listen) to me.", a: "aren't listening" },
-                    { q: "I ___ (learn) English now.", a: "am learning" }, { q: "The children ___ (sleep).", a: "are sleeping" }, { q: "___ she coming?", a: "is", type: "choice", opts: ["am", "is", "are"] },
-                    { q: "We ___ (have) dinner.", a: "are having" }, { q: "He ___ (work) today.", a: "is working" }, { q: "I ___ (not/do) anything.", a: "am not doing" },
-                    { q: "Look! It ___ (rain).", a: "is raining" }, { q: "She ___ (wear) a red dress.", a: "is wearing" }, { q: "___ they playing?", a: "are", type: "choice", opts: ["am", "is", "are"] },
-                    { q: "The phone ___ (ring).", a: "is ringing" }, { q: "We ___ (not/go) to the party.", a: "aren't going" }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери правильную форму to be" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "поставь глагол в Present Continuous" });
-                }
-            }
-        } else if (topicId === "g4") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "I ___ swim.", a: "can" }, { q: "She ___ speak French.", a: "can" }, { q: "He ___ (not) drive.", a: "can't" },
-                    { q: "___ you help me?", a: "can", type: "choice", opts: ["Can", "Do", "Is"] }, { q: "They ___ come tomorrow.", a: "can" },
-                    { q: "She ___ (not) find her keys.", a: "can't" }, { q: "___ he play the guitar?", a: "can", type: "choice", opts: ["Can", "Does", "Is"] },
-                    { q: "I ___ (not) understand.", a: "can't" }, { q: "You ___ go now.", a: "can" }, { q: "We ___ see the stars.", a: "can" },
-                    { q: "She ___ sing very well.", a: "can" }, { q: "___ I open the window?", a: "can", type: "choice", opts: ["Can", "Do", "Am"] }, { q: "He ___ run fast.", a: "can" },
-                    { q: "They ___ (not) hear you.", a: "can't" }, { q: "I ___ see you tomorrow.", a: "can" }, { q: "___ she dance?", a: "can", type: "choice", opts: ["Can", "Does", "Is"] },
-                    { q: "We ___ (not) stay long.", a: "can't" }, { q: "You ___ sit here.", a: "can" }, { q: "He ___ speak three languages.", a: "can" }, { q: "___ I help you?", a: "can", type: "choice", opts: ["Can", "Do", "Am"] }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери правильный модальный глагол" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "вставь can или can't" });
-                }
-            }
-        } else if (topicId === "g5") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "I ___ going to study.", a: "am" }, { q: "She ___ going to travel.", a: "is" }, { q: "They ___ going to buy a car.", a: "are" },
-                    { q: "It ___ going to rain.", a: "is" }, { q: "We ___ going to be late.", a: "are" }, { q: "He ___ (not) going to come.", a: "isn't" },
-                    { q: "___ you going to stay?", a: "are", type: "choice", opts: ["am", "is", "are"] }, { q: "I am ___ to call you.", a: "going" },
-                    { q: "She is going to ___ a doctor.", a: "be" }, { q: "They are going to ___ a new house.", a: "buy" }, { q: "We are ___ to win.", a: "going" },
-                    { q: "___ she going to accept?", a: "is", type: "choice", opts: ["am", "is", "are"] }, { q: "I am not ___ to tell him.", a: "going" },
-                    { q: "He is going to ___ late.", a: "be" }, { q: "___ they going to help?", a: "are", type: "choice", opts: ["am", "is", "are"] }, { q: "She is ___ to study abroad.", a: "going" },
-                    { q: "We are going to ___ dinner.", a: "have" }, { q: "It is going to ___ cold.", a: "be" }, { q: "I am going to ___ a letter.", a: "write" }, { q: "They are ___ to visit us.", a: "going" }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери правильную форму to be" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "вставь пропущенное слово" });
-                }
-            }
-        } else if (topicId === "g6") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "I ___ tired yesterday.", a: "was" }, { q: "They ___ at home.", a: "were" }, { q: "She ___ happy.", a: "was" },
-                    { q: "We ___ at the cinema.", a: "were" }, { q: "He ___ not late.", a: "wasn't" }, { q: "___ you at school?", a: "were", type: "choice", opts: ["was", "were"] },
-                    { q: "It ___ cold last night.", a: "was" }, { q: "They ___ not ready.", a: "weren't" }, { q: "I ___ born in 1990.", a: "was" },
-                    { q: "___ she angry?", a: "was", type: "choice", opts: ["was", "were"] }, { q: "We ___ very busy.", a: "were" }, { q: "He ___ a teacher.", a: "was" },
-                    { q: "___ they happy?", a: "were", type: "choice", opts: ["was", "were"] }, { q: "The movie ___ boring.", a: "was" }, { q: "You ___ late for school.", a: "were" },
-                    { q: "It ___ a great day.", a: "was" }, { q: "We ___ not at home.", a: "weren't" }, { q: "___ I right?", a: "was", type: "choice", opts: ["was", "were"] },
-                    { q: "She ___ my best friend.", a: "was" }, { q: "They ___ in London last year.", a: "were" }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери was или were" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "вставь was/were или wasn't/weren't" });
-                }
-            }
-        } else if (topicId === "g8") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "There ___ a cat on the sofa.", a: "is" }, { q: "There ___ two windows.", a: "are" }, { q: "There ___ a problem.", a: "is" },
-                    { q: "There ___ many people.", a: "are" }, { q: "___ there a phone?", a: "is", type: "choice", opts: ["is", "are"] }, { q: "There ___ any chairs.", a: "aren't" },
-                    { q: "There ___ a book on the table.", a: "is" }, { q: "There ___ some milk.", a: "is" }, { q: "There ___ three chairs.", a: "are" },
-                    { q: "___ there any problems?", a: "are", type: "choice", opts: ["is", "are"] }, { q: "There ___ a supermarket near here.", a: "is" }, { q: "There ___ any letters.", a: "aren't" },
-                    { q: "There ___ a phone call for you.", a: "is" }, { q: "There ___ lots of things to do.", a: "are" }, { q: "___ there any sugar?", a: "is", type: "choice", opts: ["is", "are"] },
-                    { q: "There ___ a mistake.", a: "is" }, { q: "There ___ no students.", a: "are" }, { q: "There ___ a hospital nearby.", a: "is" }, { q: "There ___ many stars.", a: "are" }, { q: "___ there a bank?", a: "is", type: "choice", opts: ["is", "are"] }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери is или are" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "вставь there is/there are" });
-                }
-            }
-        } else if (topicId === "g9") {
-            for (let i = 0; i < 20; i++) {
-                const items = [
-                    { q: "I like ___ (read).", a: "reading" }, { q: "She loves ___ (dance).", a: "dancing" }, { q: "He hates ___ (get up) early.", a: "getting up" },
-                    { q: "They enjoy ___ (play) tennis.", a: "playing" }, { q: "I don't like ___ (cook).", a: "cooking" }, { q: "___ you like swimming?", a: "do", type: "choice", opts: ["Do", "Does"] },
-                    { q: "She doesn't like ___ (drive).", a: "driving" }, { q: "We like ___ (travel).", a: "traveling" }, { q: "He loves ___ (watch) TV.", a: "watching" },
-                    { q: "___ she like singing?", a: "does", type: "choice", opts: ["Do", "Does"] }, { q: "I hate ___ (wait).", a: "waiting" }, { q: "They like ___ (eat) out.", a: "eating" },
-                    { q: "She loves ___ (read) novels.", a: "reading" }, { q: "He likes ___ (play) guitar.", a: "playing" }, { q: "___ they like travelling?", a: "do", type: "choice", opts: ["Do", "Does"] },
-                    { q: "I enjoy ___ (walk).", a: "walking" }, { q: "She hates ___ (clean).", a: "cleaning" }, { q: "We like ___ (watch) movies.", a: "watching" },
-                    { q: "He doesn't like ___ (study).", a: "studying" }, { q: "___ you like cooking?", a: "do", type: "choice", opts: ["Do", "Does"] }
-                ];
-                const item = items[i % items.length];
-                if (item.type === "choice") {
-                    questions.push({ type: "choice", question: item.q, options: item.opts, correct: item.a, hint: "выбери do или does" });
-                } else {
-                    questions.push({ type: "input", question: item.q, correct: item.a, hint: "поставь глагол в форму -ing" });
-                }
-            }
-        } else {
-            for (let i = 0; i < 20; i++) {
-                questions.push({ type: "input", question: "Translate: success", correct: "success", hint: "успех" });
-            }
-        }
-        
-        return questions.slice(0, 22);
-    }
-
-    function generateVocabularyPractice(topic) {
-        const questions = [];
-        const words = topic.words;
-        
-        for (let i = 0; i < 22; i++) {
-            const pair = words[i % words.length];
-            const [eng, rus] = pair.split(" - ");
-            if (i % 2 === 0) {
-                questions.push({ type: "input", question: `Переведите на английский: "${rus}"`, correct: eng, hint: `слово из темы "${topic.name}"` });
-            } else {
-                questions.push({ type: "input", question: `Переведите на русский: "${eng}"`, correct: rus, hint: `слово из темы "${topic.name}"` });
-            }
-        }
-        return questions;
-    }
 
     // Состояние
     let currentTab = "grammar";
     let currentTopic = null;
     let currentMode = "topics";
     let chatMessages = [];
-    let currentTasks = [];
-    let currentTaskIdx = 0;
-    let userAnswers = [];
-    let results = [];
-    let showFeedback = false;
-    let feedbackMessage = "";
     let completedTopics = JSON.parse(localStorage.getItem("aevi_completed")) || [];
 
-    function saveCompleted() { localStorage.setItem("aevi_completed", JSON.stringify(completedTopics)); }
-    function markCompleted(id) { if (!completedTopics.includes(id)) { completedTopics.push(id); saveCompleted(); } }
+    function saveCompleted() {
+        localStorage.setItem("aevi_completed", JSON.stringify(completedTopics));
+    }
 
     function selectTopic(topic) {
         currentTopic = topic;
-        if (currentTab === "grammar") {
-            chatMessages = [{ role: "ai", content: `Вы выбрали тему: ${topic.name}. Нажмите на кнопку, чтобы получить информацию.` }];
-            currentMode = "chat";
-        } else {
-            currentMode = "vocabulary";
-        }
+        chatMessages = [{ role: "ai", content: `Вы выбрали тему: ${topic.name}. Нажмите на кнопку, чтобы получить информацию.` }];
+        currentMode = "chat";
         renderApp();
     }
 
-    function addAIMessage(content) { chatMessages.push({ role: "ai", content: content }); renderApp(); }
-
-    function startPractice() {
-        if (currentTab === "grammar") {
-            currentTasks = generateGrammarPractice(currentTopic.id);
-        } else {
-            currentTasks = generateVocabularyPractice(currentTopic);
-        }
-        currentTaskIdx = 0;
-        userAnswers = new Array(currentTasks.length).fill(null);
-        results = new Array(currentTasks.length).fill(false);
-        currentMode = "practice";
-        showFeedback = false;
+    function addAIMessage(content) {
+        chatMessages.push({ role: "ai", content: content });
         renderApp();
     }
 
-    function checkAnswer(answer) {
-        const task = currentTasks[currentTaskIdx];
-        const isCorrect = (answer.trim().toLowerCase() === task.correct.toLowerCase());
-        userAnswers[currentTaskIdx] = answer;
-        results[currentTaskIdx] = isCorrect;
-        feedbackMessage = isCorrect ? `Правильно! ${task.hint || ""}` : `Неправильно. Правильный ответ: ${task.correct}. ${task.hint || ""}`;
-        showFeedback = true;
-        setTimeout(() => {
-            showFeedback = false;
-            if (currentTaskIdx + 1 < currentTasks.length) { currentTaskIdx++; renderApp(); }
-            else { finishPractice(); }
-        }, 1500);
+    function backToTopics() {
+        currentMode = "topics";
+        currentTopic = null;
         renderApp();
     }
-
-    function finishPractice() {
-        const correctCount = results.filter(r => r === true).length;
-        const percent = (correctCount / currentTasks.length) * 100;
-        if (percent >= 70 && currentTopic) markCompleted(currentTopic.id);
-        currentMode = "results";
-        renderApp();
-    }
-
-    function backToTopics() { currentMode = "topics"; currentTopic = null; renderApp(); }
-    function backToChat() { currentMode = "chat"; renderApp(); }
 
     function getTheoryResponse(type) {
         const data = theoryDB[currentTopic.id];
-        if (!data) return "Информация по этой теме.";
+        if (!data) return "Информация по этой теме будет добавлена.";
         if (type === "full") return data.full;
         if (type === "examples") return data.examples;
         if (type === "negative") return data.negative;
@@ -663,89 +422,99 @@
         const container = document.getElementById('app');
         if (!container) return;
 
-        const currentTopics = currentTab === "grammar" ? grammarTopics : vocabularyTopics;
+        const currentTopics = grammarTopics;
         const completedCount = currentTopics.filter(t => completedTopics.includes(t.id)).length;
 
-        const topicListHtml = currentTopics.map((t, idx) => `
-            <div class="topic-item ${completedTopics.includes(t.id) ? 'completed' : ''} ${currentTopic?.id === t.id ? 'active' : ''}" data-id="${t.id}">
-                <div class="topic-status">${completedTopics.includes(t.id) ? '✓' : idx+1}</div>
-                <div class="topic-name">${t.name}</div>
-                <div class="topic-badge">${currentTab === "grammar" ? 'грамматика' : 'лексика'}</div>
-            </div>
-        `).join('');
+        const topicListHtml = currentTopics.map((t, idx) => {
+            const isCompleted = completedTopics.includes(t.id);
+            const isActive = currentTopic && currentTopic.id === t.id;
+            return `
+                <div class="topic-item ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" data-id="${t.id}">
+                    <div class="topic-status">${isCompleted ? '✓' : idx+1}</div>
+                    <div class="topic-name">${t.name}</div>
+                    <div class="topic-badge">грамматика</div>
+                </div>
+            `;
+        }).join('');
 
         let rightPanelHtml = '';
 
         if (currentMode === "topics") {
-            rightPanelHtml = `<div class="chat-container"><h2>Выберите тему</h2><p>Нажмите на любую тему слева.</p></div>`;
+            rightPanelHtml = `
+                <div class="chat-container">
+                    <h2>Выберите тему</h2>
+                    <p>Нажмите на тему слева, чтобы начать обучение.</p>
+                </div>
+            `;
         } else if (currentMode === "chat" && currentTopic) {
+            const messagesHtml = chatMessages.map(msg => `
+                <div class="message">
+                    ${msg.content}
+                </div>
+            `).join('');
+            
             rightPanelHtml = `
                 <div class="chat-container">
-                    <div class="header-buttons"><h2>${currentTopic.name}</h2><button class="btn-outline" id="practiceBtn">Практика</button><button class="btn-outline" id="backBtn">Назад</button></div>
-                    <div class="chat-messages">${chatMessages.map(m => `<div class="message ai-message">${m.content}</div>`).join('')}</div>
+                    <div class="header-buttons">
+                        <h2>${currentTopic.name}</h2>
+                        <button class="btn-outline" id="practiceBtn" style="opacity:0.5; cursor:not-allowed;" disabled>Практика (скоро)</button>
+                        <button class="btn-back" id="backBtn">Назад к темам</button>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        ${messagesHtml}
+                    </div>
                     <div class="button-panel">
-                        <button class="question-btn" data-type="full">Теория</button><button class="question-btn" data-type="examples">Примеры</button>
-                        <button class="question-btn" data-type="negative">Отрицание</button><button class="question-btn" data-type="questions">Вопросы</button>
+                        <button class="question-btn" data-type="full">Теория</button>
+                        <button class="question-btn" data-type="examples">Примеры</button>
+                        <button class="question-btn" data-type="negative">Отрицание</button>
+                        <button class="question-btn" data-type="questions">Вопросы</button>
                     </div>
                 </div>
-            `;
-        } else if (currentMode === "vocabulary" && currentTopic) {
-            rightPanelHtml = `
-                <div class="chat-container">
-                    <div class="header-buttons"><h2>${currentTopic.name}</h2><button class="btn-outline" id="practiceBtn">Практика</button><button class="btn-outline" id="backBtn">Назад</button></div>
-                    <div class="vocabulary-grid">${currentTopic.words.map(w => { let [e,r] = w.split(" - "); return `<div class="vocab-card"><div class="vocab-word">${e}</div><div class="vocab-translation">${r}</div></div>`; }).join('')}</div>
-                </div>
-            `;
-        } else if (currentMode === "practice" && currentTasks.length) {
-            const task = currentTasks[currentTaskIdx];
-            rightPanelHtml = `
-                <div class="practice-block">
-                    <div style="display:flex; justify-content:space-between;"><h3>Практика: ${currentTopic.name}</h3><span>${currentTaskIdx+1}/${currentTasks.length}</span></div>
-                    <div class="progress"><div class="progress-fill" style="width:${(currentTaskIdx/currentTasks.length)*100}%"></div></div>
-                    <div class="practice-question">
-                        <strong>${task.question}</strong>
-                        ${task.type === 'choice' ? `<div class="options">${task.options.map(opt => `<div class="option" data-val="${opt}">${opt}</div>`).join('')}</div>` : `<input type="text" id="answerInput" class="practice-input" placeholder="Введите ответ...">`}
-                        ${showFeedback ? `<div class="${feedbackMessage.includes('Правильно') ? 'feedback-correct' : 'feedback-wrong'}">${feedbackMessage}</div>` : ''}
-                        <div class="practice-footer"><button class="btn-back" id="backToChatFromPracticeBtn">← Назад</button><button class="btn" id="submitBtn">Проверить</button></div>
-                    </div>
-                </div>
-            `;
-        } else if (currentMode === "results") {
-            const correctCount = results.filter(r => r === true).length;
-            const percent = Math.round((correctCount / currentTasks.length) * 100);
-            rightPanelHtml = `
-                <div><h2>Результаты</h2><div style="text-align:center;margin:40px 0;"><div style="font-size:48px;color:#0aff9d;">${correctCount}/${currentTasks.length}</div><div>${percent}%</div></div><div class="progress"><div class="progress-fill" style="width:${percent}%"></div></div>${percent >= 70 ? '<p>Тема пройдена!</p>' : '<p>Повторите тему.</p>'}<button class="btn" id="backToChatFromResultsBtn">Вернуться</button></div>
             `;
         }
 
         container.innerHTML = `
             <div class="topics-panel">
-                <div class="topics-header"><h3><span class="glow-text">Aevi</span> · A1</h3></div>
-                <div class="tab-switch"><div class="tab-btn ${currentTab === 'grammar' ? 'active' : ''}" data-tab="grammar">Грамматика</div><div class="tab-btn ${currentTab === 'vocabulary' ? 'active' : ''}" data-tab="vocabulary">Лексика</div></div>
+                <div class="topics-header">
+                    <h3><span class="glow-text">Aevi</span> · A1</h3>
+                </div>
+                <div class="tab-switch">
+                    <div class="tab-btn active" data-tab="grammar">Грамматика</div>
+                    <div class="tab-btn" data-tab="vocabulary" style="opacity:0.5; cursor:not-allowed;">Лексика (скоро)</div>
+                </div>
                 <div class="progress"><div class="progress-fill" style="width:${(completedCount/currentTopics.length)*100}%"></div></div>
-                <div class="topic-list">${topicListHtml}</div>
+                <div class="topic-list" id="topicList">
+                    ${topicListHtml}
+                </div>
             </div>
-            <div class="content-panel">${rightPanelHtml}</div>
+            <div class="content-panel" id="rightPanel">${rightPanelHtml}</div>
         `;
 
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => { currentTab = btn.dataset.tab; currentMode = "topics"; currentTopic = null; renderApp(); }));
-        document.querySelectorAll('.topic-item').forEach(el => { const id = el.dataset.id; const topic = currentTopics.find(t => t.id === id); if (topic) el.addEventListener('click', () => selectTopic(topic)); });
-        document.getElementById('practiceBtn')?.addEventListener('click', startPractice);
-        document.getElementById('backBtn')?.addEventListener('click', backToTopics);
-        document.getElementById('backToChatFromPracticeBtn')?.addEventListener('click', backToChat);
-        document.getElementById('backToChatFromResultsBtn')?.addEventListener('click', backToChat);
-        document.querySelectorAll('.question-btn').forEach(btn => btn.addEventListener('click', () => addAIMessage(getTheoryResponse(btn.dataset.type))));
-        document.getElementById('submitBtn')?.addEventListener('click', () => {
-            if (currentTasks[currentTaskIdx].type === 'choice') {
-                const selected = document.querySelector('.option.selected');
-                if (selected) checkAnswer(selected.dataset.val);
-            } else {
-                const input = document.getElementById('answerInput');
-                if (input?.value.trim()) checkAnswer(input.value.trim());
+        // Только грамматика активна, лексика пока заблокирована
+        document.querySelectorAll('.topic-item').forEach(el => {
+            const topicId = el.dataset.id;
+            const topic = grammarTopics.find(t => t.id === topicId);
+            if (topic) {
+                el.addEventListener('click', () => selectTopic(topic));
             }
         });
-        document.querySelectorAll('.option').forEach(opt => opt.addEventListener('click', function() { document.querySelectorAll('.option').forEach(o => o.classList.remove('selected')); this.classList.add('selected'); }));
+
+        document.getElementById('backBtn')?.addEventListener('click', backToTopics);
+        
+        document.querySelectorAll('.question-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.type;
+                const response = getTheoryResponse(type);
+                addAIMessage(response);
+            });
+        });
+        
+        const chatMessagesDiv = document.getElementById('chatMessages');
+        if (chatMessagesDiv) {
+            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+        }
     }
+
     renderApp();
 </script>
 </body>
